@@ -8,7 +8,7 @@ import * as I from "./icons";
 export const ASSETS: Record<string, React.FC<any>> = {
   beer: O.BeerMug, bottle: O.BeerBottle, coin: O.Coin, money: O.MoneyStack, banknote: O.Banknote, calculator: O.Calculator,
   wallet: O.Wallet, phone: O.Phone, clock: O.Clock, key: O.KeyRing, piggy: O.PiggyBank, receipt: O.Receipt, calendar: O.Calendar,
-  sparkle: O.Sparkle, sweat: O.SweatDrop, books: O.Books, blueprint: O.Blueprint, cocktail: O.CocktailGlass,
+  sparkle: O.Sparkle, sweat: O.SweatDrop, books: O.Books, blueprint: O.Blueprint, cocktail: O.CocktailGlass, chart: O.ChartBoard,
   sofa: F.Sofa, armchair: F.Armchair, coffeetable: F.CoffeeTable, table: F.Table, tv: F.TV, plant: F.Plant, lamp: F.Lamp,
   rug: F.Rug, bookshelf: F.Bookshelf, frame: F.Frame, stool: F.Stool, booth: F.Booth, window: F.Window, door: F.Door,
   hydrant: B.Hydrant, trash: B.TrashCan, taxi: B.Taxi, brownstone: B.Brownstone, highrise: B.Highrise,

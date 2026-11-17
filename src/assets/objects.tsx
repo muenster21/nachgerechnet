@@ -184,3 +184,18 @@ export const CocktailGlass: React.FC<A & { fill?: number }> = ({ fill = 1, ...a 
     <path d="M-24 -100 V-20" stroke="#fff" strokeOpacity=".4" strokeWidth="5" strokeLinecap="round" />
   </G>
 );
+
+/** Diagramm-Tafel: Tortendiagramm mit kleinem Schnitz + Balken (Marshalls Charts) */
+export const ChartBoard: React.FC<A> = (a) => (
+  <G {...a}>
+    <rect x="-150" y="-210" width="300" height="210" rx="12" fill="#FFF8EA" {...sw} />
+    <rect x="-150" y="-210" width="300" height="34" rx="12" fill="#2F6DB5" {...sw} />
+    <text x="0" y="-185" textAnchor="middle" fontFamily="Anton" fontSize="20" fill="#fff" letterSpacing="2">BATTING AVERAGE</text>
+    <circle cx="-70" cy="-98" r="56" fill="#C9CED6" {...sw} />
+    <path d="M-70 -98 L-70 -154 A56 56 0 0 1 -63 -153.6 Z" fill="#D62839" stroke="#1C1830" strokeWidth="3" />
+    <path d="M30 -60 H134 M30 -88 H108 M30 -116 H70 M30 -144 H48" stroke="#1C1830" strokeWidth="10" strokeLinecap="round" opacity=".85" />
+    <path d="M30 -60 H134" stroke="#D62839" strokeWidth="10" strokeLinecap="round" opacity="0" />
+    <path d="M-150 -14 H150" stroke="#1C1830" strokeWidth="3" opacity=".25" />
+    <path d="M-30 0 L-44 60 M30 0 L44 60" stroke="#6E4A2C" strokeWidth="10" strokeLinecap="round" />
+  </G>
+);

@@ -13,7 +13,7 @@ type DataSpec = {
   kind: "dots" | "bars" | "podium" | "scale" | "money";
   title?: string;
   /** dots: Raster aus total Punkten, davon filled farbig. */
-  dots?: { total: number; filled: number; icon?: "dot" | "person" | "dollar" | "beer"; cols?: number; unit?: string; at?: Cue; color?: string; label?: string };
+  dots?: { total: number; filled: number; icon?: "dot" | "person" | "dollar" | "beer"; cols?: number; unit?: string; at?: Cue; color?: string; label?: string; labelTop?: number };
   bars?: { label: string; value: number; display?: string; color?: string; at?: Cue }[];
   podium?: { label: string; value: string; color?: string; at?: Cue; icon?: string }[];
   scale?: { left: { label: string; value: number; display: string }; right: { label: string; value: number; display: string }; at?: Cue };
@@ -200,7 +200,7 @@ export const DataScene: React.FC<{ s: DataSpec }> = ({ s }) => {
       {(s.chips ?? []).map((c, i) => <Chip key={i} text={c.text} at={c.at} top={c.top ?? 1000 + i * 100} left={c.left ?? 70} color={c.color} fg={c.fg} />)}
       {s.kind === "dots" && s.dots?.unit && <Chip text={s.dots.unit} at={s.dots.at} top={530} />}
       {s.kind === "dots" && s.dots?.label && (
-        <div style={{ position: "absolute", left: 60, right: 150, top: 1465, textAlign: "center", fontFamily: FONT_DISPLAY, fontSize: 84, color: BRAND.signature, WebkitTextStroke: `12px ${BRAND.ink}`, paintOrder: "stroke fill" }}>{s.dots.label}</div>
+        <div style={{ position: "absolute", left: 60, right: 150, top: s.dots.labelTop ?? 1465, textAlign: "center", fontFamily: FONT_DISPLAY, fontSize: 84, color: BRAND.signature, WebkitTextStroke: `12px ${BRAND.ink}`, paintOrder: "stroke fill" }}>{s.dots.label}</div>
       )}
     </>
   );

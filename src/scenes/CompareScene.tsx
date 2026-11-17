@@ -23,9 +23,9 @@ export const CompareScene: React.FC<{ s: { title?: string; left: Side; right: Si
     const pop = usePop(st, 11);
     const n = useCountUp(0, d.value, st + 2, 26);
     const Icon = ICONS[d.icon ?? "euro"];
-    const maxH = 760;
+    const maxH = 470;
     const h = (maxH * d.value) / max * e;
-    const base = 1500;
+    const base = 1200;
     return (
       <g transform={`translate(${x} 0)`}>
         {/* Balken */}
@@ -56,10 +56,10 @@ export const CompareScene: React.FC<{ s: { title?: string; left: Side; right: Si
         {Array.from({ length: 12 }, (_, i) => <circle key={i} cx={(i % 4) * 300 + 100} cy={Math.floor(i / 4) * 560 + 400} r="170" fill="#fff" opacity=".035" />)}
         <Half d={s.left} x={250} fb={12} />
         <Half d={s.right} x={780} fb={30} />
-        <text x="520" y="1130" textAnchor="middle" fontFamily={FONT_DISPLAY} fontSize="120" fill={BRAND.signature} stroke={LINE} strokeWidth="18" paintOrder="stroke" transform="rotate(-8 520 1130)">VS</text>
+        <text x="520" y="760" textAnchor="middle" fontFamily={FONT_DISPLAY} fontSize="120" fill={BRAND.signature} stroke={LINE} strokeWidth="18" paintOrder="stroke" transform="rotate(-8 520 760)">VS</text>
       </svg>
       {s.title && <Title text={s.title} />}
-      {s.verdict && <Chip text={s.verdict} at={s.verdictAt ?? 60} top={1010} left={250} size={64} color="#D62839" fg="#fff" rot={-4} />}
+      {s.verdict && <Chip text={s.verdict} at={s.verdictAt ?? 60} top={540} left={70} size={64} color="#D62839" fg="#fff" rot={-4} />}
     </>
   );
 };
