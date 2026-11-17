@@ -2,7 +2,7 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" };
   top: { kind: "blazer" | "sweater" | "plaid" | "tee"; color: string; accent: string; shirt?: string };
   tie?: string;
   pants: string;
@@ -56,5 +56,30 @@ export const LOOKS: Record<string, Look> = {
     sleeves: "short",
     mustache: "#2A1A12",
     brows: "#2A1A12",
+  },
+  barney: {
+    skin: "#EDB48A",
+    skinShade: "#DB9A70",
+    hair: { color: "#2B1B12", style: "barney" },
+    top: { kind: "blazer", color: "#23232E", accent: "#15151D", shirt: "#F4F0E8" },
+    tie: "#3A6EA5",
+    pants: "#23232E",
+    shoes: "#15151D",
+    bodyW: 126,
+    heightScale: 1.0,
+    sleeves: "long",
+    brows: "#1F130C",
+  },
+  claudia: {
+    skin: "#F3C9A5",
+    skinShade: "#E4AD86",
+    hair: { color: "#5A331C", style: "long" },
+    top: { kind: "sweater", color: "#3FA37F", accent: "#2C7A5C" },
+    pants: "#2E2A3A",
+    shoes: "#7A2E3A",
+    bodyW: 108,
+    heightScale: 0.96,
+    sleeves: "short",
+    brows: "#3A2012",
   },
 };

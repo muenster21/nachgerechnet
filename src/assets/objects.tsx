@@ -167,3 +167,20 @@ export const Blueprint: React.FC<A> = (a) => (
     </g>
   </G>
 );
+
+/** Vodka Cranberry: hohes Glas, rotes Getränk, Eis, Limettenscheibe, Strohhalm */
+export const CocktailGlass: React.FC<A & { fill?: number }> = ({ fill = 1, ...a }) => (
+  <G {...a}>
+    <path d="M-34 -118 H34 L28 -4 Q27 0 22 0 H-22 Q-27 0 -28 -4 Z" fill="#F4F0E4" fillOpacity=".55" {...sw} />
+    <path d={`M${-33 + 5 * (1 - fill)} ${-8 - 100 * fill} H${33 - 5 * (1 - fill)} L27 -5 Q26 -2 22 -2 H-22 Q-26 -2 -27 -5 Z`} fill="#D6304F" />
+    <path d={`M-32 ${-8 - 100 * fill} H32`} stroke="#fff" strokeOpacity=".35" strokeWidth="4" />
+    <rect x="-18" y="-86" width="22" height="22" rx="4" fill="#EAF6FF" opacity=".8" transform="rotate(-12 -7 -75)" {...thin} />
+    <rect x="2" y="-62" width="20" height="20" rx="4" fill="#EAF6FF" opacity=".8" transform="rotate(14 12 -52)" {...thin} />
+    <path d="M14 -4 L30 -150" stroke="#1C1830" strokeWidth="9" strokeLinecap="round" />
+    <path d="M14 -4 L30 -150" stroke="#F4E7CF" strokeWidth="4" strokeLinecap="round" />
+    <circle cx="32" cy="-114" r="22" fill="#9BD66B" {...sw} />
+    <circle cx="32" cy="-114" r="12" fill="#CDEE9E" stroke="#1C1830" strokeWidth="2" />
+    <path d="M32 -114 L32 -134 M32 -114 L48 -106 M32 -114 L16 -106" stroke="#7FB84E" strokeWidth="3" />
+    <path d="M-24 -100 V-20" stroke="#fff" strokeOpacity=".4" strokeWidth="5" strokeLinecap="round" />
+  </G>
+);

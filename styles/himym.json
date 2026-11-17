@@ -6,7 +6,7 @@
     "wall": "#C8895A", "wallDark": "#8B5A3A", "wood": "#6E3F24", "floor": "#7A4A2B", "rug": "#9C4A3A", "sofa": "#B5524A",
     "skyTop": "#26335F", "skyBottom": "#E88F4B", "lamp": "#FFD98A", "amber": "#E8A33D", "brick": "#9B4F36", "neon": "#FF5B6E", "stool": "#B5524A"
   },
-  "characters": { "ted": "ted", "marshall": "marshall", "barkeeper": "barkeeper" },
+  "characters": { "ted": "ted", "marshall": "marshall", "barkeeper": "barkeeper", "barney": "barney", "claudia": "claudia" },
   "locations": ["apartment", "bar", "street"],
   "notes": "Keine Logos, Clips, Screenshots, Titelsongs. Figuren sind Cartoon-Karikaturen im eigenen Stil."
 }

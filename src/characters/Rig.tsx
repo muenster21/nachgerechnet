@@ -68,6 +68,8 @@ function Mouth({ name, skin }: { name: MouthName; skin: string }) {
 
 /* ---------- Haare ---------- */
 function HairBack({ look }: { look: Look }) {
+  if (look.hair.style === "long")
+    return <path d="M-88 -448 Q-98 -544 0 -556 Q98 -544 88 -448 L96 -338 Q70 -326 56 -352 L-56 -352 Q-70 -326 -96 -338Z" fill={look.hair.color} {...sw} />;
   if (look.hair.style === "marshall")
     return <path d="M-84 -450 Q-96 -530 -2 -546 Q96 -530 84 -450 L80 -410 Q72 -440 60 -440 L-60 -440 Q-72 -440 -80 -410Z" fill={look.hair.color} {...sw} />;
   return null;
@@ -75,6 +77,20 @@ function HairBack({ look }: { look: Look }) {
 function HairFront({ look }: { look: Look }) {
   const c = look.hair.color;
   switch (look.hair.style) {
+    case "barney":
+      return (
+        <g>
+          <path d="M-84 -458 Q-88 -538 0 -546 Q88 -538 84 -458 Q64 -500 0 -506 Q-64 -500 -84 -458Z" fill={c} {...sw} />
+          <path d="M-52 -520 Q-10 -534 40 -520" fill="none" stroke="#fff" strokeOpacity=".2" strokeWidth="5" strokeLinecap="round" />
+        </g>
+      );
+    case "long":
+      return (
+        <g>
+          <path d="M-86 -440 Q-92 -540 4 -552 Q92 -538 86 -452 Q70 -500 20 -508 Q-30 -484 -86 -440Z" fill={c} {...sw} />
+          <path d="M-60 -516 Q-20 -530 20 -520" fill="none" stroke="#fff" strokeOpacity=".16" strokeWidth="5" strokeLinecap="round" />
+        </g>
+      );
     case "ted":
       return (
         <g>
