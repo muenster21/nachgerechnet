@@ -11,8 +11,9 @@
   },
   "voice": {
     "provider": "elevenlabs",
-    "voice_id": "",
-    "model_id": "eleven_v4"
+    "voice_id": "IeQubAjK1ujbppIdhJw4",
+    "model_id": "eleven_v4",
+    "voice_name": "Markus - German young natural voice (ElevenLabs Library)"
   },
   "brand": {
     "signature": "#FFD23F",
