@@ -13,3 +13,7 @@ node_modules/
 # Sonstiges
 .DS_Store
 *.log
+
+# Build-Daten für Remotion (pro Video erzeugt)
+assets/_build/
+.remotion/

@@ -25,20 +25,25 @@ Das Video eines anderen Creators (Thema Gebäudereinigung, Fakten + Mindestlohn-
 - Flacher 2D-Vektor-Cartoon, saubere, leicht abgerundete Formen, höchstens dezente Schatten.
 - **Einheitliche Linienlogik: durchgehend dünne dunkle Konturen. Nie mischen.**
 - Figuren: großer Kopf (ca. ¼ der Körperhöhe), ausdrucksstarke Augen und Augenbrauen, einfache Körper.
-- Jede Figur als zerlegbares SVG-Rig: Kopf, Augen, Brauen, mind. 5 Mundformen, Oberkörper, Ober-/Unterarme, Hände, Beine; mind. 6 Gesichtsausdrücke: neutral, freudig, geschockt, skeptisch, genervt, nachdenklich.
+- Jede Serienfigur als zerlegbares SVG-Rig: Kopf, Augen, Brauen, mind. 5 Mundformen, Oberkörper, Ober-/Unterarme, Hände, Beine; mind. 6 Gesichtsausdrücke: neutral, freudig, geschockt, skeptisch, genervt, nachdenklich.
 - Wiederverwendbare Asset-Bibliothek in `assets/` (Figuren, Möbel, Gebäude, Gegenstände, Geld, Icons). Sie entscheidet, ob es billig wirkt.
 
-## B2. Figuren in Serien-Videos
-- Serienfiguren werden nachgezeichnet, als Cartoon-Karikatur im eigenen Zeichenstil, erkennbar an Frisur, Gesichtszügen, ikonischen Outfits.
+## B2. Figuren: die Serienfiguren sind die Darsteller
+- Es gibt **keine eigene Erzählerfigur und kein Maskottchen.** Der Erzähler ist nur die Stimme aus dem Off.
+- Die Szene zeigt immer, **worüber gerade gesprochen wird**, mit den Serienfiguren als Darstellern. Kaufen sich Ted und Marshall ein Bier, sieht man genau das; wird die Miete gezahlt, sieht man Geld über den Tisch gehen.
+- Serienfiguren werden nachgezeichnet, als Cartoon-Karikatur im eigenen Zeichenstil, erkennbar an Frisur, Gesichtszügen und ikonischen Outfits.
 - Wer gemeint ist, sagen Stimme und Untertitel.
+- Figuren sprechen nicht (keine Lippensynchronität nötig); sie agieren und reagieren mit Pose, Gesichtsausdruck und Requisiten.
 
-## B3. Wiedererkennungsmerkmal: der Erzähler („der Nachrechner“)
-Originelle Figur mit sofort erkennbarem Merkmal (Accessoire/Brille/Kopfbedeckung) und fester Signaturfarbe. Auftritte in jedem Video:
-a) **Intro (0–1,5 s):** stellt die Hook-Frage, Gesichtsausdruck passend.
-b) **Durchgehend** als Kreis-Badge unten links, reagiert live (staunt, rollt die Augen, nickt). Eigenes Badge-Design.
-c) **Urteil:** knallt einen Stempel ins Bild („REALISTISCH“ / „KNAPP“ / „UNMÖGLICH“) mit Signature-Sound.
-d) **Endcard (letzte 2 s):** „Welche Serie als Nächstes? 👇“ + Kanalname.
-In jedem Video gleich: Erzähler, Signaturfarbe, Fakt-Karten-Design, Untertitel-Design, Stempel, Sound-Logo.
+## B3. Wiedererkennung des Kanals (ohne Figur)
+Was in **jedem** Video gleich ist:
+- **Signaturfarbe** (Schlüsselwörter in den Untertiteln, Zahlen, Label-Sticker; Standard Signal-Gelb `#FFD23F`, in `config.json`).
+- **Fakt-Karten-Design** (dunkle Karte, versetzter Signatur-Schatten, „FAKT“-Sticker).
+- **Untertitel-Design** (B7).
+- **Urteil-Stempel** („REALISTISCH“ / „KNAPP“ / „UNMÖGLICH“) mit Sound-Logo.
+- **Sound-Logo** (Stempel-Schlag + kurzer Akzent).
+- **Hook:** Die Hook-Frage erscheint in den ersten 1,5 s als große Schrift über der Szene (Serienfiguren in Aktion).
+- **Endcard (letzte 2 s):** „Welche Serie als Nächstes? 👇“ + Kanalname.
 
 ## B4. Ganzer Bildschirm
 - Jede Szene bildfüllend bis zum Rand; nie leerer Einfarb-Hintergrund mit kleinem Element in der Mitte.
@@ -53,13 +58,13 @@ In jedem Video gleich: Erzähler, Signaturfarbe, Fakt-Karten-Design, Untertitel-
 4. **Datengrafik:** Punkte-Raster, Balken, Podium, Waage, Geldstapel, Mengen zum Anfassen (1 Punkt = 1.000 €)
 5. **Vergleich:** Split-Screen, z. B. Gehalt vs. Miete, Balken wachsen gegeneinander
 6. **Karte/Grundriss:** Stadtkarte mit Zoom auf den Stadtteil oder Grundriss mit m²
-7. **Urteil:** Erzähler + Stempel
+7. **Urteil:** Stempel knallt ins Bild (Schütteln, Blitz, Sound-Logo), die Serienfiguren reagieren darunter
 
 ## B6. Bewegung
 - Spätestens alle 2–3 s Szenenwechsel oder deutliche neue Bewegung.
 - Leichter Kamera-Push-in (100 → 106 %) und Parallaxe zwischen den Ebenen auf jeder Szene.
 - Figuren immer mit Idle-Animation (Atmen, Blinzeln alle 2–4 s) und Gesten passend zum Text.
-- Lippenbewegung des Erzählers synchron zu den Wort-Zeitstempeln.
+- Animationen sind auf die Wort-Zeitstempel getaktet: Ein Objekt erscheint genau bei dem Wort, das es illustriert.
 - Elemente erscheinen mit Federung (Overshoot), Zahlen zählen hoch.
 - Übergänge: Wischen, Zoom-durch, Match-Cut auf Objekte; keine Standard-Überblendungen.
 - Kleine Effekte bei Pointen: Funkeln, Schweißtropfen, Bewegungslinien.
@@ -79,8 +84,8 @@ In jedem Video gleich: Erzähler, Signaturfarbe, Fakt-Karten-Design, Untertitel-
 
 ## B10. Qualitätskontrolle (Pflicht vor jedem finalen Render)
 - Aus jeder Szene ein Standbild rendern, als Kontaktbogen speichern (`output/<slug>/contact_sheet.png`) und mit den Referenz-Standbildern vergleichen.
-- Ehrlich prüfen: bildfüllend? Leere Flächen? Wirkt etwas wie Clipart oder Platzhalter? Text in der Sicherheitszone? Erzähler sichtbar? Alles, was billiger wirkt als die Referenz, überarbeiten.
-- Untertitel, Lippen und Animationen synchron zur Stimme?
+- Ehrlich prüfen: bildfüllend? Leere Flächen? Wirkt etwas wie Clipart oder Platzhalter? Text in der Sicherheitszone? Zeigt jede Szene das, worüber gerade gesprochen wird? Alles, was billiger wirkt als die Referenz, überarbeiten.
+- Untertitel und Animationen synchron zur Stimme?
 - Jede Zahl gegen `research.md` prüfen.
 
 ---
@@ -91,7 +96,7 @@ In jedem Video gleich: Erzähler, Signaturfarbe, Fakt-Karten-Design, Untertitel-
 
 **Skript (A2):** 150–220 Wörter, gesprochene Sprache, kurze Sätze, gerundete Zahlen, Schätzungen benennen. Aufbau: Hook (2 s) → was die Serie zeigt → reale Kosten → Verdienst der Figuren → Rechnung → Urteil → Twist/Erklärung → „Welche Serie soll ich als Nächstes durchrechnen?“. Anspielungen auf die Erzählweise erlaubt, keine längeren Originalzitate. 3 Hook-Varianten in `hooks.txt`, `script.md` mit Szenen-Markierungen.
 
-**Stimme (A3):** ElevenLabs, Key aus `.env` (`ELEVENLABS_API_KEY`), Voice-ID in `config.json`, Wort-Zeitstempel für Untertitel, Lippen und Animationen. Erzählweise lebendig, nicht monoton (`eleven_v4` mit Regieanweisungen).
+**Stimme (A3):** ElevenLabs, Key aus `.env` (`ELEVENLABS_API_KEY`), Voice-ID in `config.json`, Wort-Zeitstempel für Untertitel und Animationen. Erzählweise lebendig, nicht monoton (`eleven_v4` mit Regieanweisungen).
 
 ## Output pro Video
 `output/<slug>/`: `video.mp4`, `script.md`, `hooks.txt`, `research.md`, `contact_sheet.png`, `caption.txt` (Caption + 3–5 Hashtags + Hinweis „Stimme KI-generiert“).
