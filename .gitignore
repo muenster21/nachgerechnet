@@ -1,0 +1,15 @@
+# Referenzvideo und fertige Videos nicht hochladen
+reference/
+output/
+
+# Abhängigkeiten
+node_modules/
+
+# API-Keys und lokale Konfiguration
+.env
+.env.*
+!.env.example
+
+# Sonstiges
+.DS_Store
+*.log
