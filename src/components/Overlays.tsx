@@ -19,8 +19,9 @@ export const HookText: React.FC<{ text: string; highlight?: string[]; at?: Cue; 
   return (
     <div style={{ position: "absolute", left: 60, right: 150, top, display: "flex", flexWrap: "wrap", gap: "0 22px", justifyContent: "flex-start", opacity: isFinite(end) ? out : 1, zIndex: 20 }}>
       {words.map((w, i) => {
-        const p = Math.max(0, Math.min(1, (frame - start - i * 3) / 8));
+        const p = Math.max(0, Math.min(1, (frame - start - i * 2) / 6));
         const key = highlight.some((h) => w.toLowerCase().includes(h.toLowerCase()));
+        const fadeIn = true;
         return (
           <span key={i} style={{
             fontFamily: FONT_DISPLAY, fontSize: size, lineHeight: 1.04, textTransform: "uppercase", color: key ? BRAND.signature : "#fff",
@@ -50,14 +51,16 @@ export const FactCardUI: React.FC<{
   const shown = typeof value === "number" ? fmtDE(count ? n : num, decimals) : value;
   const frame = useCurrentFrame();
   const float = Math.sin(frame / 22) * 5;
+  const chars = (prefix + shown + suffix).length;
+  const numSize = Math.min(240, 730 / (chars * 0.47)); // passt in die Kartenbreite
   return (
     <div style={{ position: "absolute", left: 90, width: 840, top, transform: `translateY(${(1 - Math.min(1, p)) * 220 + float}px) scale(${0.82 + 0.18 * Math.min(1.06, p)}) rotate(${(1 - Math.min(1, p)) * -4}deg)`, opacity: Math.min(1, p * 2), zIndex: 15 }}>
       <Sfx name="pop" at={start} />
       <div style={{ position: "absolute", inset: 0, transform: "translate(16px,18px)", borderRadius: 44, background: BRAND.signature, border: `5px solid ${BRAND.ink}` }} />
       <div style={{ position: "relative", borderRadius: 44, background: "#171433", border: `5px solid ${BRAND.ink}`, padding: "86px 56px 52px", color: "#fff", textAlign: "center" }}>
         <div style={{ position: "absolute", top: -40, left: 36, transform: "rotate(-6deg)", background: BRAND.signature, color: BRAND.ink, border: `5px solid ${BRAND.ink}`, fontFamily: FONT_DISPLAY, fontSize: 52, letterSpacing: 4, padding: "6px 32px", borderRadius: 14 }}>{tag}</div>
-        <div style={{ fontFamily: FONT_DISPLAY, fontSize: 240, lineHeight: 1, letterSpacing: 2, whiteSpace: "nowrap", color: "#fff" }}>
-          <span style={{ color: BRAND.signature }}>{prefix}</span>{shown}<span style={{ color: BRAND.signature, fontSize: 150 }}>{suffix}</span>
+        <div style={{ fontFamily: FONT_DISPLAY, fontSize: numSize, lineHeight: 1, letterSpacing: 2, whiteSpace: "nowrap", color: "#fff" }}>
+          <span style={{ color: BRAND.signature }}>{prefix}</span>{shown}<span style={{ color: BRAND.signature, fontSize: numSize * 0.62 }}>{suffix}</span>
         </div>
         <div style={{ fontFamily: FONT_TEXT, fontWeight: 900, fontSize: 56, lineHeight: 1.12, marginTop: 14, color: "#F3EEFF" }}>{label}</div>
         {source && <div style={{ fontFamily: FONT_TEXT, fontWeight: 800, fontSize: 32, marginTop: 26, color: "rgba(255,255,255,.62)", letterSpacing: 1 }}>QUELLE: {source}</div>}

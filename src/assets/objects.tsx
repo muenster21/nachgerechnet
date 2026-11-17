@@ -134,7 +134,7 @@ export const Calendar: React.FC<A & { day?: string; month?: string }> = ({ day =
     <rect x="-60" y="-120" width="120" height="120" rx="12" fill="#FFF8EA" {...sw} />
     <path d="M-60 -92 V-108 Q-60 -120 -48 -120 H48 Q60 -120 60 -108 V-92 Z" fill="#D62839" {...sw} />
     <text x="0" y="-98" textAnchor="middle" fontFamily="Anton" fontSize="20" fill="#fff">{month}</text>
-    <text x="0" y="-26" textAnchor="middle" fontFamily="Anton" fontSize="64" fill="#1C1830">{day}</text>
+    <text x="0" y="-26" textAnchor="middle" fontFamily="Anton" fontSize={day.length > 2 ? 44 : 64} fill="#1C1830">{day}</text>
     <circle cx="-30" cy="-120" r="5" fill="#1C1830" /><circle cx="30" cy="-120" r="5" fill="#1C1830" />
   </G>
 );
@@ -145,4 +145,25 @@ export const Sparkle: React.FC<A> = (a) => (
 
 export const SweatDrop: React.FC<A> = (a) => (
   <G {...a}><path d="M0 -40 Q22 -8 14 8 Q0 20 -14 8 Q-22 -8 0 -40Z" fill="#9AD8FF" {...thin} /><path d="M-6 -6 Q-8 4 -2 8" stroke="#fff" strokeWidth="4" fill="none" strokeLinecap="round" /></G>
+);
+
+export const Books: React.FC<A> = (a) => (
+  <G {...a}>
+    <rect x="-70" y="-34" width="140" height="34" rx="5" fill="#7A2E22" {...sw} />
+    <rect x="-62" y="-68" width="126" height="34" rx="5" fill="#2F6DB5" {...sw} />
+    <rect x="-74" y="-102" width="132" height="34" rx="5" fill="#2FA36B" {...sw} />
+    {[0, 1, 2].map((i) => <path key={i} d={`M${-50 + i * 6} ${-17 - i * 34} H${44 - i * 2}`} stroke="#F4E7CF" strokeWidth="5" strokeLinecap="round" opacity=".7" />)}
+    <path d="M-30 -102 V-68 M-30 -68 V-34" stroke="#1C1830" strokeWidth="3" opacity=".4" />
+  </G>
+);
+
+export const Blueprint: React.FC<A> = (a) => (
+  <G {...a}>
+    <g transform="rotate(-18)">
+      <rect x="-26" y="-130" width="52" height="130" rx="22" fill="#7FB3E6" {...sw} />
+      <ellipse cx="0" cy="-130" rx="26" ry="12" fill="#BCD9F2" {...sw} />
+      <path d="M-14 -100 H14 M-14 -80 H8 M-14 -60 H14 M-14 -40 H10" stroke="#fff" strokeWidth="4" strokeLinecap="round" opacity=".8" />
+      <rect x="-28" y="-92" width="56" height="12" fill="#D62839" opacity=".85" stroke="#1C1830" strokeWidth="3" />
+    </g>
+  </G>
 );

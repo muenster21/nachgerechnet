@@ -98,7 +98,7 @@ function HairFront({ look }: { look: Look }) {
 
 /* ---------- Gesicht ---------- */
 function Face({ look, expr, mouth, blink, look2, seedT }: { look: Look; expr: Expr; mouth?: MouthName; blink: number; look2: [number, number]; seedT: number }) {
-  const e = EXPR[expr];
+  const e = EXPR[expr] ?? EXPR.neutral; // unbekannte Ausdrücke → neutral
   const eyeY = -452;
   const px = e.pupil[0] + look2[0] * 7;
   const py = e.pupil[1] + look2[1] * 5;

@@ -19,6 +19,7 @@ type DataSpec = {
   scale?: { left: { label: string; value: number; display: string }; right: { label: string; value: number; display: string }; at?: Cue };
   money?: { label: string; n: number; display?: string; at?: Cue }[];
   unit?: string;
+  chips?: { text: string; at?: Cue; top?: number; left?: number; color?: string; fg?: string }[];
 };
 
 const useCue = () => { const { at } = useScene(); return (c?: Cue, fb = 0) => (typeof c === "number" ? c : at(c, fb)); };
@@ -63,16 +64,16 @@ const Bars: React.FC<{ bars: NonNullable<DataSpec["bars"]> }> = ({ bars }) => {
         const st = cue(b.at, 8 + i * 14);
         const p = interpolate(frame, [st, st + 22], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
         const e = 1 - Math.pow(1 - p, 3);
-        const rowH = Math.min(170, 760 / bars.length);
-        const y = 560 + i * (rowH + 26);
+        const rowH = Math.min(290, 720 / bars.length);
+        const y = 560 + i * (rowH + 30);
         const w = (760 * b.value) / max * e;
         const col = b.color ?? [BRAND.signature, "#FF6B6B", "#4FB3C8", "#8BD17C"][i % 4];
         return (
           <g key={i}>
             <rect x="60" y={y} width="840" height={rowH} rx="22" fill="#0E1330" opacity=".6" stroke={LINE} strokeWidth="4" />
             <rect x="64" y={y + 4} width={Math.max(0, w - 8)} height={rowH - 8} rx="18" fill={col} stroke={LINE} strokeWidth="4" />
-            <text x="90" y={y + rowH / 2 + 18} fontFamily={FONT_DISPLAY} fontSize="58" fill="#fff" stroke={LINE} strokeWidth="10" paintOrder="stroke">{b.label}</text>
-            <text x="880" y={y + rowH / 2 + 20} textAnchor="end" fontFamily={FONT_DISPLAY} fontSize="70" fill="#fff" stroke={LINE} strokeWidth="12" paintOrder="stroke" opacity={e}>{b.display ?? fmtDE(b.value * e)}</text>
+            <text x="92" y={y + Math.min(78, rowH * 0.3)} fontFamily={FONT_DISPLAY} fontSize={Math.min(54, rowH * 0.22)} fill="#fff" stroke={LINE} strokeWidth="9" paintOrder="stroke">{b.label}</text>
+            <text x="880" y={y + rowH - Math.min(46, rowH * 0.2)} textAnchor="end" fontFamily={FONT_DISPLAY} fontSize={Math.min(110, rowH * 0.42)} fill="#fff" stroke={LINE} strokeWidth="12" paintOrder="stroke" opacity={e}>{b.display ?? fmtDE(b.value * e)}</text>
           </g>
         );
       })}
@@ -196,6 +197,7 @@ export const DataScene: React.FC<{ s: DataSpec }> = ({ s }) => {
         </Layer>
       </Camera>
       {s.title && <Title text={s.title} />}
+      {(s.chips ?? []).map((c, i) => <Chip key={i} text={c.text} at={c.at} top={c.top ?? 1000 + i * 100} left={c.left ?? 70} color={c.color} fg={c.fg} />)}
       {s.kind === "dots" && s.dots?.unit && <Chip text={s.dots.unit} at={s.dots.at} top={530} />}
       {s.kind === "dots" && s.dots?.label && (
         <div style={{ position: "absolute", left: 60, right: 150, top: 1465, textAlign: "center", fontFamily: FONT_DISPLAY, fontSize: 84, color: BRAND.signature, WebkitTextStroke: `12px ${BRAND.ink}`, paintOrder: "stroke fill" }}>{s.dots.label}</div>

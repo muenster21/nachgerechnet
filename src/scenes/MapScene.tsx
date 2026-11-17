@@ -14,6 +14,8 @@ type MapSpec = {
   zoom?: number;
   zoomAt?: string | number;
   /** Grundriss: Räume {x,y,w,h in Einheiten à 40px, label, m2} */
+  u?: number;
+  y0?: number;
   rooms?: { x: number; y: number; w: number; h: number; label: string; m2?: number; color?: string; at?: string | number }[];
   total?: { label: string; at?: string | number };
 };
@@ -72,9 +74,10 @@ const Manhattan: React.FC<{ s: MapSpec }> = ({ s }) => {
 /* ---- Grundriss mit m² ---- */
 const Floorplan: React.FC<{ s: MapSpec }> = ({ s }) => {
   const { at } = useScene();
-  const u = 60;
+  const u = s.u ?? 60;
   const rooms = s.rooms ?? [];
-  const x0 = 100, y0 = 520;
+  const wUnits = Math.max(...(s.rooms ?? []).map((r) => r.x + r.w), 12);
+  const x0 = (930 - wUnits * u) / 2 + 40, y0 = s.y0 ?? 520;
   return (
     <svg width="1080" height="1920" viewBox="0 0 1080 1920" style={{ position: "absolute", inset: 0 }}>
       <rect width="1080" height="1920" fill="#1D3B66" />
