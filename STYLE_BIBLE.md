@@ -17,7 +17,7 @@ Das Video eines anderen Creators (Thema Gebäudereinigung, Fakten + Mindestlohn-
 4. **Zahlen werden „anfassbar“.** Ein Raster aus Personen-Icons (1 Icon = Menge), Podium mit Rang 1–3, Zettel „Mindestlohn“ mit Positionen, die nacheinander erscheinen und aufleuchten, Konfetti/Münzen bei der Pointe.
 5. **Wiedererkennbares Fakt-System.** Eine „FAKT“-Karte mit großer Zahl, einer Zeile Erklärung und Quellenangabe, dazu ein Kreis-Badge der Hauptfigur unten links, die live reagiert. Untertitel: 1 Wort gleichzeitig, riesig, weiß mit dicker dunkler Kontur, im unteren Drittel.
 
-**Was wir anders machen (eigene Optik):** anderes Maskottchen („der Nachrechner“) mit eigener Signaturfarbe, eigenes Karten- und Badge-Design, eigener Untertitel-Look, Stempel-Urteil als Signatur, Serien-Looks pro Video.
+**Was wir anders machen (eigene Optik):** keine wiederkehrende Hauptfigur, sondern die Serienfiguren als Darsteller; eigene Signaturfarbe, eigenes Fakt-Karten- und Untertitel-Design, Stempel-Urteil als Signatur, eigener Serien-Look pro Video.
 
 ---
 
