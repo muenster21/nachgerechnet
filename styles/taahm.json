@@ -1,0 +1,12 @@
+{
+  "series": "Two and a Half Men",
+  "slug": "taahm",
+  "mood": "Sitcom, sonnig, Malibu; Sand, Meerblau, helles Holz, Abendsonne",
+  "palette": {
+    "wall": "#E9D7B5", "trim": "#F6EFE2", "floor": "#B98A5A", "sofa": "#D8C7A6", "rug": "#3F6E8C", "amber": "#E8C27A",
+    "skyTop": "#7EC8E8", "skyBottom": "#FFD9A0", "sea": "#2E8FB8", "sand": "#EBD3A0", "deck": "#A9774A", "roof": "#7A8C99", "garage": "#D2C3A4"
+  },
+  "characters": { "charlie": "charlie", "alan": "alan", "jake": "jake", "berta": "berta" },
+  "locations": ["beachhouse", "deck", "driveway"],
+  "notes": "Keine Logos, Clips, Screenshots, Titelsongs, keine Automarken. Figuren sind Cartoon-Karikaturen im eigenen Stil."
+}

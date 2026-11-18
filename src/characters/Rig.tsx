@@ -72,6 +72,14 @@ function HairBack({ look }: { look: Look }) {
     return <path d="M-88 -448 Q-98 -544 0 -556 Q98 -544 88 -448 L96 -338 Q70 -326 56 -352 L-56 -352 Q-70 -326 -96 -338Z" fill={look.hair.color} {...sw} />;
   if (look.hair.style === "marshall")
     return <path d="M-84 -450 Q-96 -530 -2 -546 Q96 -530 84 -450 L80 -410 Q72 -440 60 -440 L-60 -440 Q-72 -440 -80 -410Z" fill={look.hair.color} {...sw} />;
+  if (look.hair.style === "curly")
+    return (
+      <g fill={look.hair.color} {...sw}>
+        {[[-88, -470], [-96, -420], [88, -470], [96, -420], [-60, -528], [60, -528], [0, -548]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="34" />)}
+      </g>
+    );
+  if (look.hair.style === "alan")
+    return <path d="M-84 -430 Q-92 -476 -76 -492 L-62 -470 Q-70 -452 -72 -420Z M84 -430 Q92 -476 76 -492 L62 -470 Q70 -452 72 -420Z" fill={look.hair.color} {...sw} />;
   return null;
 }
 function HairFront({ look }: { look: Look }) {
@@ -105,6 +113,36 @@ function HairFront({ look }: { look: Look }) {
           <path d="M-86 -440 Q-92 -534 -4 -552 Q86 -534 86 -440 Q80 -482 56 -498 Q28 -480 0 -500 Q-30 -480 -56 -498 Q-80 -482 -86 -440Z" fill={c} {...sw} />
           <path d="M0 -500 Q-6 -520 -4 -548" fill="none" stroke={look.skinShade} strokeOpacity=".0" />
           <path d="M-40 -512 Q-18 -528 0 -522 M44 -512 Q22 -528 4 -522" fill="none" stroke="#fff" strokeOpacity=".16" strokeWidth="5" strokeLinecap="round" />
+        </g>
+      );
+    case "charlie":
+      // kurz, dunkel, nach hinten gegelt, leichte Tolle
+      return (
+        <g>
+          <path d="M-84 -456 Q-92 -536 -10 -550 Q80 -548 86 -466 Q78 -506 46 -516 Q10 -508 -20 -524 Q-60 -506 -84 -456Z" fill={c} {...sw} />
+          <path d="M-50 -522 Q-6 -548 50 -526 M-40 -506 Q0 -526 44 -512" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
+        </g>
+      );
+    case "alan":
+      // Geheimratsecken: dünner Schopf vorne, Seiten
+      return (
+        <g>
+          <path d="M-30 -526 Q-6 -548 26 -528 Q10 -516 -8 -520 Q-20 -514 -30 -526Z" fill={c} {...sw} />
+          <path d="M-80 -470 Q-86 -500 -66 -514 L-60 -490Z M80 -470 Q86 -500 66 -514 L60 -490Z" fill={c} {...sw} />
+        </g>
+      );
+    case "curly":
+      return (
+        <g fill={c} {...sw}>
+          {[[-62, -506], [-26, -528], [14, -530], [52, -510], [76, -480], [-80, -478]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="28" />)}
+        </g>
+      );
+    case "kid":
+      // dichter, runder Wuschelkopf
+      return (
+        <g>
+          <path d="M-86 -440 Q-96 -546 0 -554 Q96 -546 86 -440 Q80 -488 50 -496 Q30 -478 6 -494 Q-20 -476 -44 -494 Q-74 -488 -86 -440Z" fill={c} {...sw} />
+          <path d="M-46 -526 Q0 -544 46 -526" fill="none" stroke="#fff" strokeOpacity=".16" strokeWidth="5" strokeLinecap="round" />
         </g>
       );
     default:
@@ -186,6 +224,29 @@ function Torso({ look, breathe }: { look: Look; breathe: number }) {
         <g>
           <path d={`M-22 ${top} Q0 ${top + 26} 22 ${top}`} fill={t.accent} {...sw} />
           <path d={`M${-hw - 6} ${bot - 16} H${hw + 6}`} {...sw} strokeWidth={3} />
+        </g>
+      )}
+      {t.kind === "bowling" && (
+        // Bowlinghemd: zwei Farbbahnen, offener Reverskragen, Knopfleiste
+        <g>
+          <clipPath id="bowlClip"><path d={`M${-hw} ${top + 30} Q${-hw} ${top} ${-hw + 36} ${top} L${hw - 36} ${top} Q${hw} ${top} ${hw} ${top + 30} L${hw + 6} ${bot} L${-hw - 6} ${bot}Z`} /></clipPath>
+          <g clipPath="url(#bowlClip)">
+            <rect x={-hw * 0.62} y={top - 4} width={hw * 0.34} height={bot - top + 8} fill={t.accent} />
+            <rect x={hw * 0.28} y={top - 4} width={hw * 0.34} height={bot - top + 8} fill={t.accent} />
+          </g>
+          <path d={`M-30 ${top} L0 ${top + 40} L30 ${top}`} fill={t.shirt ?? "#F4F0E8"} {...sw} />
+          <path d={`M-30 ${top} L-44 ${top + 30} L-4 ${top + 44}Z M30 ${top} L44 ${top + 30} L4 ${top + 44}Z`} fill={t.color} {...sw} />
+          <path d={`M0 ${top + 42} V${bot}`} fill="none" {...sw} strokeWidth={3} />
+          {[0, 1, 2].map((i) => <circle key={i} cx="0" cy={top + 72 + i * 36} r="4.5" fill="#F4F0E8" {...sw} strokeWidth={2.5} />)}
+        </g>
+      )}
+      {t.kind === "vest" && (
+        // Pullunder über Hemd
+        <g>
+          <path d={`M${-hw + 10} ${top + 10} L-4 ${top + 96} L4 ${top + 96} L${hw - 10} ${top + 10} L${hw + 4} ${bot} L${-hw - 4} ${bot}Z`} fill={t.color} {...sw} />
+          <path d={`M-18 ${top} L0 ${top + 22} L18 ${top}`} fill={t.shirt ?? "#F4F0E8"} {...sw} />
+          <path d={`M${-hw - 4} ${bot - 16} H${hw + 4}`} {...sw} strokeWidth={3} />
+          <path d={`M-30 ${top + 50} L-4 ${top + 96} M30 ${top + 50} L4 ${top + 96}`} stroke={t.accent} strokeWidth="6" fill="none" />
         </g>
       )}
       {t.kind === "tee" && (

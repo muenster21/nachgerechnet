@@ -2,8 +2,8 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" };
-  top: { kind: "blazer" | "sweater" | "plaid" | "tee"; color: string; accent: string; shirt?: string };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" };
+  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest"; color: string; accent: string; shirt?: string };
   tie?: string;
   pants: string;
   shoes: string;
@@ -81,5 +81,55 @@ export const LOOKS: Record<string, Look> = {
     heightScale: 0.96,
     sleeves: "short",
     brows: "#3A2012",
+  },
+  /* ---- Two and a Half Men ---- */
+  charlie: {
+    skin: "#E9AE84",
+    skinShade: "#D6956A",
+    hair: { color: "#2A1C14", style: "charlie" },
+    top: { kind: "bowling", color: "#2E3E5C", accent: "#C9B98E", shirt: "#F4F0E8" },
+    pants: "#E2D6BC",
+    shoes: "#3A2A20",
+    bodyW: 130,
+    heightScale: 1.02,
+    sleeves: "short",
+    stubble: true,
+    brows: "#1F140D",
+  },
+  alan: {
+    skin: "#F2C29C",
+    skinShade: "#E0A77E",
+    hair: { color: "#5A3E2A", style: "alan" },
+    top: { kind: "vest", color: "#9AA58A", accent: "#7C8770", shirt: "#E7EEF6" },
+    pants: "#C9B48C",
+    shoes: "#5A3E2A",
+    bodyW: 112,
+    heightScale: 0.98,
+    sleeves: "long",
+    brows: "#4A3020",
+  },
+  jake: {
+    skin: "#F2C29C",
+    skinShade: "#E0A77E",
+    hair: { color: "#6A4426", style: "kid" },
+    top: { kind: "tee", color: "#D9534F", accent: "#B23A36" },
+    pants: "#3A4A6A",
+    shoes: "#2A2A2A",
+    bodyW: 140,
+    heightScale: 0.8,
+    sleeves: "short",
+    brows: "#4A2E18",
+  },
+  berta: {
+    skin: "#F1C3A0",
+    skinShade: "#DEA77F",
+    hair: { color: "#B5643A", style: "curly" },
+    top: { kind: "sweater", color: "#7A5C8E", accent: "#5C4470" },
+    pants: "#3A3A4A",
+    shoes: "#2A2A2A",
+    bodyW: 150,
+    heightScale: 0.94,
+    sleeves: "short",
+    brows: "#8A4A2A",
   },
 };

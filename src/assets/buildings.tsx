@@ -131,3 +131,38 @@ export const FloorBoards: React.FC<{ y: number; h: number; color: string; line?:
     {[0.3, 0.6].map((t) => <path key={t} d={`M0 ${y + h * t} H${w}`} stroke={line ?? shade(color, -0.1)} strokeWidth="3" />)}
   </g>
 );
+
+/** Silbernes Luxus-Coupé (generisch, ohne Marke). */
+export const Coupe: React.FC<A & { color?: string }> = ({ color = "#B9C2CC", ...a }) => (
+  <G {...a}>
+    <path d="M-250 -46 Q-252 -92 -190 -100 L-120 -150 Q-96 -166 -60 -168 H70 Q110 -166 140 -142 L190 -104 Q252 -98 256 -50 V-24 H-250Z" fill={color} {...sw} />
+    <path d="M-104 -146 L-150 -106 H-6 V-156 H-50 Q-84 -156 -104 -146Z M10 -156 V-106 H160 L120 -138 Q96 -156 66 -156Z" fill="#9FD7F2" {...sw} />
+    <path d="M-236 -70 H246" stroke="#fff" strokeOpacity=".45" strokeWidth="6" />
+    <path d="M-60 -96 H-34 M60 -96 H86" stroke="#1C1830" strokeWidth="5" strokeLinecap="round" opacity=".6" />
+    <rect x="232" y="-82" width="22" height="20" rx="5" fill="#FFF3C4" {...thin} />
+    <rect x="-252" y="-80" width="16" height="18" rx="4" fill="#E0484F" {...thin} />
+    {[-150, 160].map((x) => <g key={x}><circle cx={x} cy="-22" r="44" fill="#22252E" {...sw} /><circle cx={x} cy="-22" r="22" fill="#D9DEE5" {...thin} /><circle cx={x} cy="-22" r="7" fill="#22252E" /></g>)}
+  </G>
+);
+
+/** Flügel (Konzertflügel, seitlich, Deckel offen). */
+export const GrandPiano: React.FC<A & { color?: string }> = ({ color = "#16141C", ...a }) => (
+  <G {...a}>
+    <path d="M-150 -170 L-140 0 M150 -170 L140 0 M120 -170 L116 -40" stroke="#1C1830" strokeWidth="16" strokeLinecap="round" />
+    <path d="M-190 -170 H200 Q240 -170 240 -210 Q240 -260 160 -268 Q60 -276 -20 -250 L-190 -230Z" fill={color} {...sw} />
+    <path d="M-170 -236 L120 -420 L140 -400 L-150 -232Z" fill={shade(color, 0.25)} {...sw} />
+    <rect x="-200" y="-196" width="140" height="30" fill="#FFF8EA" {...sw} />
+    {Array.from({ length: 7 }, (_, i) => <rect key={i} x={-194 + i * 19} y="-196" width="9" height="18" fill="#1C1830" />)}
+    <path d="M-160 -248 H180" stroke="#fff" strokeOpacity=".2" strokeWidth="5" />
+  </G>
+);
+
+/** Palme. */
+export const Palm: React.FC<A> = (a) => (
+  <G {...a}>
+    <path d="M-14 0 Q-30 -220 18 -420 L38 -416 Q4 -220 16 0Z" fill="#8A5A34" {...sw} />
+    {[-160, -110, -60, -10, 40].map((r, i) => (
+      <path key={i} d="M28 -418 Q120 -470 210 -410 Q120 -440 28 -418Z" fill={i % 2 ? "#3E9C5A" : "#2F7F48"} {...sw} transform={`rotate(${r + 70} 28 -418)`} />
+    ))}
+  </G>
+);

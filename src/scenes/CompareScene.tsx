@@ -11,7 +11,7 @@ type Side = { label: string; value: number; display?: string; color: string; ico
 const ICONS: Record<string, React.FC<any>> = { dollar: DollarIcon, euro: EuroIcon, house: HouseIcon, beer: BeerIcon, person: PersonIcon };
 
 /** Vergleich: Split-Screen, Balken wachsen gegeneinander. */
-export const CompareScene: React.FC<{ s: { title?: string; left: Side; right: Side; verdict?: string; verdictAt?: string | number } }> = ({ s }) => {
+export const CompareScene: React.FC<{ s: { title?: string; left: Side; right: Side; verdict?: string; verdictAt?: string | number; verdictTop?: number; verdictLeft?: number } }> = ({ s }) => {
   const { at } = useScene();
   const cue = (c?: string | number, fb = 0) => (typeof c === "number" ? c : at(c, fb));
   const frame = useCurrentFrame();
@@ -59,7 +59,7 @@ export const CompareScene: React.FC<{ s: { title?: string; left: Side; right: Si
         <text x="520" y="760" textAnchor="middle" fontFamily={FONT_DISPLAY} fontSize="120" fill={BRAND.signature} stroke={LINE} strokeWidth="18" paintOrder="stroke" transform="rotate(-8 520 760)">VS</text>
       </svg>
       {s.title && <Title text={s.title} />}
-      {s.verdict && <Chip text={s.verdict} at={s.verdictAt ?? 60} top={540} left={70} size={64} color="#D62839" fg="#fff" rot={-4} />}
+      {s.verdict && <Chip text={s.verdict} at={s.verdictAt ?? 60} top={s.verdictTop ?? 540} left={s.verdictLeft ?? 70} size={64} color="#D62839" fg="#fff" rot={-4} />}
     </>
   );
 };

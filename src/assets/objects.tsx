@@ -199,3 +199,35 @@ export const ChartBoard: React.FC<A> = (a) => (
     <path d="M-30 0 L-44 60 M30 0 L44 60" stroke="#6E4A2C" strokeWidth="10" strokeLinecap="round" />
   </G>
 );
+
+/** Tumbler mit Bourbon (Charlie). */
+export const Tumbler: React.FC<A & { fill?: number }> = ({ fill = 1, ...a }) => (
+  <G {...a}>
+    <path d="M-40 -84 H40 L34 -6 Q33 0 26 0 H-26 Q-33 0 -34 -6 Z" fill="#F4F0E4" fillOpacity=".5" {...sw} />
+    <path d={`M-37 ${-14 - 40 * fill} H37 L34 -8 Q33 -4 26 -4 H-26 Q-33 -4 -34 -8 Z`} fill="#C8752A" />
+    <rect x="-22" y={-40 - 40 * fill} width="26" height="26" rx="5" fill="#EAF6FF" opacity=".85" transform="rotate(-10)" {...thin} />
+    <path d="M-34 -14 H34" stroke="#1C1830" strokeWidth="5" opacity=".5" />
+    <path d="M-26 -70 V-24" stroke="#fff" strokeOpacity=".45" strokeWidth="6" strokeLinecap="round" />
+  </G>
+);
+
+/** Whiskeyflasche (generisch, ohne Marke). */
+export const WhiskeyBottle: React.FC<A> = (a) => (
+  <G {...a}>
+    <path d="M-40 -4 V-150 Q-40 -176 -14 -186 V-232 H14 V-186 Q40 -176 40 -150 V-4 Q40 0 34 0 H-34 Q-40 0 -40 -4Z" fill="#B8641F" {...sw} />
+    <rect x="-18" y="-252" width="36" height="24" rx="5" fill="#1C1830" />
+    <rect x="-32" y="-128" width="64" height="70" rx="6" fill="#F4E7CF" {...sw} />
+    <path d="M-20 -104 H20 M-20 -86 H12" stroke="#1C1830" strokeWidth="5" strokeLinecap="round" />
+    <path d="M-28 -160 V-20" stroke="#fff" strokeOpacity=".3" strokeWidth="7" strokeLinecap="round" />
+  </G>
+);
+
+/** Spielchip (Wetten). */
+export const PokerChip: React.FC<A & { color?: string }> = ({ color = "#D62839", ...a }) => (
+  <G {...a}>
+    <ellipse cx="0" cy="-40" rx="46" ry="46" fill={color} {...sw} />
+    {Array.from({ length: 6 }, (_, i) => { const r = (i * Math.PI) / 3; return <rect key={i} x={Math.cos(r) * 38 - 7} y={-40 + Math.sin(r) * 38 - 7} width="14" height="14" rx="3" fill="#FFF8EA" transform={`rotate(${i * 60} ${Math.cos(r) * 38} ${-40 + Math.sin(r) * 38})`} />; })}
+    <circle cx="0" cy="-40" r="24" fill="#FFF8EA" {...thin} />
+    <text x="0" y="-31" textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#1C1830">$</text>
+  </G>
+);
