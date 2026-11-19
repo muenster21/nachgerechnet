@@ -313,3 +313,15 @@ export const MoneyPile: React.FC<A & { w?: number }> = ({ w = 700, ...a }) => {
     </G>
   );
 };
+
+/** Blechdose (Erdnusskrokant) mit Geldscheinen. */
+export const Tin: React.FC<A> = (a) => (
+  <G {...a}>
+    {[[-30, -120, -10], [10, -128, 8], [36, -118, 16]].map(([x, y, r], i) => (
+      <g key={i} transform={`translate(${x} ${y}) rotate(${r})`}><rect x="-36" y="-20" width="72" height="40" rx="5" fill="#7BC68B" {...thin} /><text x="0" y="8" textAnchor="middle" fontFamily="Anton" fontSize="20" fill="#1C1830">$</text></g>
+    ))}
+    <rect x="-60" y="-110" width="120" height="110" rx="12" fill="#C8423A" {...sw} />
+    <rect x="-60" y="-80" width="120" height="44" fill="#F6C945" {...thin} />
+    <ellipse cx="0" cy="-110" rx="60" ry="14" fill="#D9D4CA" {...sw} />
+  </G>
+);

@@ -4,7 +4,7 @@ import { useVideo } from "../lib/anim";
 import { H, W } from "../lib/theme";
 import {
   Armchair, BarCounter, BottleShelf, Bookshelf, Brownstone, CoffeeTable, FloorBoards, Frame, Highrise, Hydrant, Lamp, Mirror, Moon, NeonSign,
-  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope,
+  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope, Whiteboard,
 } from "../assets";
 
 /** Jeder Schauplatz hat drei Ebenen: Back (Hintergrund), Mid (Mittelgrund), Fore (angeschnittener Vordergrund). */
@@ -615,7 +615,87 @@ const Cell: Loc = {
   ),
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell };
+/* ================= The Big Bang Theory ================= */
+/** Wohnung 4A: warme Wände, Whiteboards, Fenster, Sofa. */
+const Apt4A: Loc = {
+  floorY: 1560,
+  Back: ({ p }) => {
+    const wall = p("wall4a", "#C9A27A");
+    return (
+      <g>
+        <Gradient id="a4Wall" a={shade(wall, 0.05)} b={shade(wall, -0.3)} y2={1500} />
+        <Window x={230} y={1000} w={300} h={420} sky={[p("skyTop", "#3E5C8A"), p("skyBottom", "#E8A26A")]} />
+        <Whiteboard x={720} y={900} w={420} h={260} />
+        <Whiteboard x={760} y={1240} w={300} h={200} />
+        <Frame x={460} y={760} w={120} h={160} color="#2B4F8C" />
+        <rect x="-20" y="1460" width={W + 40} height="50" fill={shade(wall, -0.35)} stroke="#1C1830" strokeWidth="4" />
+        <FloorBoards y={1500} h={H - 1500} color={p("floor4a", "#8A5A3A")} />
+      </g>
+    );
+  },
+  Mid: ({ p }) => (
+    <g>
+      <Sofa x={540} y={1620} s={1.5} color={p("sofa4a", "#6E5A3A")} />
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+/** Treppenhaus: Stufen, Geländer, Aufzug mit „Außer Betrieb“. */
+const Stairwell: Loc = {
+  floorY: 1620,
+  Back: ({ p }) => {
+    const wall = p("stairWall", "#D9C8A6");
+    return (
+      <g>
+        <Gradient id="swWall" a={shade(wall, 0.05)} b={shade(wall, -0.3)} y2={1500} />
+        {/* Aufzug */}
+        <rect x="620" y="720" width="360" height="760" fill="#9AA2AC" stroke="#1C1830" strokeWidth="6" />
+        <path d="M800 720 V1480" stroke="#1C1830" strokeWidth="6" />
+        <g transform="translate(800 1000) rotate(-6)">
+          <rect x="-150" y="-60" width="300" height="120" fill="#FFF8EA" stroke="#1C1830" strokeWidth="5" />
+          <text x="0" y="-8" textAnchor="middle" fontFamily="Anton" fontSize="40" fill="#D62839">AUSSER</text>
+          <text x="0" y="40" textAnchor="middle" fontFamily="Anton" fontSize="40" fill="#D62839">BETRIEB</text>
+        </g>
+        {/* Treppe links */}
+        {Array.from({ length: 9 }, (_, i) => <rect key={i} x={-40 + i * 50} y={1460 - i * 70} width="560" height="70" fill={shade(wall, -0.15 - i * 0.01)} stroke="#1C1830" strokeWidth="4" />)}
+        <path d="M-40 1380 L460 820" stroke="#5A3A22" strokeWidth="18" strokeLinecap="round" />
+        {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${-20 + i * 60} ${1358 - i * 67} V${1450 - i * 70}`} stroke="#5A3A22" strokeWidth="8" />)}
+        <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#8A7A62" stroke="#1C1830" strokeWidth="5" />
+      </g>
+    );
+  },
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/** Restaurant: warme Säulen, Hängelampen, Nischen. */
+const Restaurant: Loc = {
+  floorY: 1580,
+  Back: ({ p }) => {
+    const wall = p("restWall", "#C88A4A");
+    return (
+      <g>
+        <Gradient id="rsWall" a={shade(wall, 0.1)} b={shade(wall, -0.35)} y2={1500} />
+        {[120, 540, 960].map((x) => (
+          <g key={x}>
+            <rect x={x - 50} y="300" width="100" height="1200" fill="#E8D2A8" stroke="#1C1830" strokeWidth="5" />
+            <rect x={x - 70} y="280" width="140" height="40" fill="#D9BE8A" stroke="#1C1830" strokeWidth="5" />
+          </g>
+        ))}
+        {[330, 750].map((x) => <PendantLamp key={x} x={x} y={-10} drop={520} />)}
+        <ellipse cx="540" cy="900" rx="560" ry="500" fill="#FFD98A" opacity=".12" />
+        <Booth x={330} y={1500} s={1.4} color="#7A2E3A" />
+        <Booth x={750} y={1500} s={1.4} color="#7A2E3A" />
+        <FloorBoards y={1500} h={H - 1500} color="#5A3A22" line="#3A2414" />
+      </g>
+    );
+  },
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {

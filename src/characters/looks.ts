@@ -2,7 +2,7 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" };
   top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather"; color: string; accent: string; shirt?: string };
   tie?: string;
   pants: string;
@@ -211,5 +211,43 @@ export const LOOKS: Record<string, Look> = {
     heightScale: 0.97,
     sleeves: "long",
     brows: "#A8844A",
+  },
+  /* ---- The Big Bang Theory ---- */
+  penny: {
+    skin: "#F3CBA8",
+    skinShade: "#E0AF88",
+    hair: { color: "#E2BE6E", style: "long" },
+    top: { kind: "tee", color: "#E8789A", accent: "#C85A7C" },
+    pants: "#3A4C6E",
+    shoes: "#C8A27A",
+    bodyW: 106,
+    heightScale: 0.95,
+    sleeves: "short",
+    brows: "#B08A4A",
+  },
+  sheldon: {
+    skin: "#F2CDB0",
+    skinShade: "#DFB08E",
+    hair: { color: "#4A3424", style: "sheldon" },
+    top: { kind: "tee", color: "#C8423A", accent: "#E8B23A" },
+    pants: "#7A6E5A",
+    shoes: "#3A2A20",
+    bodyW: 112,
+    heightScale: 1.14,
+    sleeves: "long",
+    brows: "#3A2414",
+  },
+  leonard: {
+    skin: "#F0C29E",
+    skinShade: "#DCA67E",
+    hair: { color: "#2A1E16", style: "leonard" },
+    top: { kind: "sweater", color: "#5E7A4A", accent: "#4A6238" },
+    pants: "#3A4C6E",
+    shoes: "#3A2A20",
+    bodyW: 116,
+    heightScale: 0.92,
+    sleeves: "long",
+    glasses: "#1C1830",
+    brows: "#24160E",
   },
 };

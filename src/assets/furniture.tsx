@@ -245,3 +245,14 @@ export const PoolTable: React.FC<A & C> = ({ color = "#2F7D4E", ...a }) => (
     {[-290, 0, 290].map((x) => <circle key={x} cx={x} cy="-202" r="12" fill="#1C1830" />)}
   </G>
 );
+
+/** Whiteboard mit Formeln (stilisiert). */
+export const Whiteboard: React.FC<A & { w?: number; h?: number }> = ({ w = 360, h = 240, ...a }) => (
+  <G {...a}>
+    <rect x={-w / 2} y={-h} width={w} height={h} rx="8" fill="#FBFBF7" {...sw} />
+    {Array.from({ length: 5 }, (_, i) => (
+      <path key={i} d={`M${-w / 2 + 24} ${-h + 40 + i * 40} q30 -14 60 0 t60 0 m20 0 h${w * 0.25}`} fill="none" stroke={i % 2 ? "#2B4F8C" : "#C8423A"} strokeWidth="5" strokeLinecap="round" opacity=".75" />
+    ))}
+    <rect x={-w / 2} y="-8" width={w} height="14" fill="#B9C2CC" {...thin} />
+  </G>
+);

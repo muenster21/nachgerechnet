@@ -1,0 +1,9 @@
+{
+  "series": "The Big Bang Theory",
+  "slug": "tbbt",
+  "mood": "Sitcom, warm, Pasadena; Holz, Ocker, Whiteboards, gemütliches Lampenlicht",
+  "palette": { "wall4a": "#C9A27A", "floor4a": "#8A5A3A", "sofa4a": "#6E5A3A", "stairWall": "#D9C8A6", "restWall": "#C88A4A", "skyTop": "#3E5C8A", "skyBottom": "#E8A26A" },
+  "characters": { "penny": "penny", "sheldon": "sheldon", "leonard": "leonard" },
+  "locations": ["apt4a", "stairwell", "restaurant"],
+  "notes": "Keine Logos (kein Restaurant-Logo, keine Superhelden-Logos auf Shirts), keine Clips, kein Titelsong. Figuren als Cartoon-Karikaturen."
+}

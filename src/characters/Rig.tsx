@@ -143,6 +143,21 @@ function HairFront({ look }: { look: Look }) {
           <path d="M-56 -520 Q-30 -536 -16 -530 M10 -532 Q40 -536 62 -516" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
         </g>
       );
+    case "sheldon":
+      // kurz, glatt, Seitenscheitel, etwas Volumen oben
+      return (
+        <g>
+          <path d="M-84 -452 Q-92 -538 -10 -552 Q80 -550 86 -460 Q78 -500 50 -510 Q16 -520 -24 -514 Q-60 -500 -84 -452Z" fill={c} {...sw} />
+          <path d="M-40 -540 Q10 -556 60 -530" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
+        </g>
+      );
+    case "leonard":
+      // kurze, dunkle Locken
+      return (
+        <g fill={c} {...sw}>
+          {[[-70, -486], [-44, -516], [-12, -530], [22, -528], [54, -512], [76, -484], [-82, -456], [84, -456]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="24" />)}
+        </g>
+      );
     case "sam":
       // Mittelscheitel, Strähnen zur Seite
       return (
