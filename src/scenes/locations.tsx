@@ -569,7 +569,53 @@ const Storage: Loc = {
   Fore: () => <g />,
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage };
+/** Men-of-Letters-Bunker: dunkles Holz, Bücherregale, leuchtender Kartentisch. */
+const Bunker: Loc = {
+  floorY: 1620,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="bkWall" a={p("bunkerWall", "#4A3A2C")} b={shade(p("bunkerWall", "#4A3A2C"), -0.4)} y2={1500} />
+      {[160, 920].map((x) => <Bookshelf key={x} x={x} y={1300} s={1.6} color="#5A3A22" />)}
+      {[300, 780].map((x) => <PendantLamp key={x} x={x} y={-10} drop={420} />)}
+      <ellipse cx="540" cy="1360" rx="520" ry="200" fill="#FFD98A" opacity=".14" />
+      {/* Kartentisch mit Leuchtfläche */}
+      <rect x="140" y="1300" width="800" height="70" rx="10" fill="#6E4A2E" stroke="#1C1830" strokeWidth="6" />
+      <rect x="170" y="1310" width="740" height="40" rx="6" fill="#BFE6F2" opacity=".85" />
+      <path d="M260 1330 q60 -10 120 0 t120 0 M560 1325 q50 8 100 0 t100 4" stroke="#2B4F8C" strokeWidth="4" fill="none" opacity=".6" />
+      <path d="M180 1370 V1500 M900 1370 V1500" stroke="#1C1830" strokeWidth="26" />
+      <path d="M180 1370 V1500 M900 1370 V1500" stroke="#6E4A2E" strokeWidth="18" />
+      <FloorBoards y={1500} h={H - 1500} color="#3A2A1E" line="#24180E" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/** Gefängniszelle: Ziegelwand, Pritsche, Gitter im Vordergrund. */
+const Cell: Loc = {
+  floorY: 1620,
+  Back: () => (
+    <g>
+      <Gradient id="clWall" a="#8C8C96" b="#55555F" y2={1500} />
+      {Array.from({ length: 18 }, (_, r) => Array.from({ length: 7 }, (_, c) => (
+        <rect key={r + "-" + c} x={c * 170 - 60 + (r % 2) * 85} y={r * 84} width="160" height="76" rx="6" fill="#9A9AA4" opacity=".35" />
+      )))}
+      <rect x="760" y="520" width="200" height="140" fill="#2B3463" stroke="#1C1830" strokeWidth="6" />
+      {[800, 850, 900].map((x) => <path key={x} d={`M${x} 520 V660`} stroke="#1C1830" strokeWidth="10" />)}
+      <rect x="620" y="1280" width="440" height="60" rx="8" fill="#D9D4CA" stroke="#1C1830" strokeWidth="5" />
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#6A6A72" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => (
+    <g>
+      {[30, 150, 527, 905, 1025].map((x) => <rect key={x} x={x} y="-40" width="26" height={H + 80} fill="#3A3A44" stroke="#1C1830" strokeWidth="5" opacity=".9" />)}
+      <rect x="-40" y="260" width={W + 80} height="26" fill="#3A3A44" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {
