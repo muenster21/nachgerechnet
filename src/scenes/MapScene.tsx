@@ -79,7 +79,7 @@ const Manhattan: React.FC<{ s: MapSpec }> = ({ s }) => {
 
 /* ---- USA (stilisiert, vereinfachter Umriss) mit Route ---- */
 const US_OUTLINE: [number, number][] = [[-124.7,48.4],[-123,49],[-95.2,49],[-94.8,49.4],[-89.6,48],[-84.8,46.6],[-83,46],[-82.4,43],[-79,43.2],[-76.5,44.2],[-75,45],[-71.5,45],[-70,46.7],[-67.8,47.1],[-67,44.8],[-70.2,43.6],[-70.6,41.6],[-74,40.6],[-76,38],[-75.9,35.2],[-78,33.9],[-81,31.5],[-80.1,27],[-80.4,25.2],[-81.8,25.8],[-82.8,28],[-84,30],[-85.4,29.7],[-88,30.4],[-89.6,29.3],[-91.5,29.4],[-94,29.6],[-97.2,27.8],[-97.4,25.9],[-99.2,26.5],[-101.4,29.8],[-103.3,29],[-104.5,29.7],[-106.5,31.8],[-108.2,31.8],[-111,31.3],[-114.8,32.5],[-117.1,32.5],[-118.5,34],[-120.6,34.6],[-122.5,37.5],[-124.2,40.3],[-124.4,43],[-124,46.3]];
-const KX = 17.6, KY = 22.4, X0 = 30, Y0 = 500;
+const KX = 17.6, KY = 22.4, X0 = 30, Y0 = 400;
 const proj = (lon: number, lat: number): [number, number] => [X0 + (lon + 125) * KX, Y0 + (49.5 - lat) * KY];
 
 const USA: React.FC<{ s: MapSpec }> = ({ s }) => {
@@ -119,7 +119,7 @@ const USA: React.FC<{ s: MapSpec }> = ({ s }) => {
       ))}
       {prog > 0 && <g transform={`translate(${head[0]} ${head[1]})`}><circle r={20 + Math.sin(frame / 4) * 3} fill="#D62839" opacity=".3" /><circle r="13" fill="#fff" stroke={LINE} strokeWidth="5" /></g>}
       {s.counter && (
-        <g transform={`translate(540 1330) scale(${Math.min(1.05, cp)})`} opacity={Math.min(1, cp * 2)}>
+        <g transform={`translate(540 1170) scale(${Math.min(1.05, cp)})`} opacity={Math.min(1, cp * 2)}>
           <text x="0" y="0" textAnchor="middle" fontFamily={FONT_DISPLAY} fontSize="150" fill={BRAND.signature} stroke={LINE} strokeWidth="22" paintOrder="stroke">{Math.round(cv).toLocaleString("de-DE")} {s.counter.unit}</text>
         </g>
       )}
