@@ -4,7 +4,7 @@ import { useVideo } from "../lib/anim";
 import { H, W } from "../lib/theme";
 import {
   Armchair, BarCounter, BottleShelf, Bookshelf, Brownstone, CoffeeTable, FloorBoards, Frame, Highrise, Hydrant, Lamp, Mirror, Moon, NeonSign,
-  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe,
+  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door,
 } from "../assets";
 
 /** Jeder Schauplatz hat drei Ebenen: Back (Hintergrund), Mid (Mittelgrund), Fore (angeschnittener Vordergrund). */
@@ -237,7 +237,188 @@ const Driveway: Loc = {
   ),
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway };
+
+/* ================= Supernatural ================= */
+/** Landstraße im Mittleren Westen, Abenddämmerung: Felder, Strommasten, Straße. */
+const Highway: Loc = {
+  floorY: 1640,
+  Back: ({ p }) => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <Gradient id="hwSky" a={p("skyTop", "#2E3A6B")} b={p("skyBottom", "#F09A5A")} y2={1250} />
+        <circle cx="760" cy="1150" r="150" fill="#FFD27A" opacity=".9" />
+        <Cloud x={260 + f * 0.2} y={520} s={1.2} color="#F6C29A" />
+        <Cloud x={840 - f * 0.12} y={700} s={0.8} color="#F6C29A" />
+        <path d="M-80 1200 Q260 1150 540 1190 T1160 1180 V1420 H-80Z" fill={p("hill", "#5B6B4A")} stroke="#1C1830" strokeWidth="5" />
+        <rect x="-80" y="1300" width={W + 160} height="200" fill={p("field", "#8C8A4E")} />
+        {Array.from({ length: 6 }, (_, i) => (
+          <g key={i} transform={`translate(${((i * 260 - f * 3) % 1560 + 1560) % 1560 - 240} 0)`}>
+            <path d="M0 1420 V1000 M-50 1040 H50" stroke="#3A2A20" strokeWidth="12" />
+          </g>
+        ))}
+        <path d="M-80 1022 Q540 1060 1160 1022" fill="none" stroke="#3A2A20" strokeWidth="3" opacity=".6" />
+      </g>
+    );
+  },
+  Mid: ({ p }) => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <rect x="-40" y="1480" width={W + 80} height={H - 1480} fill={p("road", "#3E3E48")} stroke="#1C1830" strokeWidth="5" />
+        <rect x="-40" y="1480" width={W + 80} height="24" fill={p("field", "#8C8A4E")} />
+        {Array.from({ length: 8 }, (_, i) => <rect key={i} x={((i * 220 - f * 14) % 1760 + 1760) % 1760 - 300} y="1720" width="120" height="18" rx="6" fill="#F2D35A" />)}
+      </g>
+    );
+  },
+  Fore: () => <g />,
+};
+
+/** Tankstelle an der Landstraße. */
+const GasStation: Loc = {
+  floorY: 1620,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="gsSky" a={p("skyTop", "#2E3A6B")} b={p("skyBottom", "#F09A5A")} y2={1250} />
+      <Cloud x={240} y={520} s={1.1} color="#F6C29A" />
+      <rect x="-80" y="1250" width={W + 160} height="300" fill={p("field", "#8C8A4E")} />
+      {/* Shop */}
+      <rect x="540" y="980" width="560" height="440" fill={p("shop", "#E8DCC0")} stroke="#1C1830" strokeWidth="6" />
+      <rect x="600" y="1080" width="240" height="200" fill="#FFE6A8" stroke="#1C1830" strokeWidth="6" />
+      <rect x="880" y="1100" width="140" height="320" fill="#8A5A3A" stroke="#1C1830" strokeWidth="6" />
+      {/* Dach über den Säulen */}
+      <rect x="-60" y="760" width="760" height="90" fill={p("canopy", "#C8423A")} stroke="#1C1830" strokeWidth="6" />
+      <rect x="-60" y="850" width="760" height="22" fill="#FFF8EA" stroke="#1C1830" strokeWidth="5" />
+      {[80, 560].map((x) => <rect key={x} x={x} y="872" width="34" height="560" fill="#D9D4CA" stroke="#1C1830" strokeWidth="5" />)}
+      <rect x="-60" y="1420" width={W + 120} height="200" fill="#B9B3A6" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => (
+    <g>
+      <GasPump x={330} y={1440} s={1.2} />
+      <rect x="-40" y="1560" width={W + 80} height={H - 1560} fill="#A8A296" stroke="#1C1830" strokeWidth="5" />
+      {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${i * 200 - 40} 1560 L${i * 260 - 300} ${H}`} stroke="#1C1830" strokeOpacity=".12" strokeWidth="4" />)}
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+/** Billig-Motel bei Nacht: Zimmertüren, Leuchtschild, Parkplatz. */
+const Motel: Loc = {
+  floorY: 1640,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="mtSky" a={p("night", "#141A3A")} b={p("nightLow", "#3A3466")} y2={1200} />
+      <Moon x={820} y={380} s={1.1} />
+      {Array.from({ length: 24 }, (_, i) => <circle key={i} cx={(i * 197) % 1080} cy={(i * 131) % 700 + 120} r="3" fill="#fff" opacity=".6" />)}
+      <rect x="-60" y="900" width={W + 120} height="560" fill={p("motel", "#D9B98A")} stroke="#1C1830" strokeWidth="6" />
+      <path d="M-80 900 H1160 L1120 840 H-40Z" fill={p("motelRoof", "#7A3A2E")} stroke="#1C1830" strokeWidth="6" />
+      {[40, 300, 560, 820].map((x, i) => (
+        <g key={x}>
+          <Door x={x + 70} y={1460} w={120} h={330} color={["#3E6E8E", "#7A3A2E", "#3E6E8E", "#7A3A2E"][i]} />
+          <rect x={x + 150} y="1040" width="90" height="120" fill={i === 1 ? "#FFD98A" : "#2B2F4A"} stroke="#1C1830" strokeWidth="5" />
+          <text x={x + 70} y="1110" textAnchor="middle" fontFamily="Anton" fontSize="40" fill="#1C1830">{i + 6}</text>
+        </g>
+      ))}
+      <rect x="-60" y="1460" width={W + 120} height="40" fill="#8E8576" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => (
+    <g>
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#4A4852" stroke="#1C1830" strokeWidth="5" />
+      {[100, 420, 740].map((x) => <path key={x} d={`M${x} 1520 L${x - 80} ${H}`} stroke="#F4F0E4" strokeWidth="10" opacity=".6" />)}
+    </g>
+  ),
+  Fore: () => (
+    <g>
+      <MotelSign x={980} y={1900} s={1.0} />
+    </g>
+  ),
+};
+
+/** Motelzimmer: Tapete, zwei Betten, Notizen an der Wand. */
+const MotelRoom: Loc = {
+  floorY: 1560,
+  Back: ({ p }) => {
+    const wall = p("wallpaper", "#A88E5A");
+    return (
+      <g>
+        <Gradient id="mrWall" a={shade(wall, 0.05)} b={shade(wall, -0.25)} y2={1500} />
+        {Array.from({ length: 10 }, (_, i) => Array.from({ length: 14 }, (_, j) => (
+          <path key={i + "-" + j} d={`M${i * 120 + (j % 2) * 60} ${j * 110} q20 -30 40 0 q-20 30 -40 0Z`} fill={shade(wall, -0.18)} opacity=".6" />
+        )))}
+        <Window x={790} y={1000} w={300} h={380} sky={[p("night", "#141A3A"), p("nightLow", "#3A3466")]} skyline={false} />
+        {/* Zeitungsausschnitte an der Wand */}
+        {[[150, 640, -4], [300, 600, 3], [230, 780, 2], [380, 760, -3]].map(([x, y, r], i) => (
+          <g key={i} transform={`translate(${x} ${y}) rotate(${r})`}>
+            <rect x="-60" y="-75" width="120" height="150" fill="#F4EEDC" stroke="#1C1830" strokeWidth="4" />
+            {[0, 1, 2, 3, 4].map((k) => <path key={k} d={`M-44 ${-50 + k * 24} H44`} stroke="#1C1830" strokeOpacity=".35" strokeWidth="5" />)}
+          </g>
+        ))}
+        <path d="M150 640 L300 600 L380 760 L230 780Z" fill="none" stroke="#D62839" strokeWidth="4" />
+        <rect x="-20" y="1460" width={W + 40} height="50" fill={shade(wall, -0.35)} stroke="#1C1830" strokeWidth="4" />
+        <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill={p("carpet", "#6E5A4A")} stroke="#1C1830" strokeWidth="5" />
+      </g>
+    );
+  },
+  Mid: ({ p }) => (
+    <g>
+      <Bed x={210} y={1640} s={1.0} color={p("spread", "#8E5A3A")} />
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+/** Diner: Theke, Kuchenvitrine, Karo-Boden. */
+const Diner: Loc = {
+  floorY: 1560,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="dnWall" a={p("dinerWall", "#E9E2CF")} b={shade(p("dinerWall", "#E9E2CF"), -0.15)} y2={1500} />
+      <rect x="-40" y="880" width={W + 80} height="60" fill={p("dinerStripe", "#C8423A")} stroke="#1C1830" strokeWidth="5" />
+      <NeonSign x={540} y={720} text="DINER" color="#5BC8E8" />
+      {[180, 900].map((x) => <PendantLamp key={x} x={x} y={-10} drop={300} />)}
+      <BarCounter x={540} y={1480} w={1240} color={p("counter", "#5BA8B8")} color2={shade(p("counter", "#5BA8B8"), -0.25)} />
+      {Array.from({ length: 12 }, (_, i) => Array.from({ length: 6 }, (_, j) => (
+        <rect key={i + "-" + j} x={i * 100 - 40} y={1500 + j * 80} width="100" height="80" fill={(i + j) % 2 ? "#1C1830" : "#F4F0E4"} />
+      )))}
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => (
+    <g>
+      <Stool x={70} y={2060} s={2.2} color="#C8423A" />
+      <Stool x={1010} y={2080} s={2.4} color="#C8423A" />
+    </g>
+  ),
+};
+
+/** Billardkneipe: dunkles Holz, Neonschild, Tisch im Mittelgrund. */
+const PoolHall: Loc = {
+  floorY: 1600,
+  Back: ({ p }) => {
+    const wood = p("wood", "#4A2E20");
+    return (
+      <g>
+        <Gradient id="phWall" a={shade(wood, -0.1)} b={shade(wood, -0.4)} y2={1500} />
+        {Array.from({ length: 9 }, (_, i) => <path key={i} d={`M${i * 140} 0 V1500`} stroke="#1C1830" strokeOpacity=".3" strokeWidth="4" />)}
+        <NeonSign x={300} y={560} text="POOL" color="#FF5B6E" />
+        <NeonSign x={800} y={700} text="BEER" color="#F6C945" />
+        <ellipse cx="540" cy="1200" rx="560" ry="300" fill="#FFD98A" opacity=".14" />
+        <FloorBoards y={1500} h={H - 1500} color={p("floor", "#3A2418")} line="#24160E" />
+      </g>
+    );
+  },
+  Mid: () => (
+    <g>
+      <PendantLamp x={540} y={-10} drop={900} />
+      <PoolTable x={540} y={1500} s={1.25} />
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {

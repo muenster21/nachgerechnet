@@ -166,3 +166,47 @@ export const Palm: React.FC<A> = (a) => (
     ))}
   </G>
 );
+
+/** Langer, schwarzer Sixties-Straßenkreuzer (Viertürer, Chrom). Ohne Marke. */
+export const Impala: React.FC<A & { color?: string }> = ({ color = "#17161D", ...a }) => (
+  <G {...a}>
+    {/* Karosserie */}
+    <path d="M-330 -40 Q-334 -96 -280 -104 L-170 -110 L-110 -170 Q-92 -182 -60 -184 H110 Q140 -182 158 -166 L210 -112 L300 -106 Q340 -100 340 -52 V-30 H-330Z" fill={color} {...sw} />
+    {/* Fenster */}
+    <path d="M-150 -112 L-102 -160 Q-90 -170 -66 -170 H14 V-112Z M28 -170 H104 Q126 -170 138 -158 L184 -112 H28Z" fill="#6C8CA8" {...sw} />
+    <path d="M-120 -150 L-90 -126 M60 -160 L90 -134" stroke="#fff" strokeOpacity=".35" strokeWidth="6" strokeLinecap="round" />
+    {/* Chromleisten, Stoßstangen */}
+    <path d="M-318 -78 H330" stroke="#C9D1DA" strokeWidth="6" />
+    <rect x="-344" y="-50" width="40" height="22" rx="8" fill="#C9D1DA" {...thin} />
+    <rect x="312" y="-50" width="40" height="22" rx="8" fill="#C9D1DA" {...thin} />
+    <rect x="316" y="-96" width="22" height="18" rx="5" fill="#FFF3C4" {...thin} />
+    <rect x="-336" y="-94" width="14" height="22" rx="4" fill="#E0484F" {...thin} />
+    <path d="M-20 -100 H4 M150 -100 H174" stroke="#C9D1DA" strokeWidth="5" strokeLinecap="round" />
+    <path d="M-230 -96 Q0 -112 260 -96" fill="none" stroke="#fff" strokeOpacity=".16" strokeWidth="8" strokeLinecap="round" />
+    {[-210, 220].map((x) => <g key={x}><circle cx={x} cy="-26" r="46" fill="#1C1830" {...sw} /><circle cx={x} cy="-26" r="24" fill="#C9D1DA" {...thin} /><circle cx={x} cy="-26" r="8" fill="#1C1830" /></g>)}
+  </G>
+);
+
+/** Zapfsäule (alt, mit Zählwerk). */
+export const GasPump: React.FC<A & { color?: string; price?: string }> = ({ color = "#C8423A", price = "2.57", ...a }) => (
+  <G {...a}>
+    <rect x="-70" y="-300" width="140" height="300" rx="16" fill={color} {...sw} />
+    <rect x="-52" y="-270" width="104" height="70" rx="8" fill="#FFF8EA" {...sw} />
+    <text x="0" y="-222" textAnchor="middle" fontFamily="Anton" fontSize="40" fill="#1C1830">{price}</text>
+    <rect x="-40" y="-170" width="80" height="40" rx="6" fill={shade(color, -0.25)} {...thin} />
+    <path d="M70 -220 Q120 -220 116 -120 Q112 -60 86 -60" fill="none" stroke="#1C1830" strokeWidth="10" strokeLinecap="round" />
+    <rect x="60" y="-150" width="26" height="60" rx="6" fill="#3A3A44" {...thin} />
+    <rect x="-80" y="-12" width="160" height="16" rx="4" fill="#7A7A86" {...sw} />
+  </G>
+);
+
+/** Motel-Leuchtschild auf Mast. */
+export const MotelSign: React.FC<A & { text?: string; sub?: string }> = ({ text = "MOTEL", sub = "VACANCY", ...a }) => (
+  <G {...a}>
+    <rect x="-14" y="-700" width="28" height="700" fill="#5A5A66" {...sw} />
+    <path d="M-170 -900 H170 L190 -700 H-150Z" fill="#E8B23A" {...sw} />
+    <text x="10" y="-780" textAnchor="middle" fontFamily="Anton" fontSize="96" fill="#D62839" stroke="#1C1830" strokeWidth="3" letterSpacing="4">{text}</text>
+    <rect x="-120" y="-690" width="250" height="70" rx="10" fill="#1C1830" {...sw} />
+    <text x="5" y="-640" textAnchor="middle" fontFamily="Anton" fontSize="44" fill="#FF5B6E" letterSpacing="4">{sub}</text>
+  </G>
+);

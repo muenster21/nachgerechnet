@@ -220,3 +220,28 @@ export const Mirror: React.FC<A & { w?: number; h?: number }> = ({ w = 360, h = 
     <path d={`M${-w / 2 + 20} ${-h + 60} L${-w / 2 + 120} ${-h + 10} M${-w / 2 + 20} ${-h + 120} L${-w / 2 + 180} ${-h + 10}`} stroke="#fff" strokeOpacity=".5" strokeWidth="14" strokeLinecap="round" />
   </G>
 );
+
+/** Motelbett mit gemusterter Tagesdecke (seitlich). */
+export const Bed: React.FC<A & C> = ({ color = "#8E5A3A", ...a }) => (
+  <G {...a}>
+    <rect x="-230" y="-240" width="40" height="240" rx="8" fill={shade(color, -0.2)} {...sw} />
+    <rect x="-200" y="-120" width="420" height="80" rx="10" fill="#F4F0E4" {...sw} />
+    <path d="M-150 -120 H220 V-40 Q40 -28 -150 -40Z" fill={color} {...sw} />
+    {[-110, -40, 30, 100, 170].map((x) => <circle key={x} cx={x} cy="-82" r="12" fill={shade(color, 0.3)} opacity=".7" />)}
+    <rect x="-196" y="-160" width="90" height="46" rx="18" fill="#FFFFFF" {...sw} />
+    <rect x="-200" y="-40" width="420" height="20" fill={shade(color, -0.3)} {...sw} />
+    <path d="M-196 -20 V0 M214 -20 V0" stroke="#1C1830" strokeWidth="12" />
+  </G>
+);
+
+/** Billardtisch (seitlich) mit Kugeln. */
+export const PoolTable: React.FC<A & C> = ({ color = "#2F7D4E", ...a }) => (
+  <G {...a}>
+    <path d="M-250 -150 V0 M250 -150 V0" stroke="#1C1830" strokeWidth="34" />
+    <path d="M-250 -150 V0 M250 -150 V0" stroke="#5A3220" strokeWidth="24" />
+    <rect x="-300" y="-200" width="600" height="60" rx="14" fill="#5A3220" {...sw} />
+    <path d="M-280 -200 H280 L260 -232 H-260Z" fill={color} {...sw} />
+    {[["#F6C945", -120], ["#D62839", -80], ["#2B4FA8", -40], ["#FFFFFF", 150]].map(([c, x], i) => <circle key={i} cx={x as number} cy="-232" r="16" fill={c as string} {...thin} />)}
+    {[-290, 0, 290].map((x) => <circle key={x} cx={x} cy="-202" r="12" fill="#1C1830" />)}
+  </G>
+);

@@ -231,3 +231,33 @@ export const PokerChip: React.FC<A & { color?: string }> = ({ color = "#D62839",
     <text x="0" y="-31" textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#1C1830">$</text>
   </G>
 );
+
+/** Billard-Queue (senkrecht gehalten). */
+export const Cue: React.FC<A> = (a) => (
+  <G {...a}>
+    <path d="M-8 0 L-3 -360 H3 L8 0Z" fill="#D9B27A" {...sw} />
+    <path d="M-8 0 L-6 -120 H6 L8 0Z" fill="#3A2416" {...thin} />
+    <rect x="-4" y="-372" width="8" height="12" fill="#5A8CC8" {...thin} />
+  </G>
+);
+
+/** Kreditkarte. */
+export const CreditCard: React.FC<A & { name?: string; color?: string }> = ({ name = "H. AFRAMIAN", color = "#2B4F8C", ...a }) => (
+  <G {...a}>
+    <rect x="-90" y="-116" width="180" height="116" rx="14" fill={color} {...sw} />
+    <rect x="-66" y="-90" width="34" height="26" rx="5" fill="#E8C35A" {...thin} />
+    <text x="-70" y="-44" fontFamily="Anton" fontSize="17" fill="#fff" letterSpacing="2">•••• •••• •••• 4512</text>
+    <text x="-70" y="-16" fontFamily="Anton" fontSize="17" fill="#fff" letterSpacing="1">{name}</text>
+    <circle cx="52" cy="-86" r="14" fill="#E0484F" opacity=".9" /><circle cx="68" cy="-86" r="14" fill="#F6C945" opacity=".9" />
+  </G>
+);
+
+/** Kuchenstück auf Teller. */
+export const Pie: React.FC<A> = (a) => (
+  <G {...a}>
+    <ellipse cx="0" cy="-10" rx="80" ry="16" fill="#FFFFFF" {...sw} />
+    <path d="M-56 -18 L56 -18 L40 -70 Q0 -84 -40 -70Z" fill="#E8B061" {...sw} />
+    <path d="M-50 -34 H50" stroke="#B5523A" strokeWidth="12" />
+    <path d="M-40 -70 Q0 -90 40 -70" fill="none" stroke="#C88A3E" strokeWidth="8" strokeLinecap="round" />
+  </G>
+);

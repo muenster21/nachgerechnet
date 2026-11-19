@@ -1,0 +1,14 @@
+{
+  "series": "Supernatural",
+  "slug": "spn",
+  "mood": "Roadmovie, Mittlerer Westen, Abenddämmerung und Nacht; Asphalt, Neon, Motel-Tapete, warmes Lampenlicht",
+  "palette": {
+    "skyTop": "#2E3A6B", "skyBottom": "#F09A5A", "hill": "#5B6B4A", "field": "#8C8A4E", "road": "#3E3E48",
+    "shop": "#E8DCC0", "canopy": "#C8423A", "night": "#141A3A", "nightLow": "#3A3466", "motel": "#D9B98A", "motelRoof": "#7A3A2E",
+    "wallpaper": "#A88E5A", "carpet": "#6E5A4A", "spread": "#8E5A3A", "dinerWall": "#E9E2CF", "dinerStripe": "#C8423A", "counter": "#5BA8B8",
+    "wood": "#4A2E20", "floor": "#3A2418"
+  },
+  "characters": { "dean": "dean", "sam": "sam" },
+  "locations": ["highway", "gasstation", "motel", "motelroom", "diner", "poolhall"],
+  "notes": "Keine Logos, Clips, Screenshots, Titelsong, keine Automarke am Impala (nur Form). Figuren sind Cartoon-Karikaturen im eigenen Stil. Keine Monster-Gewalt."
+}

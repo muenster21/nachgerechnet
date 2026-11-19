@@ -2,8 +2,8 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" };
-  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest"; color: string; accent: string; shirt?: string };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" };
+  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather"; color: string; accent: string; shirt?: string };
   tie?: string;
   pants: string;
   shoes: string;
@@ -131,5 +131,31 @@ export const LOOKS: Record<string, Look> = {
     heightScale: 0.94,
     sleeves: "short",
     brows: "#8A4A2A",
+  },
+  /* ---- Supernatural ---- */
+  dean: {
+    skin: "#EDB892",
+    skinShade: "#D99E76",
+    hair: { color: "#7A5A3A", style: "dean" },
+    top: { kind: "leather", color: "#3E2A1E", accent: "#2C1D14", shirt: "#3A3F4A" },
+    pants: "#3A4C6E",
+    shoes: "#2A1E16",
+    bodyW: 128,
+    heightScale: 1.02,
+    sleeves: "long",
+    stubble: true,
+    brows: "#5A3E26",
+  },
+  sam: {
+    skin: "#EDB892",
+    skinShade: "#D99E76",
+    hair: { color: "#5A3A22", style: "sam" },
+    top: { kind: "plaid", color: "#7A6A4A", accent: "#4A3E2A", shirt: "#8E9AA6" },
+    pants: "#3F4E6A",
+    shoes: "#3A2A1E",
+    bodyW: 124,
+    heightScale: 1.12,
+    sleeves: "long",
+    brows: "#3E2614",
   },
 };

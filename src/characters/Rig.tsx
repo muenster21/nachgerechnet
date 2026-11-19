@@ -78,6 +78,9 @@ function HairBack({ look }: { look: Look }) {
         {[[-88, -470], [-96, -420], [88, -470], [96, -420], [-60, -528], [60, -528], [0, -548]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="34" />)}
       </g>
     );
+  if (look.hair.style === "sam")
+    // halblang, fransig bis zum Kiefer
+    return <path d="M-90 -446 Q-98 -546 0 -556 Q98 -546 90 -446 L94 -380 Q84 -366 74 -384 L70 -360 Q58 -372 56 -400 L-56 -400 Q-58 -372 -70 -360 L-74 -384 Q-84 -366 -94 -380Z" fill={look.hair.color} {...sw} />;
   if (look.hair.style === "alan")
     return <path d="M-84 -430 Q-92 -476 -76 -492 L-62 -470 Q-70 -452 -72 -420Z M84 -430 Q92 -476 76 -492 L62 -470 Q70 -452 72 -420Z" fill={look.hair.color} {...sw} />;
   return null;
@@ -121,6 +124,22 @@ function HairFront({ look }: { look: Look }) {
         <g>
           <path d="M-84 -456 Q-92 -536 -10 -550 Q80 -548 86 -466 Q78 -506 46 -516 Q10 -508 -20 -524 Q-60 -506 -84 -456Z" fill={c} {...sw} />
           <path d="M-50 -522 Q-6 -548 50 -526 M-40 -506 Q0 -526 44 -512" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
+        </g>
+      );
+    case "dean":
+      // kurz, vorne leicht hochgestylt
+      return (
+        <g>
+          <path d="M-84 -462 Q-90 -526 -50 -542 L-40 -566 L-22 -546 L-4 -572 L12 -548 L32 -570 L44 -544 Q86 -530 84 -462 Q76 -500 40 -510 Q0 -500 -40 -512 Q-74 -500 -84 -462Z" fill={c} {...sw} />
+          <path d="M-36 -530 Q0 -544 36 -530" fill="none" stroke="#fff" strokeOpacity=".2" strokeWidth="4" strokeLinecap="round" />
+        </g>
+      );
+    case "sam":
+      // Mittelscheitel, Strähnen zur Seite
+      return (
+        <g>
+          <path d="M-90 -430 Q-98 -546 0 -556 Q98 -546 90 -430 Q84 -486 52 -506 Q24 -516 4 -540 Q-20 -514 -52 -506 Q-84 -486 -90 -430Z" fill={c} {...sw} />
+          <path d="M4 -540 Q-30 -520 -62 -498 M4 -540 Q36 -520 66 -498" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
         </g>
       );
     case "alan":
@@ -198,7 +217,7 @@ function Torso({ look, breathe }: { look: Look; breathe: number }) {
   return (
     <g transform={`translate(0 ${bot}) scale(1 ${breathe}) translate(0 ${-bot})`}>
       {/* Hemd/Basis */}
-      <path d={`M${-hw} ${top + 30} Q${-hw} ${top} ${-hw + 36} ${top} L${hw - 36} ${top} Q${hw} ${top} ${hw} ${top + 30} L${hw + 6} ${bot} L${-hw - 6} ${bot}Z`} fill={t.kind === "blazer" ? t.shirt : t.color} {...sw} />
+      <path d={`M${-hw} ${top + 30} Q${-hw} ${top} ${-hw + 36} ${top} L${hw - 36} ${top} Q${hw} ${top} ${hw} ${top + 30} L${hw + 6} ${bot} L${-hw - 6} ${bot}Z`} fill={t.kind === "blazer" || t.kind === "leather" ? t.shirt : t.color} {...sw} />
       {t.kind === "blazer" && (
         <g>
           <path d={`M${-hw} ${top + 30} Q${-hw} ${top} ${-hw + 36} ${top} L-16 ${top} L2 ${top + 120} L${-hw + 4} ${bot - 4} L${-hw - 6} ${bot}Z`} fill={t.color} {...sw} />
@@ -247,6 +266,16 @@ function Torso({ look, breathe }: { look: Look; breathe: number }) {
           <path d={`M-18 ${top} L0 ${top + 22} L18 ${top}`} fill={t.shirt ?? "#F4F0E8"} {...sw} />
           <path d={`M${-hw - 4} ${bot - 16} H${hw + 4}`} {...sw} strokeWidth={3} />
           <path d={`M-30 ${top + 50} L-4 ${top + 96} M30 ${top + 50} L4 ${top + 96}`} stroke={t.accent} strokeWidth="6" fill="none" />
+        </g>
+      )}
+      {t.kind === "leather" && (
+        // offene Lederjacke über dunklem Shirt
+        <g>
+          <path d={`M${-hw} ${top + 30} Q${-hw} ${top} ${-hw + 36} ${top} L-26 ${top} L-20 ${bot} L${-hw - 6} ${bot}Z`} fill={t.color} {...sw} />
+          <path d={`M${hw} ${top + 30} Q${hw} ${top} ${hw - 36} ${top} L26 ${top} L20 ${bot} L${hw + 6} ${bot}Z`} fill={t.color} {...sw} />
+          <path d={`M-26 ${top} L-56 ${top - 6} L-50 ${top + 54}Z M26 ${top} L56 ${top - 6} L50 ${top + 54}Z`} fill={t.accent} {...sw} />
+          <path d={`M-22 ${top + 4} Q0 ${top + 24} 22 ${top + 4}`} fill="none" {...sw} strokeWidth={3} />
+          <path d={`M${-hw + 18} ${top + 40} Q${-hw + 30} ${top + 120} ${-hw + 22} ${bot - 10} M${hw - 18} ${top + 40} Q${hw - 30} ${top + 120} ${hw - 22} ${bot - 10}`} stroke="#fff" strokeOpacity=".14" strokeWidth="6" fill="none" strokeLinecap="round" />
         </g>
       )}
       {t.kind === "tee" && (
