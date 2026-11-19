@@ -13,6 +13,8 @@ export type Look = {
   sleeves: "long" | "short";
   stubble?: boolean;
   mustache?: string;
+  goatee?: string;
+  glasses?: string;
   brows: string;
 };
 
@@ -182,5 +184,32 @@ export const LOOKS: Record<string, Look> = {
     heightScale: 0.96,
     sleeves: "short",
     brows: "#24160E",
+  },
+  /* ---- Breaking Bad ---- */
+  walt: {
+    skin: "#F0C29E",
+    skinShade: "#DCA67E",
+    hair: { color: "#5A4636", style: "bald" },
+    top: { kind: "leather", color: "#B9A57A", accent: "#9C8A62", shirt: "#5E7A4A" },
+    pants: "#7A6E5A",
+    shoes: "#3A2A20",
+    bodyW: 128,
+    heightScale: 1.0,
+    sleeves: "long",
+    goatee: "#6A5A4A",
+    glasses: "#2A2420",
+    brows: "#5A4636",
+  },
+  skyler: {
+    skin: "#F3CBA8",
+    skinShade: "#E0AF88",
+    hair: { color: "#D9B46A", style: "long" },
+    top: { kind: "sweater", color: "#3E8FA0", accent: "#2C6E7C" },
+    pants: "#2E3550",
+    shoes: "#3A2A2A",
+    bodyW: 108,
+    heightScale: 0.97,
+    sleeves: "long",
+    brows: "#A8844A",
   },
 };

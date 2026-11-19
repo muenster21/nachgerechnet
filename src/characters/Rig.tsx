@@ -211,6 +211,20 @@ function Face({ look, expr, mouth, blink, look2, seedT }: { look: Look; expr: Ex
       <path d="M-5 -440 Q0 -430 9 -434" fill="none" {...sw} strokeWidth={4} />
       <Mouth name={mouth ?? e.mouth} skin={look.skin} />
       {look.mustache && <path d="M-34 -432 Q-18 -448 0 -436 Q18 -448 34 -432 Q22 -418 0 -424 Q-22 -418 -34 -432Z" fill={look.mustache} {...sw} strokeWidth={3} />}
+      {look.goatee && (
+        <g>
+          <path d="M-30 -426 Q-16 -440 0 -432 Q16 -440 30 -426 Q20 -418 0 -422 Q-20 -418 -30 -426Z" fill={look.goatee} {...sw} strokeWidth={3} />
+          <path d="M-22 -404 Q0 -398 22 -404 Q24 -380 0 -370 Q-24 -380 -22 -404Z" fill={look.goatee} {...sw} strokeWidth={3} />
+          <path d="M-30 -426 Q-34 -412 -22 -404 M30 -426 Q34 -412 22 -404" fill="none" stroke={look.goatee} strokeWidth="8" strokeLinecap="round" />
+        </g>
+      )}
+      {look.glasses && (
+        <g fill="none" stroke={look.glasses} strokeWidth="6">
+          <rect x="-62" y="-474" width="56" height="42" rx="8" />
+          <rect x="6" y="-474" width="56" height="42" rx="8" />
+          <path d="M-6 -456 H6 M-62 -460 L-80 -466 M62 -460 L80 -466" />
+        </g>
+      )}
       {look.stubble && <path d="M-60 -420 Q-56 -386 0 -382 Q56 -386 60 -420 Q54 -398 0 -396 Q-54 -398 -60 -420Z" fill="#5A4034" opacity=".22" />}
     </g>
   );

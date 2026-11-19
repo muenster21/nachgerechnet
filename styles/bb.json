@@ -1,0 +1,9 @@
+{
+  "series": "Breaking Bad",
+  "slug": "bb",
+  "mood": "New Mexico: grelles Licht, Ocker, Rostrot, Himmelblau; Lagerraum kalt und grau",
+  "palette": { "skyTop": "#4FA3D8", "skyBottom": "#F6D9A8", "mesa": "#C46A42", "sand": "#E3B97A", "concrete": "#9A9AA2", "floorC": "#7A7A82" },
+  "characters": { "walt": "walt", "skyler": "skyler" },
+  "locations": ["desert", "storage"],
+  "notes": "Keine Logos, kein Periodensystem-Titel, keine Drogen- oder Gewaltdarstellung. Nur Geld, Fässer, Wüste. Figuren als Cartoon-Karikaturen."
+}

@@ -281,3 +281,35 @@ export const Microscope: React.FC<A> = (a) => (
     <g transform="rotate(-24 -10 -160)"><rect x="-26" y="-230" width="32" height="110" rx="8" fill="#F4F2EC" {...sw} /><rect x="-30" y="-244" width="40" height="22" rx="6" fill="#3A3A44" {...thin} /></g>
   </G>
 );
+
+/** Blaues Plastikfass (55 Gallonen), optional mit Geld oben. */
+export const Barrel: React.FC<A & { color?: string; cash?: boolean }> = ({ color = "#2F6FB8", cash = false, ...a }) => (
+  <G {...a}>
+    {cash && [[-50, -330], [0, -340], [50, -328], [-24, -360], [26, -362]].map(([x, y], i) => (
+      <g key={i} transform={`translate(${x} ${y}) rotate(${(i % 2 ? 8 : -6)})`}><rect x="-40" y="-14" width="80" height="28" rx="4" fill="#7BC68B" {...thin} /><rect x="-10" y="-14" width="20" height="28" fill="#F4E7CF" {...thin} /></g>
+    ))}
+    <path d="M-100 -300 Q-112 -150 -100 0 H100 Q112 -150 100 -300Z" fill={color} {...sw} />
+    <ellipse cx="0" cy="-300" rx="100" ry="22" fill={shade(color, 0.15)} {...sw} />
+    <path d="M-106 -200 Q0 -184 106 -200 M-106 -100 Q0 -84 106 -100" fill="none" stroke={shade(color, -0.25)} strokeWidth="8" />
+    <path d="M-70 -270 Q-80 -150 -70 -30" fill="none" stroke="#fff" strokeOpacity=".25" strokeWidth="12" strokeLinecap="round" />
+  </G>
+);
+
+/** Geldberg (Bündel, gestapelt). */
+export const MoneyPile: React.FC<A & { w?: number }> = ({ w = 700, ...a }) => {
+  const rows = 9;
+  return (
+    <G {...a}>
+      {Array.from({ length: rows }, (_, r) => {
+        const rw = w * (1 - r / (rows + 1));
+        const n = Math.max(1, Math.floor(rw / 84));
+        return Array.from({ length: n }, (_, i) => (
+          <g key={r + "-" + i} transform={`translate(${-rw / 2 + 42 + i * (rw - 84) / Math.max(1, n - 1)} ${-r * 34 - 17})`}>
+            <rect x="-42" y="-17" width="84" height="34" rx="4" fill={(r + i) % 3 ? "#7BC68B" : "#6AB47A"} {...thin} />
+            <rect x="-10" y="-17" width="20" height="34" fill="#F4E7CF" {...thin} />
+          </g>
+        ));
+      })}
+    </G>
+  );
+};

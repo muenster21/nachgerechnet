@@ -2,13 +2,14 @@ import React from "react";
 import { interpolate, useCurrentFrame } from "remotion";
 import { Chip, Title } from "../components/Overlays";
 import { Sfx } from "../components/Sfx";
-import { DollarIcon, EuroIcon, G, HouseIcon, BeerIcon, PersonIcon, shade } from "../assets";
+import { DollarIcon, EuroIcon, G, HouseIcon, BeerIcon, PersonIcon, Barrel, shade } from "../assets";
 import { fmtDE, useCountUp, usePop, useScene } from "../lib/anim";
 import { BRAND, FONT_DISPLAY, FONT_TEXT, LINE } from "../lib/theme";
 
-type Side = { label: string; value: number; display?: string; color: string; icon?: "dollar" | "euro" | "house" | "beer" | "person"; unit?: string; at?: string | number; decimals?: number };
+type Side = { label: string; value: number; display?: string; color: string; icon?: "dollar" | "euro" | "house" | "beer" | "person" | "barrel"; unit?: string; at?: string | number; decimals?: number };
 
-const ICONS: Record<string, React.FC<any>> = { dollar: DollarIcon, euro: EuroIcon, house: HouseIcon, beer: BeerIcon, person: PersonIcon };
+const BarrelIcon: React.FC<{ s?: number }> = ({ s = 1 }) => <Barrel s={s * 0.2} />;
+const ICONS: Record<string, React.FC<any>> = { dollar: DollarIcon, euro: EuroIcon, house: HouseIcon, beer: BeerIcon, person: PersonIcon, barrel: BarrelIcon };
 
 /** Vergleich: Split-Screen, Balken wachsen gegeneinander. */
 export const CompareScene: React.FC<{ s: { title?: string; left: Side; right: Side; verdict?: string; verdictAt?: string | number; verdictTop?: number; verdictLeft?: number } }> = ({ s }) => {

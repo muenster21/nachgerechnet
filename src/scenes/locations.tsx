@@ -523,7 +523,53 @@ const OpenSea: Loc = {
   Fore: () => <g />,
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea };
+/* ================= Breaking Bad ================= */
+/** Wüste bei Albuquerque: Tafelberge, Gestrüpp, Sand. */
+const Desert: Loc = {
+  floorY: 1620,
+  Back: ({ p }) => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <Gradient id="dsSky" a={p("skyTop", "#4FA3D8")} b={p("skyBottom", "#F6D9A8")} y2={1200} />
+        <circle cx="820" cy="380" r="100" fill="#FFF1C2" />
+        <Cloud x={220 + f * 0.15} y={420} s={0.9} color="#FFFFFF" />
+        <path d="M-80 1150 L120 1150 L170 960 L420 960 L470 1150 L700 1150 L760 1020 L960 1020 L1010 1150 L1160 1150 V1300 H-80Z" fill={p("mesa", "#C46A42")} stroke="#1C1830" strokeWidth="6" strokeLinejoin="round" />
+        <path d="M170 1010 H420 M760 1060 H960" stroke="#1C1830" strokeOpacity=".25" strokeWidth="6" />
+        <rect x="-80" y="1250" width={W + 160} height={H - 1250} fill={p("sand", "#E3B97A")} stroke="#1C1830" strokeWidth="5" />
+        {[[120, 1420], [880, 1380], [420, 1700], [980, 1760], [60, 1820]].map(([x, y], i) => (
+          <g key={i} transform={`translate(${x} ${y})`}>
+            <ellipse cx="0" cy="0" rx="60" ry="22" fill="#8C8A4E" stroke="#1C1830" strokeWidth="4" />
+            <ellipse cx="-20" cy="-14" rx="30" ry="16" fill="#9C9A5A" stroke="#1C1830" strokeWidth="3" />
+          </g>
+        ))}
+      </g>
+    );
+  },
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/** Lagerraum: Betonwand, Rolltor, Neonröhre. */
+const Storage: Loc = {
+  floorY: 1640,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="sgWall" a={p("concrete", "#9A9AA2")} b={shade(p("concrete", "#9A9AA2"), -0.35)} y2={1500} />
+      {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M-40 ${200 + i * 220} H${W + 40}`} stroke="#1C1830" strokeOpacity=".15" strokeWidth="4" />)}
+      <rect x="140" y="80" width="800" height="26" rx="10" fill="#F4FAFC" stroke="#1C1830" strokeWidth="5" />
+      <ellipse cx="540" cy="400" rx="560" ry="420" fill="#F4FAFC" opacity=".12" />
+      {/* Rolltor oben angeschnitten */}
+      <rect x="-40" y="160" width={W + 80} height="160" fill="#C8C8CE" stroke="#1C1830" strokeWidth="5" />
+      {Array.from({ length: 5 }, (_, i) => <path key={i} d={`M-40 ${190 + i * 28} H${W + 40}`} stroke="#1C1830" strokeOpacity=".3" strokeWidth="4" />)}
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill={p("floorC", "#7A7A82")} stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {
