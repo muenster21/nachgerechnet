@@ -134,6 +134,15 @@ function HairFront({ look }: { look: Look }) {
           <path d="M-36 -530 Q0 -544 36 -530" fill="none" stroke="#fff" strokeOpacity=".2" strokeWidth="4" strokeLinecap="round" />
         </g>
       );
+    case "dexter":
+      // kurz, ordentlich, Seitenscheitel
+      return (
+        <g>
+          <path d="M-84 -458 Q-90 -540 -6 -550 Q82 -546 86 -462 Q80 -496 54 -508 Q20 -500 -14 -520 Q-50 -498 -84 -458Z" fill={c} {...sw} />
+          <path d="M-14 -520 Q-20 -538 -10 -548" fill="none" stroke={LINE} strokeWidth="3" opacity=".5" />
+          <path d="M-56 -520 Q-30 -536 -16 -530 M10 -532 Q40 -536 62 -516" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
+        </g>
+      );
     case "sam":
       // Mittelscheitel, Strähnen zur Seite
       return (

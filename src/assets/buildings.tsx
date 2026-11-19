@@ -210,3 +210,34 @@ export const MotelSign: React.FC<A & { text?: string; sub?: string }> = ({ text 
     <text x="5" y="-640" textAnchor="middle" fontFamily="Anton" fontSize="44" fill="#FF5B6E" letterSpacing="4">{sub}</text>
   </G>
 );
+
+/** Center-Console-Boot (seitlich) mit zwei Außenbordern. */
+export const Boat: React.FC<A & { color?: string; name?: string }> = ({ color = "#F4F2EC", name = "SLICE OF LIFE", ...a }) => (
+  <G {...a}>
+    {/* Rumpf */}
+    <path d="M-330 -150 H300 Q330 -150 340 -120 L310 -20 Q300 0 270 0 H-230 Q-300 0 -330 -60Z" fill={color} {...sw} />
+    <path d="M-326 -110 H330" stroke="#2B4F8C" strokeWidth="14" />
+    <text x="-80" y="-48" textAnchor="middle" fontFamily="Anton" fontSize="34" fill="#2B4F8C" letterSpacing="2">{name}</text>
+    {/* Konsole + T-Top */}
+    <rect x="-40" y="-230" width="110" height="80" rx="10" fill={color} {...sw} />
+    <path d="M-30 -230 L-10 -270 H60 L70 -230Z" fill="#9FD7F2" {...sw} />
+    <path d="M-60 -150 V-340 M100 -150 V-340" stroke="#C9D1DA" strokeWidth="10" />
+    <rect x="-90" y="-360" width="220" height="24" rx="8" fill="#2B4F8C" {...sw} />
+    {/* zwei Außenborder am Heck (links) */}
+    {[-352, -380].map((x, i) => (
+      <g key={i}>
+        <rect x={x - 18} y="-200" width="40" height="90" rx="10" fill={i ? "#3A3A44" : "#4A4A56"} {...sw} />
+        <rect x={x - 6} y="-112" width="16" height="90" fill="#5A5A66" {...thin} />
+      </g>
+    ))}
+  </G>
+);
+
+/** Steg (Holz) – Ursprung oben Mitte. */
+export const Dock: React.FC<A & { w?: number }> = ({ w = 900, ...a }) => (
+  <G {...a}>
+    {Array.from({ length: Math.ceil(w / 150) + 1 }, (_, i) => <rect key={i} x={-w / 2 + i * 150 - 14} y="0" width="28" height="260" fill="#6E4A2E" {...sw} />)}
+    <rect x={-w / 2} y="-30" width={w} height="40" fill="#A9774A" {...sw} />
+    {Array.from({ length: Math.ceil(w / 60) }, (_, i) => <path key={i} d={`M${-w / 2 + i * 60} -30 V10`} stroke="#1C1830" strokeOpacity=".25" strokeWidth="3" />)}
+  </G>
+);

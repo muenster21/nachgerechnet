@@ -1,0 +1,12 @@
+{
+  "series": "Dexter",
+  "slug": "dexter",
+  "mood": "Miami, grell und sonnig; Türkis, Pastell, Palmen; im Labor kühles Weiß",
+  "palette": {
+    "skyTop": "#5EC2E6", "skyBottom": "#FFE3B0", "sea": "#2E8FB8", "labWall": "#DCE6EA", "labFloor": "#9AA8AE",
+    "condo": "#F2E6CF", "condoRoof": "#D98A5A"
+  },
+  "characters": { "dexter": "dexter", "debra": "debra" },
+  "locations": ["lab", "condo", "marina", "sea"],
+  "notes": "Keine Logos, Clips, Screenshots, Titelmusik. Keine Gewalt, kein Blut außer stilisierter Spurenanalyse-Tafel; Plastikfolie nur als Gag."
+}

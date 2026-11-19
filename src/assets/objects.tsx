@@ -34,7 +34,7 @@ export const Coin: React.FC<A & { label?: string }> = ({ label = "€", ...a }) 
   </G>
 );
 
-export const MoneyStack: React.FC<A & { n?: number; color?: string }> = ({ n = 4, color = "#6BBF7A", ...a }) => (
+export const MoneyStack: React.FC<A & { n?: number; color?: string; label?: string }> = ({ n = 4, color = "#6BBF7A", label = "€", ...a }) => (
   <G {...a}>
     {Array.from({ length: n }, (_, i) => (
       <g key={i} transform={`translate(0 ${-i * 16})`}>
@@ -44,7 +44,7 @@ export const MoneyStack: React.FC<A & { n?: number; color?: string }> = ({ n = 4
       </g>
     ))}
     <rect x="-18" y={-n * 16 - 2} width="36" height={n * 16 + 4} fill="#F4E7CF" opacity=".92" {...thin} />
-    <text x="0" y={-n * 8 + 8} textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#1C1830">€</text>
+    <text x="0" y={-n * 8 + 8} textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#1C1830">{label}</text>
   </G>
 );
 
@@ -259,5 +259,25 @@ export const Pie: React.FC<A> = (a) => (
     <path d="M-56 -18 L56 -18 L40 -70 Q0 -84 -40 -70Z" fill="#E8B061" {...sw} />
     <path d="M-50 -34 H50" stroke="#B5523A" strokeWidth="12" />
     <path d="M-40 -70 Q0 -90 40 -70" fill="none" stroke="#C88A3E" strokeWidth="8" strokeLinecap="round" />
+  </G>
+);
+
+/** Rolle Plastikfolie. */
+export const WrapRoll: React.FC<A> = (a) => (
+  <G {...a}>
+    <rect x="-90" y="-80" width="180" height="80" rx="40" fill="#DCEFF6" opacity=".95" {...sw} />
+    <ellipse cx="-90" cy="-40" rx="18" ry="40" fill="#C3E2EE" {...sw} />
+    <ellipse cx="-90" cy="-40" rx="7" ry="14" fill="#8A6A4A" {...thin} />
+    <path d="M-60 -64 H70 M-60 -20 H70" stroke="#fff" strokeOpacity=".8" strokeWidth="6" strokeLinecap="round" />
+  </G>
+);
+
+/** Mikroskop. */
+export const Microscope: React.FC<A> = (a) => (
+  <G {...a}>
+    <rect x="-60" y="-24" width="120" height="24" rx="6" fill="#3A3A44" {...sw} />
+    <path d="M20 -24 Q40 -110 0 -170" fill="none" stroke="#3A3A44" strokeWidth="24" strokeLinecap="round" />
+    <rect x="-40" y="-90" width="70" height="14" fill="#C9D1DA" {...thin} />
+    <g transform="rotate(-24 -10 -160)"><rect x="-26" y="-230" width="32" height="110" rx="8" fill="#F4F2EC" {...sw} /><rect x="-30" y="-244" width="40" height="22" rx="6" fill="#3A3A44" {...thin} /></g>
   </G>
 );

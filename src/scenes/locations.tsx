@@ -4,7 +4,7 @@ import { useVideo } from "../lib/anim";
 import { H, W } from "../lib/theme";
 import {
   Armchair, BarCounter, BottleShelf, Bookshelf, Brownstone, CoffeeTable, FloorBoards, Frame, Highrise, Hydrant, Lamp, Mirror, Moon, NeonSign,
-  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door,
+  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope,
 } from "../assets";
 
 /** Jeder Schauplatz hat drei Ebenen: Back (Hintergrund), Mid (Mittelgrund), Fore (angeschnittener Vordergrund). */
@@ -418,7 +418,112 @@ const PoolHall: Loc = {
   Fore: () => <g />,
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall };
+/* ================= Dexter ================= */
+/** Forensik-Labor: kühles Licht, Blutspuren-Tafel, Arbeitstisch mit Mikroskop. */
+const Lab: Loc = {
+  floorY: 1600,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="lbWall" a={p("labWall", "#DCE6EA")} b={shade(p("labWall", "#DCE6EA"), -0.2)} y2={1500} />
+      {Array.from({ length: 8 }, (_, i) => <rect key={i} x={i * 150} y="0" width="140" height="40" fill="#F4FAFC" opacity=".8" />)}
+      {/* Tafel mit Blutspritzer-Mustern (stilisiert) */}
+      <rect x="560" y="560" width="440" height="560" fill="#FFFFFF" stroke="#1C1830" strokeWidth="6" />
+      {[[660, 700, 30], [720, 760, 14], [800, 690, 20], [880, 820, 26], [700, 900, 18], [860, 960, 12], [760, 1000, 22]].map(([x, y, r], i) => (
+        <g key={i}><circle cx={x} cy={y} r={r} fill="#C8323A" /><path d={`M${x} ${y} l${r * 1.6} ${r * 0.9}`} stroke="#C8323A" strokeWidth={r / 2} strokeLinecap="round" /></g>
+      ))}
+      {[[660, 700], [880, 820], [700, 900]].map(([x, y], i) => <path key={i} d={`M${x} ${y} L${780} ${1080}`} stroke="#2B4F8C" strokeWidth="3" strokeDasharray="10 8" />)}
+      <rect x="-40" y="1240" width={W + 80} height="60" fill="#B9C6CC" stroke="#1C1830" strokeWidth="5" />
+      <rect x="-40" y="1300" width={W + 80} height="260" fill="#8FA2AC" stroke="#1C1830" strokeWidth="5" />
+      <Microscope x={860} y={1240} s={1.0} />
+      <rect x="-40" y="1560" width={W + 80} height={H - 1560} fill={p("labFloor", "#9AA8AE")} stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/** Wohnanlage in Miami: zweistöckig, Außengang, Pool, Palmen. */
+const Condo: Loc = {
+  floorY: 1640,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="cdSky" a={p("skyTop", "#5EC2E6")} b={p("skyBottom", "#FFE3B0")} y2={1200} />
+      <circle cx="860" cy="360" r="90" fill="#FFE7A8" />
+      <Cloud x={260} y={420} s={1.0} color="#FFFFFF" />
+      <rect x="-40" y="640" width={W + 80} height="820" fill={p("condo", "#F2E6CF")} stroke="#1C1830" strokeWidth="6" />
+      <path d="M-60 640 H1140 L1100 600 H-20Z" fill={p("condoRoof", "#D98A5A")} stroke="#1C1830" strokeWidth="6" />
+      {/* Außengang mit Geländer (2. Stock) */}
+      <rect x="-40" y="1010" width={W + 80} height="24" fill="#FFFFFF" stroke="#1C1830" strokeWidth="5" />
+      {Array.from({ length: 24 }, (_, i) => <path key={i} d={`M${i * 48 - 20} 1034 V1110`} stroke="#1C1830" strokeWidth="4" />)}
+      <rect x="-40" y="1110" width={W + 80} height="18" fill="#FFFFFF" stroke="#1C1830" strokeWidth="5" />
+      {[90, 360, 630, 900].map((x, i) => (
+        <g key={x}>
+          <rect x={x} y="780" width="110" height="200" fill={i === 1 ? "#5A7A8E" : "#E0D2B6"} stroke="#1C1830" strokeWidth="5" />
+          <rect x={x + 140} y="800" width="100" height="90" fill="#9FD7F2" stroke="#1C1830" strokeWidth="5" />
+          <rect x={x} y="1200" width="110" height="200" fill="#E0D2B6" stroke="#1C1830" strokeWidth="5" />
+        </g>
+      ))}
+      <text x="415" y="760" textAnchor="middle" fontFamily="Anton" fontSize="34" fill="#1C1830">10B</text>
+      <rect x="-40" y="1460" width={W + 80} height="80" fill="#E8DFCC" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => (
+    <g>
+      <rect x="-40" y="1540" width={W + 80} height={H - 1540} fill="#E8DFCC" stroke="#1C1830" strokeWidth="5" />
+      <Palm x={1010} y={1560} s={1.25} />
+      <rect x="120" y="1700" width="840" height="200" rx="20" fill="#5EC2E6" stroke="#1C1830" strokeWidth="6" />
+      <path d="M180 1760 q40 -16 80 0 t80 0 M520 1820 q40 -16 80 0 t80 0" fill="none" stroke="#fff" strokeOpacity=".6" strokeWidth="6" />
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+/** Marina: Steg, Wasser, Masten im Hintergrund. */
+const Marina: Loc = {
+  floorY: 1560,
+  Back: ({ p }) => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <Gradient id="mrSky" a={p("skyTop", "#5EC2E6")} b={p("skyBottom", "#FFE3B0")} y2={1100} />
+        <Cloud x={300 + f * 0.2} y={400} s={1.1} color="#FFFFFF" />
+        <Skyline x={540} y={1060} w={1300} color="#9DB4C6" seed={5} maxH={360} />
+        {[120, 260, 820, 980].map((x) => <path key={x} d={`M${x} 1060 V700`} stroke="#E8ECEF" strokeWidth="8" />)}
+        <rect x="-40" y="1060" width={W + 80} height={H - 1060} fill={p("sea", "#2E8FB8")} />
+        {Array.from({ length: 10 }, (_, i) => <path key={i} d={`M${((i * 230 + f * 2) % 1300) - 150} ${1120 + (i % 4) * 90} q30 -18 60 0 t60 0`} fill="none" stroke="#fff" strokeOpacity=".35" strokeWidth="6" strokeLinecap="round" />)}
+      </g>
+    );
+  },
+  Mid: () => (
+    <g>
+      <Dock x={540} y={1560} w={1300} />
+      <rect x="-40" y="1600" width={W + 80} height={H - 1600} fill="#2A7CA4" />
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+/** Offenes Meer vor Miami: Horizont, Wellen. */
+const OpenSea: Loc = {
+  floorY: 1560,
+  Back: ({ p }) => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <Gradient id="osSky" a={p("skyTop", "#5EC2E6")} b={p("skyBottom", "#FFE3B0")} y2={1000} />
+        <circle cx="820" cy="560" r="110" fill="#FFE7A8" />
+        <Cloud x={240 - f * 0.15} y={420} s={1.0} color="#FFFFFF" />
+        <Skyline x={160} y={990} w={420} color="#B6C6D4" seed={2} maxH={120} />
+        <rect x="-40" y="990" width={W + 80} height={H - 990} fill={p("sea", "#2E8FB8")} />
+        {Array.from({ length: 14 }, (_, i) => <path key={i} d={`M${((i * 190 - f * 4) % 1300 + 1300) % 1300 - 150} ${1050 + (i % 6) * 140} q30 -18 60 0 t60 0`} fill="none" stroke="#fff" strokeOpacity=".4" strokeWidth="7" strokeLinecap="round" />)}
+      </g>
+    );
+  },
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {

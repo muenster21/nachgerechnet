@@ -2,7 +2,7 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" };
   top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather"; color: string; accent: string; shirt?: string };
   tie?: string;
   pants: string;
@@ -157,5 +157,30 @@ export const LOOKS: Record<string, Look> = {
     heightScale: 1.12,
     sleeves: "long",
     brows: "#3E2614",
+  },
+  /* ---- Dexter ---- */
+  dexter: {
+    skin: "#F0C4A0",
+    skinShade: "#DDA87F",
+    hair: { color: "#4A2E1C", style: "dexter" },
+    top: { kind: "sweater", color: "#8FB3C8", accent: "#6A8EA4" },
+    pants: "#C9B48C",
+    shoes: "#4A3424",
+    bodyW: 122,
+    heightScale: 1.0,
+    sleeves: "short",
+    brows: "#3A2414",
+  },
+  debra: {
+    skin: "#F0C4A0",
+    skinShade: "#DDA87F",
+    hair: { color: "#2E1E16", style: "long" },
+    top: { kind: "tee", color: "#4A4E5A", accent: "#3A3D48" },
+    pants: "#34405A",
+    shoes: "#2A2A2A",
+    bodyW: 108,
+    heightScale: 0.96,
+    sleeves: "short",
+    brows: "#24160E",
   },
 };
