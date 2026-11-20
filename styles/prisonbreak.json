@@ -1,0 +1,15 @@
+{
+  "series": "Prison Break",
+  "slug": "prisonbreak",
+  "mood": "Gefängnis-Blau, Tattoo-Studio dunkelrot, Klinik weiß",
+  "palette": {},
+  "characters": {
+    "michael": "michael"
+  },
+  "locations": [
+    "cell",
+    "tattoostudio",
+    "clinic"
+  ],
+  "notes": "Keine Logos, Clips, Titelmusik. Keine Gewaltdarstellung. Figuren als Cartoon-Karikaturen."
+}

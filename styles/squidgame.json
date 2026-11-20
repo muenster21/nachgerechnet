@@ -1,0 +1,16 @@
+{
+  "series": "Squid Game",
+  "slug": "squidgame",
+  "mood": "Kalte Spielanlage: Türkis, Pink, weiße Hallen, gemalter Himmel",
+  "palette": {},
+  "characters": {
+    "gihun": "gihun",
+    "player": "player",
+    "guard": "guard"
+  },
+  "locations": [
+    "dorm",
+    "gamefield"
+  ],
+  "notes": "Keine Logos, Clips, Titelmusik. Keine Gewaltdarstellung. Figuren als Cartoon-Karikaturen."
+}

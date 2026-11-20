@@ -4,7 +4,7 @@ import { useVideo } from "../lib/anim";
 import { H, W } from "../lib/theme";
 import {
   Armchair, BarCounter, BottleShelf, Bookshelf, Brownstone, CoffeeTable, FloorBoards, Frame, Highrise, Hydrant, Lamp, Mirror, Moon, NeonSign,
-  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope, Whiteboard,
+  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope, Whiteboard, PrintingPress,
 } from "../assets";
 
 /** Jeder Schauplatz hat drei Ebenen: Back (Hintergrund), Mid (Mittelgrund), Fore (angeschnittener Vordergrund). */
@@ -695,7 +695,110 @@ const Restaurant: Loc = {
   Fore: () => <g />,
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant };
+/* ================= Squid Game ================= */
+/** Schlafsaal: weiße Halle, Etagenbetten bis zur Decke, Sparschwein hängt oben. */
+const Dorm: Loc = {
+  floorY: 1640,
+  Back: () => (
+    <g>
+      <Gradient id="dmWall" a="#E9EEF0" b="#B9C4C8" y2={1500} />
+      {[0, 1].map((side) => (
+        <g key={side} transform={side ? "translate(1080 0) scale(-1 1)" : ""}>
+          {Array.from({ length: 6 }, (_, r) => (
+            <g key={r}>
+              <rect x="-40" y={300 + r * 190} width="380" height="24" fill="#3E9C8A" stroke="#1C1830" strokeWidth="4" />
+              <rect x="-40" y={276 + r * 190} width="360" height="24" fill="#F4F2EC" stroke="#1C1830" strokeWidth="3" />
+              {[20, 160, 300].map((x) => <path key={x} d={`M${x} ${324 + r * 190} V${470 + r * 190}`} stroke="#2E7A6A" strokeWidth="10" />)}
+            </g>
+          ))}
+          <path d="M340 260 V1500" stroke="#2E7A6A" strokeWidth="12" />
+        </g>
+      ))}
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#C9CFD2" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/** Spielfeld: Wand mit gemaltem Himmel, sandiger Boden. */
+const GameField: Loc = {
+  floorY: 1660,
+  Back: () => (
+    <g>
+      <Gradient id="gfSky" a="#7CC6EC" b="#CDEBF7" y2={1300} />
+      {[[200, 400], [700, 300], [900, 620], [380, 760]].map(([x, y], i) => <Cloud key={i} x={x} y={y} s={1.1} color="#FFFFFF" />)}
+      <path d="M-40 1260 Q300 1200 540 1250 T1120 1240 V1320 H-40Z" fill="#7BAA5A" stroke="#1C1830" strokeWidth="5" />
+      <rect x="-40" y="1300" width={W + 80} height={H - 1300} fill="#E3C79A" stroke="#1C1830" strokeWidth="5" />
+      <path d="M-40 1420 H1120" stroke="#C8423A" strokeWidth="8" strokeDasharray="30 18" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/* ================= Haus des Geldes ================= */
+/** Druckerei der Münze: Industriehalle, laufende Druckmaschine. */
+const PrintRoom: Loc = {
+  floorY: 1640,
+  Back: () => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <Gradient id="prWall" a="#5A606C" b="#2E323A" y2={1500} />
+        {Array.from({ length: 8 }, (_, i) => <rect key={i} x={i * 150 - 20} y="0" width="120" height="60" fill="#FFF6D6" opacity=".25" />)}
+        <ellipse cx="540" cy="700" rx="600" ry="420" fill="#FFF6D6" opacity=".06" />
+        <PrintingPress x={540} y={1300} s={1.1} phase={f / 6} />
+        <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#3E4450" stroke="#1C1830" strokeWidth="5" />
+        {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M${i * 200 - 40} 1500 L${i * 260 - 300} ${H}`} stroke="#F6C945" strokeOpacity=".25" strokeWidth="6" />)}
+      </g>
+    );
+  },
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/* ================= Prison Break ================= */
+/** Tattoo-Studio: dunkelrote Wände, Vorlagen, Liege, Lampe. */
+const TattooStudio: Loc = {
+  floorY: 1620,
+  Back: () => (
+    <g>
+      <Gradient id="tsWall" a="#6E2A2E" b="#3A1618" y2={1500} />
+      {Array.from({ length: 8 }, (_, i) => (
+        <g key={i} transform={`translate(${80 + (i % 4) * 240} ${380 + Math.floor(i / 4) * 300}) rotate(${(i % 3) - 1})`}>
+          <rect x="-90" y="-110" width="180" height="220" fill="#F4EEDC" stroke="#1C1830" strokeWidth="4" />
+          <path d={`M-50 -40 q50 -60 100 0 q-50 60 -100 0 M-30 40 h60`} stroke="#1C1830" strokeWidth="5" fill="none" />
+        </g>
+      ))}
+      <PendantLamp x={540} y={-10} drop={480} />
+      <rect x="160" y="1340" width="760" height="70" rx="20" fill="#2A2A2A" stroke="#1C1830" strokeWidth="5" />
+      <path d="M240 1410 V1500 M840 1410 V1500" stroke="#1C1830" strokeWidth="18" />
+      <FloorBoards y={1500} h={H - 1500} color="#2A1E1A" line="#140E0C" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/** Laser-Praxis: weiß, klinisch, Liege. */
+const Clinic: Loc = {
+  floorY: 1620,
+  Back: () => (
+    <g>
+      <Gradient id="clnWall" a="#F2F6F8" b="#C9D6DC" y2={1500} />
+      {[0, 1, 2].map((i) => <rect key={i} x={140 + i * 300} y="420" width="220" height="300" rx="10" fill="#DCEFF6" stroke="#1C1830" strokeWidth="5" />)}
+      <rect x="-40" y="1240" width={W + 80} height="24" fill="#B9C6CC" stroke="#1C1830" strokeWidth="4" />
+      <rect x="560" y="1350" width="460" height="60" rx="16" fill="#E8ECEF" stroke="#1C1830" strokeWidth="5" />
+      <path d="M620 1410 V1500 M960 1410 V1500" stroke="#1C1830" strokeWidth="14" />
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#DCE3E6" stroke="#1C1830" strokeWidth="5" />
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant, dorm: Dorm, gamefield: GameField, printroom: PrintRoom, tattoostudio: TattooStudio, clinic: Clinic };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {

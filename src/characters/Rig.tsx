@@ -143,6 +143,14 @@ function HairFront({ look }: { look: Look }) {
           <path d="M-56 -520 Q-30 -536 -16 -530 M10 -532 Q40 -536 62 -516" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
         </g>
       );
+    case "buzz":
+      // raspelkurz: dünne Kappe mit Punkten
+      return (
+        <g>
+          <path d="M-82 -470 Q-86 -536 0 -544 Q86 -536 82 -470 Q60 -500 0 -504 Q-60 -500 -82 -470Z" fill={c} opacity=".75" {...sw} strokeWidth={4} />
+          {Array.from({ length: 14 }, (_, i) => <circle key={i} cx={-60 + (i % 7) * 20} cy={-520 + Math.floor(i / 7) * 16} r="2.5" fill="#000" opacity=".25" />)}
+        </g>
+      );
     case "sheldon":
       // kurz, glatt, Seitenscheitel, etwas Volumen oben
       return (
@@ -191,6 +199,38 @@ function HairFront({ look }: { look: Look }) {
     default:
       return null;
   }
+}
+
+/* ---------- Maske (Wächter / Dalí) mit Kapuze ---------- */
+function Mask({ look }: { look: Look }) {
+  const m = look.mask!;
+  return (
+    <g>
+      {/* Kapuze */}
+      <path d="M-96 -420 Q-104 -548 0 -556 Q104 -548 96 -420 Q92 -372 60 -366 L-60 -366 Q-92 -372 -96 -420Z" fill={m.hood} {...sw} />
+      {m.kind === "dali" ? (
+        <g>
+          <ellipse cx="0" cy="-452" rx="70" ry="74" fill="#F7F2E8" {...sw} />
+          <ellipse cx="-28" cy="-470" rx="14" ry="8" fill="#1C1830" />
+          <ellipse cx="28" cy="-470" rx="14" ry="8" fill="#1C1830" />
+          <path d="M-40 -488 Q-28 -500 -14 -490 M14 -490 Q28 -500 40 -488" stroke="#1C1830" strokeWidth="5" fill="none" />
+          <path d="M0 -462 L-8 -432 H8Z" fill="#E8D8C4" stroke="#1C1830" strokeWidth="3" />
+          <path d="M-6 -422 Q-30 -428 -46 -466 Q-26 -432 0 -420 Q26 -432 46 -466 Q30 -428 6 -422Z" fill="#1C1830" />
+          <path d="M-20 -404 Q0 -394 20 -404" stroke="#1C1830" strokeWidth="5" fill="none" />
+          <ellipse cx="-42" cy="-430" rx="10" ry="6" fill="#E88B7B" opacity=".5" />
+          <ellipse cx="42" cy="-430" rx="10" ry="6" fill="#E88B7B" opacity=".5" />
+        </g>
+      ) : (
+        <g>
+          <ellipse cx="0" cy="-452" rx="70" ry="74" fill="#14121A" {...sw} />
+          <path d="M-46 -490 Q0 -506 46 -490" stroke="#fff" strokeOpacity=".15" strokeWidth="6" fill="none" />
+          {m.kind === "circle" && <circle cx="0" cy="-452" r="30" fill="none" stroke="#F4F2EC" strokeWidth="9" />}
+          {m.kind === "triangle" && <path d="M0 -488 L32 -430 H-32Z" fill="none" stroke="#F4F2EC" strokeWidth="9" strokeLinejoin="round" />}
+          {m.kind === "square" && <rect x="-28" y="-480" width="56" height="56" fill="none" stroke="#F4F2EC" strokeWidth="9" />}
+        </g>
+      )}
+    </g>
+  );
 }
 
 /* ---------- Gesicht ---------- */
@@ -246,7 +286,7 @@ function Face({ look, expr, mouth, blink, look2, seedT }: { look: Look; expr: Ex
 }
 
 /* ---------- Oberkörper je Outfit ---------- */
-function Torso({ look, breathe }: { look: Look; breathe: number }) {
+function Torso({ look, breathe, flip }: { look: Look; breathe: number; flip?: boolean }) {
   const w = look.bodyW;
   const hw = w / 2;
   const top = -362;
@@ -316,6 +356,41 @@ function Torso({ look, breathe }: { look: Look; breathe: number }) {
           <path d={`M${-hw + 18} ${top + 40} Q${-hw + 30} ${top + 120} ${-hw + 22} ${bot - 10} M${hw - 18} ${top + 40} Q${hw - 30} ${top + 120} ${hw - 22} ${bot - 10}`} stroke="#fff" strokeOpacity=".14" strokeWidth="6" fill="none" strokeLinecap="round" />
         </g>
       )}
+      {t.kind === "track" && (
+        // Trainingsjacke mit Streifen und Startnummer
+        <g>
+          <path d={`M0 ${top + 6} V${bot}`} stroke={t.accent} strokeWidth="6" />
+          <path d={`M-30 ${top} L0 ${top + 26} L30 ${top}`} fill={t.color} {...sw} />
+          <path d={`M${-hw + 6} ${top + 34} V${bot - 4} M${hw - 6} ${top + 34} V${bot - 4}`} stroke={t.accent} strokeWidth="8" />
+          {t.number && (
+            <g>
+              <rect x={-hw + 18} y={top + 46} width="62" height="34" rx="4" fill="#F4F0E8" {...sw} strokeWidth={3} />
+              <text x={-hw + 49} y={top + 72} textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#1C1830" transform={flip ? `translate(${2 * (-hw + 49)} 0) scale(-1 1)` : undefined}>{t.number}</text>
+            </g>
+          )}
+        </g>
+      )}
+      {t.kind === "jumpsuit" && (
+        // Overall mit Reißverschluss und Kragen
+        <g>
+          <path d={`M-34 ${top} L-10 ${top + 30} L0 ${top + 10} L10 ${top + 30} L34 ${top}`} fill={t.accent} {...sw} />
+          <path d={`M0 ${top + 12} V${bot}`} stroke={LINE} strokeWidth="4" />
+          <rect x={-hw + 16} y={top + 60} width="40" height="34" rx="4" fill="none" stroke={t.accent} strokeWidth="5" />
+          <path d={`M${-hw - 6} ${bot - 22} H${hw + 6}`} stroke={t.accent} strokeWidth="10" />
+        </g>
+      )}
+      {t.kind === "tank" && (
+        // Unterhemd: Schultern frei, Tattoo sichtbar
+        <g>
+          <path d={`M${-hw} ${top + 30} Q${-hw} ${top} ${-hw + 36} ${top} L-30 ${top} Q-34 ${top + 60} 0 ${top + 70} Q34 ${top + 60} 30 ${top} L${hw - 36} ${top} Q${hw} ${top} ${hw} ${top + 30} L${hw - 20} ${top + 40} L${hw - 22} ${top + 6} L${-hw + 22} ${top + 6} L${-hw + 20} ${top + 40}Z`} fill={look.skin} {...sw} />
+          {look.tattoo && (
+            <g stroke={look.tattoo} strokeWidth="4" fill="none" opacity=".85">
+              <path d={`M${-hw + 8} ${top + 10} q14 10 6 26 M${hw - 8} ${top + 10} q-14 10 -6 26 M-22 ${top + 12} q10 14 0 30 M22 ${top + 12} q-10 14 0 30`} />
+              <path d={`M-8 ${top + 30} h16 M-12 ${top + 44} h24`} />
+            </g>
+          )}
+        </g>
+      )}
       {t.kind === "tee" && (
         <g>
           <path d={`M-22 ${top} Q0 ${top + 22} 22 ${top}`} fill="none" {...sw} />
@@ -342,11 +417,17 @@ function Arm({ look, side, out, bend, lift, children }: { look: Look; side: -1 |
   return (
     <g transform={`translate(${sx} ${sy}) rotate(${a})`}>
       <path d={`M0 0 L0 ${upper}`} stroke={LINE} strokeWidth="32" strokeLinecap="round" fill="none" />
-      <path d={`M0 0 L0 ${upper}`} stroke={sleeve} strokeWidth="24" strokeLinecap="round" fill="none" />
+      <path d={`M0 0 L0 ${upper}`} stroke={look.top.kind === "tank" ? look.skin : sleeve} strokeWidth="24" strokeLinecap="round" fill="none" />
+      {look.tattoo && look.top.kind === "tank" && <path d={`M-6 10 q10 10 0 22 q-10 10 2 24 M6 18 l-6 12 l6 10`} stroke={look.tattoo} strokeWidth="3.5" fill="none" opacity=".85" />}
       <g transform={`translate(0 ${upper}) rotate(${b})`}>
         <path d={`M0 0 L0 ${fore}`} stroke={LINE} strokeWidth="29" strokeLinecap="round" fill="none" />
         <path d={`M0 0 L0 ${fore}`} stroke={foreColor} strokeWidth="21" strokeLinecap="round" fill="none" />
         {look.sleeves === "long" && <path d={`M-12 ${fore - 4} H12`} stroke={LINE} strokeWidth="3" opacity=".5" />}
+        {look.tattoo && look.sleeves !== "long" && (
+          <g stroke={look.tattoo} strokeWidth="3.5" fill="none" opacity=".85">
+            <path d={`M-8 6 q10 8 0 16 q-10 8 0 16 M6 12 l-4 10 l6 8 M-6 44 q8 -6 12 4 q-4 10 -12 6 M2 58 v10`} />
+          </g>
+        )}
         <g transform={`translate(0 ${fore + 4})`}>
           <circle r="15" fill={look.skin} {...sw} />
           {/* gehaltenes Objekt: dreht sich mit der Hand nicht mit, bleibt aufrecht */}
@@ -418,7 +499,7 @@ export const Character: React.FC<CharacterProps> = ({
         ))}
         {/* Hinterer Arm (links) unter Torso */}
         <Arm look={look} side={-1} out={P.lOut} bend={P.lBend} lift={P.lift ?? 0}>{holdL}</Arm>
-        <Torso look={look} breathe={breathe} />
+        <Torso look={look} breathe={breathe} flip={flip} />
         <g transform={`translate(0 ${bob})`}>
           {/* Hals + Kopf */}
           <rect x="-17" y="-392" width="34" height="38" fill={look.skinShade} {...sw} />
@@ -427,8 +508,12 @@ export const Character: React.FC<CharacterProps> = ({
             <ellipse cx="-80" cy="-452" rx="13" ry="20" fill={look.skin} {...sw} />
             <ellipse cx="80" cy="-452" rx="13" ry="20" fill={look.skin} {...sw} />
             <ellipse cx="0" cy="-454" rx="82" ry="74" fill={look.skin} {...sw} />
-            <Face look={look} expr={expr} mouth={mouth} blink={blink} look2={[lookX, lookY]} seedT={t} />
-            <HairFront look={look} />
+            {look.mask ? <Mask look={look} /> : (
+              <>
+                <Face look={look} expr={expr} mouth={mouth} blink={blink} look2={[lookX, lookY]} seedT={t} />
+                <HairFront look={look} />
+              </>
+            )}
           </g>
         </g>
         {/* Vorderer Arm (rechts) */}

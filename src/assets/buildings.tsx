@@ -241,3 +241,21 @@ export const Dock: React.FC<A & { w?: number }> = ({ w = 900, ...a }) => (
     {Array.from({ length: Math.ceil(w / 60) }, (_, i) => <path key={i} d={`M${-w / 2 + i * 60} -30 V10`} stroke="#1C1830" strokeOpacity=".25" strokeWidth="3" />)}
   </G>
 );
+
+/** Banknoten-Druckmaschine (seitlich), Bogen laufen durch. */
+export const PrintingPress: React.FC<A & { phase?: number }> = ({ phase = 0, ...a }) => (
+  <G {...a}>
+    <rect x="-380" y="-420" width="760" height="420" rx="20" fill="#8A96A6" {...sw} />
+    <rect x="-380" y="-470" width="760" height="70" rx="14" fill="#6E7A8A" {...sw} />
+    {[-240, -80, 80, 240].map((x, i) => (
+      <g key={x}>
+        <circle cx={x} cy="-260" r="62" fill="#C9D1DA" {...sw} />
+        <path d={`M${x} -260 L${x + 54 * Math.cos(phase + i)} ${-260 + 54 * Math.sin(phase + i)}`} stroke="#1C1830" strokeWidth="8" strokeLinecap="round" />
+      </g>
+    ))}
+    <rect x="-330" y="-120" width="660" height="40" fill="#E9D8B4" stroke="#1C1830" strokeWidth="4" />
+    {Array.from({ length: 8 }, (_, i) => <rect key={i} x={-320 + ((i * 90 + phase * 60) % 660)} y="-116" width="70" height="32" fill="#D9A06A" stroke="#1C1830" strokeWidth="2" />)}
+    <rect x="300" y="-430" width="60" height="40" rx="6" fill="#F6C945" {...thin} />
+    <circle cx="-330" cy="-440" r="12" fill="#2FA36B" />
+  </G>
+);

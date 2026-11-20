@@ -1,0 +1,14 @@
+{
+  "series": "Haus des Geldes",
+  "slug": "moneyheist",
+  "mood": "Industriehalle der Münze: Grau, Neonlicht, rote Overalls",
+  "palette": {},
+  "characters": {
+    "robber": "robber",
+    "professor": "professor"
+  },
+  "locations": [
+    "printroom"
+  ],
+  "notes": "Keine Logos, Clips, Titelmusik. Keine Gewaltdarstellung. Figuren als Cartoon-Karikaturen."
+}

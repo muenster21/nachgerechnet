@@ -2,8 +2,8 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" };
-  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather"; color: string; accent: string; shirt?: string };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" | "buzz" };
+  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather" | "track" | "jumpsuit" | "tank"; color: string; accent: string; shirt?: string; number?: string };
   tie?: string;
   pants: string;
   shoes: string;
@@ -14,6 +14,10 @@ export type Look = {
   stubble?: boolean;
   mustache?: string;
   goatee?: string;
+  /** Maske statt Gesicht (mit Kapuze in hood-Farbe) */
+  mask?: { kind: "circle" | "triangle" | "square" | "dali"; hood: string };
+  /** Tattoo-Farbe (Arme, bei tank auch Brust) */
+  tattoo?: string;
   glasses?: string;
   brows: string;
 };
@@ -249,5 +253,54 @@ export const LOOKS: Record<string, Look> = {
     sleeves: "long",
     glasses: "#1C1830",
     brows: "#24160E",
+  },
+  /* ---- Squid Game ---- */
+  gihun: {
+    skin: "#EDC09A", skinShade: "#D9A47C",
+    hair: { color: "#2A1E16", style: "kid" },
+    top: { kind: "track", color: "#2F8F6A", accent: "#F4F0E8", number: "456" },
+    pants: "#2F8F6A", shoes: "#F4F0E8",
+    bodyW: 122, heightScale: 1.0, sleeves: "long", stubble: true, brows: "#1C140E",
+  },
+  player: {
+    skin: "#E8B892", skinShade: "#D49E76",
+    hair: { color: "#1C1410", style: "charlie" },
+    top: { kind: "track", color: "#2F8F6A", accent: "#F4F0E8", number: "067" },
+    pants: "#2F8F6A", shoes: "#F4F0E8",
+    bodyW: 116, heightScale: 0.97, sleeves: "long", brows: "#1C140E",
+  },
+  guard: {
+    skin: "#E8B892", skinShade: "#D49E76",
+    hair: { color: "#E0507A", style: "bald" },
+    top: { kind: "jumpsuit", color: "#E0507A", accent: "#B83A5E" },
+    pants: "#E0507A", shoes: "#1C1830",
+    bodyW: 126, heightScale: 1.04, sleeves: "long", brows: "#1C1830",
+    mask: { kind: "triangle", hood: "#E0507A" },
+  },
+  /* ---- Haus des Geldes ---- */
+  robber: {
+    skin: "#E8B892", skinShade: "#D49E76",
+    hair: { color: "#1C1410", style: "bald" },
+    top: { kind: "jumpsuit", color: "#C8282E", accent: "#9E1E24" },
+    pants: "#C8282E", shoes: "#1C1830",
+    bodyW: 126, heightScale: 1.0, sleeves: "long", brows: "#1C1830",
+    mask: { kind: "dali", hood: "#C8282E" },
+  },
+  professor: {
+    skin: "#EEC4A0", skinShade: "#DAA87F",
+    hair: { color: "#2A1E16", style: "dexter" },
+    top: { kind: "blazer", color: "#5A5E6A", accent: "#44474F", shirt: "#E7EEF6" },
+    tie: "#2B2F3A",
+    pants: "#44474F", shoes: "#1C1830",
+    bodyW: 118, heightScale: 1.02, sleeves: "long", stubble: true, glasses: "#1C1830", brows: "#24160E",
+  },
+  /* ---- Prison Break ---- */
+  michael: {
+    skin: "#EEC4A0", skinShade: "#DAA87F",
+    hair: { color: "#3A2A1E", style: "buzz" },
+    top: { kind: "tank", color: "#F4F2EC", accent: "#D9D4CA" },
+    pants: "#3E5C8A", shoes: "#2A2A2A",
+    bodyW: 120, heightScale: 1.04, sleeves: "short", brows: "#2A1E16",
+    tattoo: "#2B3A5C",
   },
 };

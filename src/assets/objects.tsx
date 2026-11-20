@@ -325,3 +325,64 @@ export const Tin: React.FC<A> = (a) => (
     <ellipse cx="0" cy="-110" rx="60" ry="14" fill="#D9D4CA" {...sw} />
   </G>
 );
+
+/** Riesiges Glas-Sparschwein mit Geld, hängend (Ursprung = Aufhängung oben). */
+export const GlassPiggy: React.FC<A & { fill?: number }> = ({ fill = 0.6, ...a }) => (
+  <G {...a}>
+    <path d="M0 -900 V-260" stroke="#1C1830" strokeWidth="8" />
+    <g transform="translate(0 0)">
+      <clipPath id="gpClip"><ellipse cx="0" cy="-140" rx="200" ry="140" /></clipPath>
+      <ellipse cx="0" cy="-140" rx="200" ry="140" fill="#F6E6B4" opacity=".35" {...sw} />
+      <g clipPath="url(#gpClip)">
+        <rect x="-220" y={-140 + 140 - 280 * fill} width="440" height={280 * fill} fill="#7BC68B" />
+        {Array.from({ length: 18 }, (_, i) => <rect key={i} x={-190 + (i % 6) * 66} y={-10 - Math.floor(i / 6) * 40 - (280 * fill - 120)} width="56" height="26" rx="3" fill={i % 2 ? "#6AB47A" : "#8ED49B"} stroke="#1C1830" strokeWidth="2" />)}
+      </g>
+      <ellipse cx="0" cy="-140" rx="200" ry="140" fill="none" {...sw} />
+      <path d="M-120 -230 Q-60 -262 20 -258" stroke="#fff" strokeOpacity=".6" strokeWidth="12" fill="none" strokeLinecap="round" />
+      {/* Rüssel, Ohren, Beine, Ringelschwanz */}
+      <ellipse cx="200" cy="-130" rx="42" ry="34" fill="#E8F2F6" opacity=".85" {...sw} />
+      <ellipse cx="190" cy="-130" rx="6" ry="9" fill="#1C1830" /><ellipse cx="212" cy="-130" rx="6" ry="9" fill="#1C1830" />
+      <circle cx="130" cy="-190" r="9" fill="#1C1830" />
+      <path d="M60 -262 L90 -330 L120 -258Z M100 -252 L140 -312 L156 -242Z" fill="#E8F2F6" {...sw} />
+      {[-120, -50, 50, 120].map((x) => <rect key={x} x={x - 20} y="-14" width="40" height="44" rx="10" fill="#E8F2F6" {...sw} />)}
+      <path d="M-200 -150 q-40 -10 -34 -40 q8 -22 26 -8 q10 14 -14 22" fill="none" stroke="#1C1830" strokeWidth="7" strokeLinecap="round" />
+      <path d="M-30 -282 H40" stroke="#1C1830" strokeWidth="8" strokeLinecap="round" />
+    </g>
+  </G>
+);
+
+/** Laser-Handstück (Tattooentfernung) auf Gerät. */
+export const LaserDevice: React.FC<A> = (a) => (
+  <G {...a}>
+    <rect x="-90" y="-300" width="180" height="300" rx="18" fill="#E8ECEF" {...sw} />
+    <rect x="-66" y="-276" width="132" height="80" rx="8" fill="#2B4F8C" {...sw} />
+    <text x="0" y="-226" textAnchor="middle" fontFamily="Anton" fontSize="34" fill="#9FD7F2">1064 nm</text>
+    <path d="M60 -170 Q160 -200 150 -320" fill="none" stroke="#1C1830" strokeWidth="10" />
+    <rect x="128" y="-380" width="44" height="80" rx="10" fill="#C9D1DA" {...sw} />
+    <circle cx="150" cy="-386" r="10" fill="#D62839" />
+    {[-40, 0, 40].map((x) => <circle key={x} cx={x} cy="-150" r="12" fill="#C9D1DA" {...thin} />)}
+  </G>
+);
+
+/** Tätowiermaschine. */
+export const TattooGun: React.FC<A> = (a) => (
+  <G {...a}>
+    <rect x="-14" y="-120" width="28" height="90" rx="8" fill="#3A3A44" {...sw} />
+    <rect x="-24" y="-150" width="48" height="36" rx="8" fill="#C8423A" {...sw} />
+    <path d="M0 -30 V0" stroke="#1C1830" strokeWidth="6" />
+  </G>
+);
+
+/** Druckbogen mit Banknoten. */
+export const NoteSheet: React.FC<A & { value?: string }> = ({ value = "50", ...a }) => (
+  <G {...a}>
+    <rect x="-150" y="-200" width="300" height="200" fill="#E9D8B4" {...sw} />
+    {Array.from({ length: 6 }, (_, i) => (
+      <g key={i} transform={`translate(${-140 + (i % 3) * 96} ${-190 + Math.floor(i / 3) * 96})`}>
+        <rect width="88" height="86" fill="#D9A06A" stroke="#1C1830" strokeWidth="2" />
+        <circle cx="62" cy="43" r="16" fill="#E8C08A" stroke="#1C1830" strokeWidth="2" />
+        <text x="8" y="28" fontFamily="Anton" fontSize="22" fill="#1C1830">{value}</text>
+      </g>
+    ))}
+  </G>
+);
