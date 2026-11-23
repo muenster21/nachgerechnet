@@ -78,6 +78,14 @@ function HairBack({ look }: { look: Look }) {
         {[[-88, -470], [-96, -420], [88, -470], [96, -420], [-60, -528], [60, -528], [0, -548]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="34" />)}
       </g>
     );
+  if (look.hair.style === "dany")
+    // lange, silberblonde Haare mit Zöpfen
+    return (
+      <g>
+        <path d="M-90 -446 Q-98 -548 0 -558 Q98 -548 90 -446 L104 -300 Q90 -284 74 -300 L70 -400 L-70 -400 L-74 -300 Q-90 -284 -104 -300Z" fill={look.hair.color} {...sw} />
+        <path d="M-88 -380 V-300 M88 -380 V-300" stroke="#C9B48A" strokeWidth="8" strokeDasharray="12 8" />
+      </g>
+    );
   if (look.hair.style === "sam")
     // halblang, fransig bis zum Kiefer
     return <path d="M-90 -446 Q-98 -546 0 -556 Q98 -546 90 -446 L94 -380 Q84 -366 74 -384 L70 -360 Q58 -372 56 -400 L-56 -400 Q-58 -372 -70 -360 L-74 -384 Q-84 -366 -94 -380Z" fill={look.hair.color} {...sw} />;
@@ -141,6 +149,13 @@ function HairFront({ look }: { look: Look }) {
           <path d="M-84 -458 Q-90 -540 -6 -550 Q82 -546 86 -462 Q80 -496 54 -508 Q20 -500 -14 -520 Q-50 -498 -84 -458Z" fill={c} {...sw} />
           <path d="M-14 -520 Q-20 -538 -10 -548" fill="none" stroke={LINE} strokeWidth="3" opacity=".5" />
           <path d="M-56 -520 Q-30 -536 -16 -530 M10 -532 Q40 -536 62 -516" fill="none" stroke="#fff" strokeOpacity=".18" strokeWidth="4" strokeLinecap="round" />
+        </g>
+      );
+    case "dany":
+      return (
+        <g>
+          <path d="M-88 -446 Q-94 -542 0 -552 Q94 -542 88 -446 Q72 -500 0 -510 Q-72 -500 -88 -446Z" fill={c} {...sw} />
+          <path d="M-70 -500 Q0 -530 70 -500" fill="none" stroke="#D9CDB8" strokeWidth="10" strokeDasharray="14 8" />
         </g>
       );
     case "buzz":

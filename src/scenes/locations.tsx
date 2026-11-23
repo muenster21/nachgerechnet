@@ -4,7 +4,7 @@ import { useVideo } from "../lib/anim";
 import { H, W } from "../lib/theme";
 import {
   Armchair, BarCounter, BottleShelf, Bookshelf, Brownstone, CoffeeTable, FloorBoards, Frame, Highrise, Hydrant, Lamp, Mirror, Moon, NeonSign,
-  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope, Whiteboard, PrintingPress,
+  PendantLamp, Plant, Rug, Skyline, Sofa, Stool, Streetlamp, Taxi, TrashCan, TV, Window, Cloud, Booth, shade, GrandPiano, Palm, Coupe, GasPump, MotelSign, Bed, PoolTable, Door, Boat, Dock, Microscope, Whiteboard, PrintingPress, Dragon,
 } from "../assets";
 
 /** Jeder Schauplatz hat drei Ebenen: Back (Hintergrund), Mid (Mittelgrund), Fore (angeschnittener Vordergrund). */
@@ -798,7 +798,56 @@ const Clinic: Loc = {
   Fore: () => <g />,
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant, dorm: Dorm, gamefield: GameField, printroom: PrintRoom, tattoostudio: TattooStudio, clinic: Clinic };
+/* ================= Haus des Geldes: Tresor ================= */
+/** Goldtresor: Stahlwände, Regale mit Barren, runde Tresortür. */
+const Vault: Loc = {
+  floorY: 1640,
+  Back: () => (
+    <g>
+      <Gradient id="vtWall" a="#4A5260" b="#232830" y2={1500} />
+      {Array.from({ length: 4 }, (_, r) => (
+        <g key={r}>
+          <rect x="-40" y={360 + r * 260} width={W + 80} height="20" fill="#7A8494" stroke="#1C1830" strokeWidth="4" />
+          {Array.from({ length: 10 }, (_, i) => (
+            <path key={i} d={`M${i * 110 + 10} ${356 + r * 260} l10 -40 h70 l10 40Z`} fill="#F2C94C" stroke="#1C1830" strokeWidth="3" />
+          ))}
+        </g>
+      ))}
+      <circle cx="900" cy="300" r="160" fill="#8A96A6" stroke="#1C1830" strokeWidth="8" opacity=".9" />
+      <circle cx="900" cy="300" r="40" fill="#C9D1DA" stroke="#1C1830" strokeWidth="6" />
+      {[0, 60, 120, 180, 240, 300].map((d) => <path key={d} d={`M900 300 L${900 + 110 * Math.cos((d * Math.PI) / 180)} ${300 + 110 * Math.sin((d * Math.PI) / 180)}`} stroke="#1C1830" strokeWidth="10" />)}
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#3A404A" stroke="#1C1830" strokeWidth="5" />
+      {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${i * 160 - 40} 1500 L${i * 200 - 260} ${H}`} stroke="#F2C94C" strokeOpacity=".12" strokeWidth="6" />)}
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+/* ================= Game of Thrones ================= */
+/** Meereen: Wüstenhimmel, Stufenpyramide, Hügel mit Weide. */
+const Meereen: Loc = {
+  floorY: 1640,
+  Back: () => {
+    const f = useCurrentFrame();
+    return (
+      <g>
+        <Gradient id="mrnSky" a="#E8A25A" b="#F8E2B0" y2={1250} />
+        <circle cx="820" cy="420" r="110" fill="#FFF1C2" />
+        <Cloud x={260 + f * 0.15} y={360} s={0.9} color="#FFF4DC" />
+        {/* Stufenpyramide */}
+        {Array.from({ length: 6 }, (_, i) => <rect key={i} x={260 + i * 50} y={700 + i * 90} width={560 - i * 100} height="90" fill={i % 2 ? "#C9A06A" : "#D9B27A"} stroke="#1C1830" strokeWidth="5" />)}
+        <path d="M-80 1240 Q300 1160 540 1220 T1160 1200 V1400 H-80Z" fill="#B9A060" stroke="#1C1830" strokeWidth="5" />
+        <rect x="-80" y="1360" width={W + 160} height={H - 1360} fill="#C9B07A" stroke="#1C1830" strokeWidth="5" />
+        {[[120, 1500], [900, 1460], [460, 1820]].map(([x, y], i) => <ellipse key={i} cx={x} cy={y} rx="70" ry="22" fill="#9AA05A" stroke="#1C1830" strokeWidth="4" />)}
+      </g>
+    );
+  },
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant, dorm: Dorm, gamefield: GameField, printroom: PrintRoom, tattoostudio: TattooStudio, clinic: Clinic, vault: Vault, meereen: Meereen };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {

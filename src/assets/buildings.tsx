@@ -259,3 +259,33 @@ export const PrintingPress: React.FC<A & { phase?: number }> = ({ phase = 0, ...
     <circle cx="-330" cy="-440" r="12" fill="#2FA36B" />
   </G>
 );
+
+/** Drache (seitlich, schwarz-rot), Flügel schlagen mit `flap` (0..1). */
+export const Dragon: React.FC<A & { flap?: number; color?: string; wing?: string }> = ({ flap = 0.5, color = "#1E1A22", wing = "#8E1E22", ...a }) => {
+  const wy = -260 - flap * 160;
+  return (
+    <G {...a}>
+      {/* Schwanz */}
+      <path d="M-180 -120 Q-360 -100 -460 -40 Q-380 -80 -200 -90Z" fill={color} {...sw} />
+      <path d="M-470 -40 L-420 -70 L-430 -20Z" fill={wing} {...sw} />
+      {/* hinterer Flügel */}
+      <path d={`M-40 -200 L-120 ${wy - 40} L-40 ${wy + 10} L40 ${wy - 60} L60 -200Z`} fill={wing} opacity=".75" {...sw} />
+      {/* Körper */}
+      <ellipse cx="-40" cy="-140" rx="200" ry="90" fill={color} {...sw} />
+      <path d="M-200 -120 Q-40 -60 140 -110" fill="none" stroke="#3A3440" strokeWidth="10" />
+      {/* Beine */}
+      {[-140, 60].map((x) => <path key={x} d={`M${x} -80 L${x - 10} 0 H${x + 30}`} fill="none" stroke={color} strokeWidth="34" strokeLinecap="round" strokeLinejoin="round" />)}
+      {/* Hals + Kopf */}
+      <path d="M120 -180 Q220 -260 250 -330 L300 -310 Q270 -230 170 -130Z" fill={color} {...sw} />
+      <path d="M240 -360 Q300 -380 380 -340 L390 -320 Q330 -310 300 -300 Q260 -300 240 -330Z" fill={color} {...sw} />
+      <path d="M250 -360 L230 -410 L270 -370 M280 -366 L280 -414 L300 -366" fill={color} stroke="#1C1830" strokeWidth="5" />
+      <circle cx="320" cy="-345" r="7" fill="#F6C945" />
+      <path d="M350 -322 L384 -322" stroke="#8E1E22" strokeWidth="5" />
+      {/* Rückenstacheln */}
+      {[-180, -120, -60, 0, 60].map((x) => <path key={x} d={`M${x - 16} -224 L${x} -258 L${x + 16} -224Z`} fill={wing} {...thin} />)}
+      {/* vorderer Flügel */}
+      <path d={`M0 -190 L-60 ${wy} L40 ${wy + 40} L120 ${wy - 30} L200 ${wy + 60} L120 -190Z`} fill={wing} {...sw} />
+      <path d={`M60 -190 L40 ${wy + 40} M100 -190 L120 ${wy - 30}`} stroke="#1C1830" strokeWidth="6" />
+    </G>
+  );
+};

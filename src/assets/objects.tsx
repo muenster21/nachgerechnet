@@ -386,3 +386,42 @@ export const NoteSheet: React.FC<A & { value?: string }> = ({ value = "50", ...a
     ))}
   </G>
 );
+
+/** Goldbarren-Stapel (Pyramide). */
+export const GoldStack: React.FC<A & { rows?: number }> = ({ rows = 4, ...a }) => (
+  <G {...a}>
+    {Array.from({ length: rows }, (_, r) => {
+      const n = rows - r;
+      return Array.from({ length: n }, (_, i) => (
+        <g key={r + "-" + i} transform={`translate(${(i - (n - 1) / 2) * 92} ${-r * 40})`}>
+          <path d="M-44 0 L-34 -36 H34 L44 0Z" fill="#F2C94C" {...sw} />
+          <path d="M-30 -30 H30" stroke="#fff" strokeOpacity=".55" strokeWidth="5" strokeLinecap="round" />
+        </g>
+      ));
+    })}
+  </G>
+);
+
+/** Goldwürfel (isometrisch), Kante ~ 1,67 m im Maßstab der Figuren. */
+export const GoldCube: React.FC<A & { size?: number }> = ({ size = 380, ...a }) => {
+  const k = size, d = size * 0.35;
+  return (
+    <G {...a}>
+      <path d={`M${-k / 2} 0 V${-k} L${-k / 2 + d} ${-k - d} H${k / 2 + d} V${-d} L${k / 2} 0Z`} fill="#D9A93A" {...sw} />
+      <rect x={-k / 2} y={-k} width={k} height={k} fill="#F2C94C" {...sw} />
+      <path d={`M${-k / 2} ${-k} L${-k / 2 + d} ${-k - d} H${k / 2 + d} L${k / 2} ${-k}Z`} fill="#F8DC7A" {...sw} />
+      <path d={`M${-k / 2 + 30} ${-k + 40} L${-k / 2 + 110} ${-k + 40}`} stroke="#fff" strokeOpacity=".6" strokeWidth="14" strokeLinecap="round" />
+    </G>
+  );
+};
+
+/** Schaf (seitlich). */
+export const Sheep: React.FC<A> = (a) => (
+  <G {...a}>
+    {[-40, -14, 18, 44].map((x) => <rect key={x} x={x - 7} y="-46" width="14" height="46" rx="5" fill="#2A2A2A" {...thin} />)}
+    {[[-40, -80], [-10, -96], [22, -92], [46, -76], [-28, -58], [10, -56], [38, -56]].map(([x, y], i) => <circle key={i} cx={x} cy={y} r="30" fill="#F4F2EC" {...sw} />)}
+    <ellipse cx="72" cy="-88" rx="22" ry="28" fill="#2A2A2A" {...sw} />
+    <ellipse cx="62" cy="-108" rx="14" ry="7" fill="#2A2A2A" {...thin} />
+    <circle cx="80" cy="-92" r="4" fill="#fff" />
+  </G>
+);

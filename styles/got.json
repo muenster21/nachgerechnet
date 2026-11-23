@@ -1,0 +1,14 @@
+{
+  "series": "Game of Thrones",
+  "slug": "got",
+  "mood": "Meereen: Wüstenhitze, Ocker, Sandstein, Abendsonne; Drache schwarz-rot",
+  "palette": {},
+  "characters": {
+    "dany": "dany",
+    "goatherd": "goatherd"
+  },
+  "locations": [
+    "meereen"
+  ],
+  "notes": "Keine Logos, Clips, Titelmusik, keine Gewalt gegen Menschen. Figuren als Cartoon-Karikaturen."
+}

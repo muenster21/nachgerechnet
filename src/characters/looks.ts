@@ -2,7 +2,7 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" | "buzz" };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" | "buzz" | "dany" };
   top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather" | "track" | "jumpsuit" | "tank"; color: string; accent: string; shirt?: string; number?: string };
   tie?: string;
   pants: string;
@@ -302,5 +302,20 @@ export const LOOKS: Record<string, Look> = {
     pants: "#3E5C8A", shoes: "#2A2A2A",
     bodyW: 120, heightScale: 1.04, sleeves: "short", brows: "#2A1E16",
     tattoo: "#2B3A5C",
+  },
+  /* ---- Game of Thrones ---- */
+  dany: {
+    skin: "#F6D6BC", skinShade: "#E6BC9C",
+    hair: { color: "#EADBB4", style: "dany" },
+    top: { kind: "sweater", color: "#6E8FB8", accent: "#4E6E98" },
+    pants: "#6E8FB8", shoes: "#5A4636",
+    bodyW: 104, heightScale: 0.95, sleeves: "long", brows: "#C8BCA8",
+  },
+  goatherd: {
+    skin: "#C98E62", skinShade: "#B07650",
+    hair: { color: "#2A1E16", style: "marshall" },
+    top: { kind: "sweater", color: "#A88E5A", accent: "#8A7246" },
+    pants: "#7A6E5A", shoes: "#5A4636",
+    bodyW: 120, heightScale: 0.98, sleeves: "long", stubble: true, brows: "#1C140E",
   },
 };
