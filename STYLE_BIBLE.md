@@ -94,7 +94,7 @@ Was in **jedem** Video gleich ist:
 
 **Recherche (A1):** Serien-Fakten aus Fandom-Wikis mit Staffel/Folge; echte Daten (Mieten Stadtteil+Jahr, Gehälter, Inflation, Wechselkurse) aus offiziellen/seriösen Quellen. Alles in `output/<slug>/research.md` mit Link und Stand, klar getrennt in **Serien-Fakt / echte Daten / Schätzung**. Nie Fakten oder Zahlen erfinden.
 
-**Skript (A2):** 150–220 Wörter, gesprochene Sprache, kurze Sätze, gerundete Zahlen, Schätzungen benennen. Aufbau: Hook (2 s) → was die Serie zeigt → reale Kosten → Verdienst der Figuren → Rechnung → Urteil → Twist/Erklärung → „Welche Serie soll ich als Nächstes durchrechnen?“. Anspielungen auf die Erzählweise erlaubt, keine längeren Originalzitate. 3 Hook-Varianten in `hooks.txt`, `script.md` mit Szenen-Markierungen.
+**Skript (A2):** 150–220 Wörter, gesprochene Sprache, kurze Sätze, gerundete Zahlen, Schätzungen benennen. Aufbau: Hook als schockierte Frage (0–2 s, verrät nichts) → was die Serie zeigt → reale Zahlen → Rechnung (Annahmen aussprechen) → Urteil (erst hier die Antwort) → „Folg mir für die nächste Rechnung. Was soll ich als Nächstes durchrechnen?“. Immer über 60 s. Verbindliche Regeln: `UEBERGABE.md` Abschnitt 2. Anspielungen auf die Erzählweise erlaubt, keine längeren Originalzitate. 3 Hook-Varianten in `hooks.txt`, `script.md` mit Szenen-Markierungen.
 
 **Stimme (A3):** ElevenLabs, Key aus `.env` (`ELEVENLABS_API_KEY`), Voice-ID in `config.json`, Wort-Zeitstempel für Untertitel und Animationen. Erzählweise lebendig, nicht monoton (`eleven_v4` mit Regieanweisungen).
 

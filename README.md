@@ -1,6 +1,6 @@
 # nachgerechnet
 
-Animierte Hochkant-Videos (1080×1920, 30 fps, 60–90 s) mit Erzählerstimme aus dem Off, die die Finanzen von Film- und Serienfiguren nachrechnen. Gebaut mit Remotion (React). Regeln und Look: **[STYLE_BIBLE.md](STYLE_BIBLE.md)**.
+Animierte Hochkant-Videos (1080×1920, 30 fps, 60–90 s) mit Erzählerstimme aus dem Off, die die Finanzen von Film- und Serienfiguren nachrechnen. Gebaut mit Remotion (React). Regeln und Look: **[STYLE_BIBLE.md](STYLE_BIBLE.md)**. Stand, Regeln des Nutzers und Videoliste: **[UEBERGABE.md](UEBERGABE.md)**. Agenten: `.claude/agents/` (rechercheur, skript-pruefer, bild-pruefer).
 
 ## Neues Video starten
 In Claude Code, im Projektordner:
