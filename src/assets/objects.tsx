@@ -425,3 +425,26 @@ export const Sheep: React.FC<A> = (a) => (
     <circle cx="80" cy="-92" r="4" fill="#fff" />
   </G>
 );
+
+export const Goat: React.FC<A> = (a) => (
+  <G {...a}>
+    {[-46, -24, 22, 44].map((x) => (
+      <g key={x}>
+        <rect x={x - 6} y="-56" width="12" height="56" rx="4" fill="#B98D62" {...thin} />
+        <rect x={x - 7} y="-10" width="14" height="10" rx="3" fill="#2A2A2A" />
+      </g>
+    ))}
+    <path d="M-62 -94 q-22 -26 -8 -34 q4 18 20 22 Z" fill="#C99C70" {...sw} />
+    <path d="M-62 -78 Q-64 -108 -30 -106 H34 Q62 -106 60 -76 Q58 -46 24 -46 H-34 Q-62 -48 -62 -78 Z" fill="#C99C70" {...sw} />
+    <path d="M-38 -104 Q-10 -78 18 -104 Z" fill="#8A6240" />
+    <path d="M36 -96 L58 -138 L82 -122 L62 -76 Z" fill="#C99C70" {...sw} />
+    <path d="M66 -148 Q58 -182 28 -184 Q52 -170 52 -144 Z" fill="#E9DFC6" {...thin} />
+    <path d="M80 -150 Q78 -186 48 -194 Q68 -174 66 -148 Z" fill="#E9DFC6" {...thin} />
+    <path d="M56 -146 Q64 -158 80 -154 Q100 -140 112 -116 Q114 -104 100 -102 Q82 -102 66 -116 Q52 -130 56 -146 Z" fill="#D8AD80" {...sw} />
+    <path d="M92 -102 Q96 -80 86 -70 Q78 -86 80 -102 Z" fill="#F4EBDD" {...thin} />
+    <path d="M58 -142 Q34 -144 26 -122 Q48 -118 62 -132 Z" fill="#8A6240" {...thin} />
+    <ellipse cx="82" cy="-132" rx="8" ry="7" fill="#F6D860" {...thin} />
+    <rect x="77" y="-134" width="10" height="4" rx="2" fill="#1C1830" />
+    <circle cx="106" cy="-112" r="3" fill="#1C1830" />
+  </G>
+);
