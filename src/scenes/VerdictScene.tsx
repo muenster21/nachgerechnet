@@ -43,7 +43,7 @@ export const VerdictScene: React.FC<{ s: { stage?: StageSpec; verdict: VerdictKi
         )}
       </div>
       {s.sub && k > 10 && (
-        <div style={{ position: "absolute", left: 70, width: 860, top: 820, textAlign: "center", fontFamily: FONT_TEXT, fontWeight: 900, fontSize: 52, color: "#fff", WebkitTextStroke: `9px ${BRAND.ink}`, paintOrder: "stroke fill", opacity: Math.min(1, (k - 10) / 8), zIndex: 30 }}>{s.sub}</div>
+        <div style={{ position: "absolute", left: 70, width: 860, top: 890, textAlign: "center", fontFamily: FONT_TEXT, fontWeight: 900, fontSize: 52, color: "#fff", WebkitTextStroke: `9px ${BRAND.ink}`, paintOrder: "stroke fill", opacity: Math.min(1, (k - 10) / 8), zIndex: 30 }}>{s.sub}</div>
       )}
       {/* Funkeln um den Stempel */}
       <svg width="1080" height="1920" style={{ position: "absolute", inset: 0, zIndex: 31, pointerEvents: "none" }}>
