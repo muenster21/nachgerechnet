@@ -36,6 +36,14 @@ Stimme: Voice-ID aus `config.json`, Modell `eleven_v4`, lebendig erzählt (Regie
 ## 5. Render
 `node scripts/render.mjs <slug>`; Stichproben im fertigen Video vom Agenten **`bild-pruefer`** prüfen lassen und selbst Sync und Ton prüfen. `cover.png` erstellen. `caption.txt`: Caption + 3–5 Hashtags + Hinweis „Stimme KI-generiert“.
 
+## 5b. Werbung prüfen (nur wenn die Affiliate-Pipeline vorhanden ist)
+Pfad: `$NACHGERECHNET_AFFILIATE`, sonst `~/Desktop/Claude/Motion/affiliate-strategie/pipeline/affiliate.py`. Fehlt die Datei, diesen Schritt überspringen.
+- `python3 <pfad> vorschlag <slug>`. Bei „Kein Programm passt“ oder einem nicht freigeschalteten Programm: Video ohne Werbung, weiter mit `check`.
+- Passt ein freigeschaltetes Programm: **erst den Nutzer fragen**, ob das Video Werbung bekommt. Nur nach seinem OK `python3 <pfad> anwenden <slug> <programm>`. Nie von sich aus Werbung einbauen und nie Finanzprodukte (Bank, Depot, Kreditkarte) bewerben.
+- Immer `python3 <pfad> check <slug>`. Bei „FEHLER“ beheben oder ohne Werbung posten. Die Upload-Checkliste aus der Ausgabe dem Nutzer zeigen.
+- In `STATUS.md` eintragen: Werbung ja/nein, Programm, welche Caption-Datei hochgeladen wird (`caption.txt` oder `caption.werbung.txt`), Ergebnis von `check`.
+- Affiliate-Links und Partnerdaten stehen nur in `output/` (nicht versioniert) und nie in Dateien, die committet werden.
+
 ## 6. Übergabe (Pflicht, auch wenn die Sitzung abbricht oder nur ein Teil fertig ist)
 - `output/<slug>/STATUS.md` vollständig: Stand, alle Nutzerentscheidungen, freigegebener Text, Kernrechnung, Unsicherheiten, Prüfergebnisse, IDs, welche Datei hochgeladen wird, Sicherungen.
 - `UEBERGABE.md`: Zeile in der Videotabelle (Abschnitt 7) anlegen oder aktualisieren. Neue Regeln oder Lehren des Nutzers in Abschnitt 2 bzw. 6 eintragen, neue Stolperfallen in Abschnitt 5, offene Punkte in Abschnitt 8. Stand-Datum anpassen.
