@@ -499,3 +499,27 @@ export const Urn: React.FC<A & { label?: string }> = ({ label, ...a }) => (
     {label ? <text x="0" y="-56" textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#E8B84C">{label}</text> : null}
   </G>
 );
+
+/** Sporttasche (Duffel), ca. 330 breit */
+export const Duffel: React.FC<A & { color?: string }> = ({ color = "#2B2F3A", ...a }) => (
+  <G {...a}>
+    <path d="M-60 -120 Q0 -200 60 -120" fill="none" stroke="#1C1830" strokeWidth="16" strokeLinecap="round" />
+    <path d="M-60 -120 Q0 -200 60 -120" fill="none" stroke={shade(color, 0.25)} strokeWidth="8" strokeLinecap="round" />
+    <rect x="-165" y="-130" width="330" height="130" rx="62" fill={color} {...sw} />
+    <path d="M-120 -122 H120" stroke="#E8B84C" strokeWidth="6" strokeDasharray="10 8" />
+    <rect x="-40" y="-90" width="80" height="44" rx="8" fill={shade(color, -0.2)} {...thin} />
+    <path d="M-140 -40 Q-150 -90 -120 -110" stroke="#fff" strokeOpacity=".2" strokeWidth="10" fill="none" strokeLinecap="round" />
+  </G>
+);
+
+/** Heiltrank-Flasche (Zombix-artig, eigenes Design), ca. 190 hoch */
+export const PillBottle: React.FC<A & { label?: string }> = ({ label = "$15", ...a }) => (
+  <G {...a}>
+    <rect x="-52" y="-150" width="104" height="150" rx="16" fill="#7BC96F" {...sw} />
+    <rect x="-58" y="-190" width="116" height="44" rx="10" fill="#F4F0E4" {...sw} />
+    <rect x="-44" y="-112" width="88" height="70" rx="8" fill="#F4F0E4" {...thin} />
+    <path d="M-16 -77 H16 M0 -93 V-61" stroke="#D62839" strokeWidth="12" strokeLinecap="round" />
+    <text x="0" y="-18" textAnchor="middle" fontFamily="Anton" fontSize="28" fill="#1C1830">{label}</text>
+    <path d="M-36 -140 V-30" stroke="#fff" strokeOpacity=".35" strokeWidth="8" strokeLinecap="round" />
+  </G>
+);

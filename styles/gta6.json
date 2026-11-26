@@ -1,0 +1,9 @@
+{
+  "series": "GTA VI",
+  "slug": "gta6",
+  "mood": "Leonida/Vice City: Neon-Abend, Pink-Lila-Himmel, Türkis, Palmen, Keys und Sümpfe",
+  "palette": { "skyTop": "#3B2A6B", "skyBottom": "#FF7A9C" },
+  "characters": { "jason": "jason", "lucia": "lucia" },
+  "locations": ["marina", "storage", "clinic"],
+  "notes": "Keine Logos, Clips, Musik oder Original-Artwork. Figuren als eigene Cartoon-Karikaturen. Keine Waffen und keine Gewalt im Bild, Schuss nur im Text."
+}

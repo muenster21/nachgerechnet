@@ -847,7 +847,87 @@ const Meereen: Loc = {
   Fore: () => <g />,
 };
 
-export const LOCATIONS: Record<string, Loc> = { apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant, dorm: Dorm, gamefield: GameField, printroom: PrintRoom, tattoostudio: TattooStudio, clinic: Clinic, vault: Vault, meereen: Meereen };
+
+/* ---------------- Krankenzimmer (Florida-Look) ---------------- */
+const Hospital: Loc = {
+  floorY: 1560,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="hspWall" a="#BFE6E2" b="#7FC3BE" y2={1500} />
+      <Window x={300} y={1300} w={400} h={460} skyline={false} sky={[p("skyTop", "#3B2A6B"), p("skyBottom", "#FF7A9C")]} />
+      <Palm x={230} y={1300} s={0.6} />
+      <Palm x={390} y={1300} s={0.48} />
+      {/* Vorhangschiene + Vorhang */}
+      <rect x="560" y="260" width="560" height="14" rx="7" fill="#E8ECEF" stroke="#1C1830" strokeWidth="4" />
+      <path d="M980 274 Q1010 700 960 1500 H1120 V274Z" fill="#F4D6E0" stroke="#1C1830" strokeWidth="5" />
+      <path d="M1010 300 Q1030 800 1000 1480 M1060 300 Q1075 800 1050 1480" stroke="#1C1830" strokeOpacity=".2" strokeWidth="6" fill="none" />
+      {/* Monitor mit EKG */}
+      <rect x="560" y="1000" width="230" height="160" rx="14" fill="#1F2A3A" stroke="#1C1830" strokeWidth="6" />
+      <path d="M575 1085 H620 L635 1040 L655 1130 L670 1065 L685 1085 H775" stroke="#5DE08A" strokeWidth="6" fill="none" strokeLinejoin="round" />
+      <path d="M675 1160 V1440" stroke="#1C1830" strokeWidth="10" />
+      <rect x="-40" y="1440" width={W + 80} height="64" fill="#5FA8A2" stroke="#1C1830" strokeWidth="4" />
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#E6E1D6" stroke="#1C1830" strokeWidth="5" />
+      {Array.from({ length: 8 }, (_, i) => <path key={i} d={`M${i * 150} 1500 L${i * 190 - 120} ${H}`} stroke="#1C1830" strokeOpacity=".18" strokeWidth="4" />)}
+      {Array.from({ length: 5 }, (_, i) => <path key={"h" + i} d={`M-40 ${1580 + i * 80} H${W + 40}`} stroke="#1C1830" strokeOpacity=".18" strokeWidth="4" />)}
+    </g>
+  ),
+  Mid: () => (
+    <g>
+      {/* Krankenhausbett (Seitenansicht, ca. 2 m bei Figur 700) */}
+      <g transform="translate(400 1680)">
+        <rect x="-330" y="-300" width="30" height="300" rx="8" fill="#C9D6DC" stroke="#1C1830" strokeWidth="5" />
+        <rect x="320" y="-230" width="30" height="230" rx="8" fill="#C9D6DC" stroke="#1C1830" strokeWidth="5" />
+        <rect x="-310" y="-200" width="640" height="60" rx="10" fill="#C9D6DC" stroke="#1C1830" strokeWidth="5" />
+        <rect x="-300" y="-250" width="620" height="60" rx="18" fill="#F4F6F8" stroke="#1C1830" strokeWidth="5" />
+        <rect x="-290" y="-292" width="150" height="54" rx="22" fill="#FFFFFF" stroke="#1C1830" strokeWidth="5" />
+        <path d="M-120 -250 H320 V-200 H-120Z" fill="#7FB4D8" stroke="#1C1830" strokeWidth="5" />
+        <circle cx="-260" cy="-10" r="18" fill="#3B3F4C" stroke="#1C1830" strokeWidth="4" />
+        <circle cx="290" cy="-10" r="18" fill="#3B3F4C" stroke="#1C1830" strokeWidth="4" />
+      </g>
+      {/* Infusionsständer */}
+      <g transform="translate(70 1620)">
+        <path d="M0 0 V-640 M-40 -640 H40" stroke="#9AA6AE" strokeWidth="12" strokeLinecap="round" />
+        <rect x="-34" y="-630" width="56" height="100" rx="14" fill="#DDF3FF" stroke="#1C1830" strokeWidth="5" />
+        <path d="M-6 -530 Q-10 -300 60 -240" stroke="#1C1830" strokeWidth="4" fill="none" />
+        <path d="M-60 0 H60" stroke="#9AA6AE" strokeWidth="12" strokeLinecap="round" />
+      </g>
+    </g>
+  ),
+  Fore: () => <g />,
+};
+
+/* ---------------- Schließfächer (Besucherzentrum im Sumpf) ---------------- */
+const Lockers: Loc = {
+  floorY: 1620,
+  Back: ({ p }) => (
+    <g>
+      <Gradient id="lkWall" a="#E9D8B4" b="#B99A6A" y2={1500} />
+      <Window x={540} y={560} w={760} h={300} skyline={false} sky={["#7FB89A", "#3E6E4E"]} />
+      {[-0.5, 0.5].map((k) => <path key={k} d={`M${540 + k * 600} 560 q30 -120 60 0 q-10 -80 40 -60`} stroke="#2F5A3A" strokeWidth="10" fill="none" />)}
+      <rect x="-40" y="660" width={W + 80} height="16" fill="#8A6A44" stroke="#1C1830" strokeWidth="4" />
+      {/* Schließfachreihe */}
+      {Array.from({ length: 7 }, (_, i) => {
+        const x = 20 + i * 150, n = 14 + i;
+        return (
+          <g key={i}>
+            <rect x={x} y="760" width="140" height="740" fill={n === 17 ? p("accent", "#E8B84C") : "#5E8C8A"} stroke="#1C1830" strokeWidth="5" />
+            <rect x={x + 10} y="772" width="120" height="350" rx="6" fill={n === 17 ? "#F2CC6A" : "#6E9E9C"} stroke="#1C1830" strokeWidth="4" />
+            <rect x={x + 10} y="1136" width="120" height="350" rx="6" fill={n === 17 ? "#F2CC6A" : "#6E9E9C"} stroke="#1C1830" strokeWidth="4" />
+            {[0, 1, 2].map((k) => <path key={k} d={`M${x + 35} ${800 + k * 18} H${x + 105}`} stroke="#1C1830" strokeOpacity=".4" strokeWidth="4" />)}
+            <rect x={x + 96} y="950" width="14" height="40" rx="4" fill="#C9D6DC" stroke="#1C1830" strokeWidth="3" />
+            <text x={x + 70} y="1080" textAnchor="middle" fontFamily="Anton" fontSize="44" fill="#1C1830">{n}</text>
+          </g>
+        );
+      })}
+      <rect x="-40" y="1500" width={W + 80} height={H - 1500} fill="#8C7A62" stroke="#1C1830" strokeWidth="5" />
+      {Array.from({ length: 6 }, (_, i) => <path key={i} d={`M-40 ${1560 + i * 70} H${W + 40}`} stroke="#1C1830" strokeOpacity=".2" strokeWidth="4" />)}
+    </g>
+  ),
+  Mid: () => <g />,
+  Fore: () => <g />,
+};
+
+export const LOCATIONS: Record<string, Loc> = { hospital: Hospital, lockers: Lockers, apartment: Apartment, bar: Bar, street: Street, beachhouse: BeachHouse, deck: Deck, driveway: Driveway, highway: Highway, gasstation: GasStation, motel: Motel, motelroom: MotelRoom, diner: Diner, poolhall: PoolHall, lab: Lab, condo: Condo, marina: Marina, sea: OpenSea, desert: Desert, storage: Storage, bunker: Bunker, cell: Cell, apt4a: Apt4A, stairwell: Stairwell, restaurant: Restaurant, dorm: Dorm, gamefield: GameField, printroom: PrintRoom, tattoostudio: TattooStudio, clinic: Clinic, vault: Vault, meereen: Meereen };
 
 /** Schlichter Datenhintergrund (dunkel, mit Muster) – ebenfalls bildfüllend. */
 export const Backdrop: React.FC<{ a?: string; b?: string; dots?: string }> = ({ a = "#1D2A52", b = "#0F1630", dots = "#FFFFFF" }) => {
