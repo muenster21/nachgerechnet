@@ -27,7 +27,9 @@ Zusammenspiel der Dateien:
 7. **Freigaben:** Den Text vor dem Vertonen freigeben lassen, den Kontaktbogen vor dem finalen Render. Nur wenn der Nutzer ausdrücklich „ohne mich zu fragen“ sagt, autonom arbeiten.
 8. **Logik vor dem Vertonen prüfen** (Agent `skript-pruefer`). Grund: Das GoT-Video brauchte drei Fassungen.
 9. **Nach jedem Schritt committen und pushen** (Branch `feat/style-bible-und-pipeline`). API-Keys und Referenzvideo kommen nie ins Repo. Die private E-Mail-Adresse des Nutzers wird nie verwendet.
-10. Fremde, unversionierte Ordner im Projekt (`design-lab/`, `fonts/`, `nachgerechnet/`, `previews/`, `render.py`, `serien-video/`, `templates/`, `topics.json`) nicht anfassen.
+11. **Nur zeitlose Serien** (Entscheidung 26.11.2026): Serien, die bis heute viel geschaut werden, gern passend zur Jahreszeit (Supernatural im Herbst, wenn es draußen dunkler wird; Weihnachtsfolgen im Dezember). Keine Serien, deren Hype vorbei ist. Deshalb wurden Prison Break und Haus des Geldes 2 verworfen.
+12. **Hook mit schockierender Zahl im Bild plus Frage** (Vorschlag nach Analyse 26.11., noch nicht vom Nutzer bestätigt): z. B. „2.000 Ziegen im Jahr?!“. Das eigentliche Ergebnis bzw. Urteil kommt weiterhin erst am Ende.
+13. Fremde, unversionierte Ordner im Projekt (`design-lab/`, `fonts/`, `nachgerechnet/`, `previews/`, `render.py`, `serien-video/`, `templates/`, `topics.json`) nicht anfassen.
 
 ## 3. Ablauf eines Videos (`/video <Serie> "<Frage>"`)
 Jedes Video in einer **neuen Sitzung** starten. Das spart Kontext, und die Sitzung liest nur diese Datei.
@@ -103,8 +105,8 @@ Spalte „Gepostet“: Datum und Aufrufe laut TikTok Studio (Stand 26.11.2026). 
 | tbbt-penny | The Big Bang Theory | Kann Penny sich Pasadena leisten? (Frage-Hook per Snippet q-tbbt) | 68,2 s | ja 23.11. (1,3K) |
 | sg-leben | Squid Game | Was ist ein Leben wert? (Frage-Hook q-sg) | 62,7 s | ja 24.11. (0,7K) |
 | mh-druck | Haus des Geldes 1 | Geht der Plan des Professors auf? (q-mh) | 66,2 s | ja 23.11. (1,3K) |
-| pb-tattoo | Prison Break | Tattoo in 3 Wochen weglasern? (q-pb) | 61,2 s | **nein** |
-| mh-gold | Haus des Geldes 2 | 90 Tonnen Gold: Wie viel ist das? | 65,4 s | **nein** |
+| pb-tattoo | Prison Break | Tattoo in 3 Wochen weglasern? (q-pb) | 61,2 s | verworfen 26.11. (nicht zeitlos) |
+| mh-gold | Haus des Geldes 2 | 90 Tonnen Gold: Wie viel ist das? | 65,4 s | verworfen 26.11. (nicht zeitlos) |
 | got-drache | Game of Thrones | So viele Ziegen frisst ein Drache?! Kosten pro Jahr | 84,7 s | ja 25.11. (0,7K) |
 
 Bei tbbt-penny, sg-leben, mh-druck und pb-tattoo wurde der Hook nachträglich per Audio-Splice durch eine Frage ersetzt. Ihre `hooks.txt` zeigt noch den alten Hook.
@@ -122,5 +124,14 @@ Unsicher bleibt der Ziegenpreis (Hofladenpreis eines einzelnen Hofs) und der Kal
 - Neuer Kanalname (siehe Abschnitt 1).
 - Kooperations-Mediamappe: bauen, sobald neuer Name, Kooperations-E-Mail (nicht die private) sowie Follower- und Aufrufzahlen da sind. Werbung muss gekennzeichnet werden. Preise nicht öffentlich nennen (interne Orientierung: Integration etwa 10–25 € pro 1.000 erwartete Aufrufe, eigenes Erklärvideo ab etwa 400–1.000 €).
 - Monetarisierung: Creator Rewards ab 10.000 Follower. Finanzguru-Partnerprogramm erst mit mehr Reichweite.
-- Noch nicht gepostet: pb-tattoo, mh-gold.
-- Themenideen, noch nicht umgesetzt: (hier ergänzen)
+- Themenideen (Vorschläge 26.11., noch nicht entschieden):
+  - HIMYM: Wie lange dauert Teds Geschichte wirklich?
+  - HIMYM: Marshalls Jura-Kredit
+  - HIMYM: Barneys Anzüge
+  - Gilmore Girls: Kaffeekonsum
+  - Stranger Things: Joyces Lichterketten
+  - Friends: Rechnung im Central Perk
+  - Grey's Anatomy: Katastrophen-Schadenersatz
+  - The Office: Kosten von Jims Streichen
+  - Suits: Strafe für Mike Ross in Deutschland
+  - Bereits gemacht bei HIMYM: Barneys Drink-Plan, Abende in der Bar, Wohnung (nur Kontaktbogen).
