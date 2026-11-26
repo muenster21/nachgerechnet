@@ -16,6 +16,7 @@ Lies `STYLE_BIBLE.md` (B4, B7, B10) und `output/<slug>/scenes.json`. Sieh dir `o
 4. Zahlen auf Chips, Schildern und Kassenbons stimmen mit dem Text in `scenes.json` überein und laufen nicht über.
 5. Das Bild ist gefüllt, ohne große leere Flächen und ohne Platzhalter- oder Clipart-Wirkung.
 6. Figuren sind erkennbar und nicht gespiegelt (z. B. Startnummern oder Schrift). Haare und Kleidung sitzen richtig.
+6b. Proportionen stimmen: Figur (≈ 1,9 m) nicht größer als Bett, Schrank, Tür, Auto oder Haus. Faustregel Wohnung: Figur h ≈ 680–720, Bett s ≈ 1,45, Anzugschrank s ≈ 1,0. Keine Häuser auf der Straße, keine Figur so groß wie ein Gebäude (Straßenszenen: Figur klein auf dem Gehweg oder Szene in den Innenraum verlegen).
 7. Der Hook (Szene 1) verrät auf keinem Chip die Antwort.
 
 ## Antwort

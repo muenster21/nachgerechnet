@@ -50,6 +50,7 @@ Jedes Video in einer **neuen Sitzung** starten. Das spart Kontext, und die Sitzu
 - Nach der Transkription: Wörter mit dem Text abgleichen (Ziel 0 Abweichungen). `at`-Wörter in `scenes.json` müssen genau einem gesprochenen Wort entsprechen.
 
 ## 5. Technik (Kurzfassung, Details in README.md)
+- **Proportionen (Nutzer 26.11.):** Figuren nie größer als Bett, Schrank, Auto, Haus. Wohnung: Figur h ≈ 680–720, Bett s ≈ 1,45, Anzugschrank s ≈ 1,0. Häuser nie auf die Straße stellen; Straßenszenen mit großen Figuren vermeiden.
 - Remotion (React), 1080×1920, 30 fps. Sicherheitszone: oben 250, unten 400, rechts 150 px.
 - Szenentypen: location, fact, receipt, data, compare, map, verdict, end. Mindestens 5 verschiedene pro Video, etwa alle 2–3 s eine neue Bewegung.
 - Stage: `actors` (who, x, y, h, enter, keys[at, pose, expr], flip) und `items` (asset, x, y, s, at, anim, props, move{to, at, dur}). Chips: {text, at, top, left, size, color, fg}.
