@@ -448,3 +448,54 @@ export const Goat: React.FC<A> = (a) => (
     <circle cx="106" cy="-112" r="3" fill="#1C1830" />
   </G>
 );
+
+/** Anzug auf Bügel (Sakko mit Hemd und Krawatte). Ursprung unten Mitte, ca. 300 hoch. */
+export const SuitHanger: React.FC<A & { color?: string; tie?: string }> = ({ color = "#23232E", tie = "#3A6EA5", ...a }) => (
+  <G {...a}>
+    <path d="M0 -300 q0 -22 16 -22 q14 0 14 14" fill="none" stroke="#8A8A94" strokeWidth="6" strokeLinecap="round" />
+    <path d="M-92 -250 L0 -290 L92 -250" fill="none" stroke="#7A4B2B" strokeWidth="10" strokeLinecap="round" />
+    <path d="M-96 -244 Q-104 -120 -92 0 H92 Q104 -120 96 -244 Q60 -276 0 -280 Q-60 -276 -96 -244 Z" fill={color} {...sw} />
+    <path d="M-34 -276 L0 -150 L34 -276 Z" fill="#F4F0E8" {...thin} />
+    <path d="M-9 -262 H9 L13 -238 L0 -160 L-13 -238 Z" fill={tie} {...thin} />
+    <path d="M-34 -276 L-52 -200 L-20 -190 L0 -150 Z M34 -276 L52 -200 L20 -190 L0 -150 Z" fill={shade(color, -0.25)} {...thin} />
+    <path d="M0 -150 V0" stroke={shade(color, -0.35)} strokeWidth="4" />
+    <circle cx="-10" cy="-110" r="6" fill={shade(color, -0.45)} />
+    <circle cx="-10" cy="-70" r="6" fill={shade(color, -0.45)} />
+    <path d="M-80 -150 h40 M40 -150 h40" stroke={shade(color, -0.35)} strokeWidth="5" strokeLinecap="round" />
+    <path d="M56 -214 h26 l-4 14 h-22 Z" fill="#F4F0E8" {...thin} />
+  </G>
+);
+
+/** Kleiderschrank (offen) mit Reihe von Anzügen. Ursprung unten Mitte, ca. 760 hoch, 900 breit. */
+export const SuitCloset: React.FC<A & { n?: number }> = ({ n = 7, ...a }) => {
+  const cols = ["#23232E", "#2E3A55", "#3B3B44", "#4A3A2E", "#1F2A3A", "#5A5A66", "#2A2A35", "#34405C"];
+  const ties = ["#3A6EA5", "#B5524A", "#E8B84C", "#5DA06A", "#7C5AA6", "#D9774A"];
+  return (
+    <G {...a}>
+      <rect x="-450" y="-760" width="900" height="760" fill="#6E3F24" {...sw} />
+      <rect x="-420" y="-730" width="840" height="700" fill="#3A2417" {...thin} />
+      <rect x="-420" y="-650" width="840" height="12" fill="#B9B9C4" {...thin} />
+      {Array.from({ length: n }, (_, i) => {
+        const x = -420 + (840 / n) * (i + 0.5);
+        return <SuitHanger key={i} x={x} y={-650 + 322 * 0.78} s={0.78} color={cols[i % cols.length]} tie={ties[i % ties.length]} />;
+      })}
+      <rect x="-420" y="-110" width="840" height="80" fill="#4A2E1C" {...thin} />
+      {Array.from({ length: Math.min(n, 8) }, (_, i) => (
+        <path key={i} d={`M${-390 + i * 100} -40 q20 -24 60 -10 l6 10 Z`} fill="#15151D" />
+      ))}
+    </G>
+  );
+};
+
+/** Urne (für Barneys verbrannten Anzug). Ursprung unten Mitte, ca. 200 hoch. */
+export const Urn: React.FC<A & { label?: string }> = ({ label, ...a }) => (
+  <G {...a}>
+    <path d="M-44 0 H44 L36 -20 Q70 -70 52 -130 Q46 -150 30 -156 H-30 Q-46 -150 -52 -130 Q-70 -70 -36 -20 Z" fill="#3A4A6B" {...sw} />
+    <path d="M-30 -156 H30 L24 -176 H-24 Z" fill="#2B3754" {...thin} />
+    <path d="M-26 -176 Q0 -206 26 -176 Z" fill="#2B3754" {...sw} />
+    <circle cx="0" cy="-204" r="9" fill="#E8B84C" {...thin} />
+    <path d="M-58 -96 H58" stroke="#E8B84C" strokeWidth="8" />
+    <path d="M-40 -130 Q-46 -80 -30 -40" stroke="#fff" strokeOpacity=".25" strokeWidth="8" fill="none" strokeLinecap="round" />
+    {label ? <text x="0" y="-56" textAnchor="middle" fontFamily="Anton" fontSize="26" fill="#E8B84C">{label}</text> : null}
+  </G>
+);

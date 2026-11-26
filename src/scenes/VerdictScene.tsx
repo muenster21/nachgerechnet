@@ -34,7 +34,7 @@ export const VerdictScene: React.FC<{ s: { stage?: StageSpec; verdict: VerdictKi
           <div style={{
             transform: `translate(${shake}px, ${Math.abs(shake) * 0.4}px) rotate(-8deg) scale(${scale})`,
             border: `20px solid ${col}`, color: col, background: "rgba(255,248,234,.94)", borderRadius: 30, padding: "10px 60px 0",
-            fontFamily: FONT_DISPLAY, fontSize: s.verdict.length > 8 ? 170 : 220, letterSpacing: 6, lineHeight: 1.08, whiteSpace: "nowrap",
+            fontFamily: FONT_DISPLAY, fontSize: s.verdict.length > 7 ? 170 : 220, letterSpacing: 6, lineHeight: 1.08, whiteSpace: "nowrap",
             boxShadow: `0 0 0 8px ${BRAND.ink}, 14px 20px 0 8px rgba(28,24,48,.5)`,
           }}>
             {s.verdict}
