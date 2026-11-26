@@ -111,6 +111,7 @@ Spalte „Gepostet“: Datum und Aufrufe laut TikTok Studio (Stand 26.11.2026). 
 | mh-gold | Haus des Geldes 2 | 90 Tonnen Gold: Wie viel ist das? | 65,4 s | verworfen 26.11. (nicht zeitlos) |
 | got-drache | Game of Thrones | So viele Ziegen frisst ein Drache?! Kosten pro Jahr | 84,7 s | ja 25.11. (0,7K) |
 | himym-anzuege | How I Met Your Mother | Ein ganzes Zimmer nur für Anzüge?! Was kosten Barneys Anzüge? | 75,8 s | fertig 26.11., noch nicht gepostet |
+| gta6-kap1 | GTA VI | 10.000 Dollar für eine einzige Tasche?! Lohnt sich dieser Job in GTA 6 wirklich? | 77,6 s | fertig 26.11., noch nicht gepostet |
 
 Bei tbbt-penny, sg-leben, mh-druck und pb-tattoo wurde der Hook nachträglich per Audio-Splice durch eine Frage ersetzt. Ihre `hooks.txt` zeigt noch den alten Hook.
 
