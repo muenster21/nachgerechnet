@@ -109,6 +109,7 @@ Spalte „Gepostet“: Datum und Aufrufe laut TikTok Studio (Stand 26.11.2026). 
 | pb-tattoo | Prison Break | Tattoo in 3 Wochen weglasern? (q-pb) | 61,2 s | verworfen 26.11. (nicht zeitlos) |
 | mh-gold | Haus des Geldes 2 | 90 Tonnen Gold: Wie viel ist das? | 65,4 s | verworfen 26.11. (nicht zeitlos) |
 | got-drache | Game of Thrones | So viele Ziegen frisst ein Drache?! Kosten pro Jahr | 84,7 s | ja 25.11. (0,7K) |
+| himym-anzuege | How I Met Your Mother | Ein ganzes Zimmer nur für Anzüge?! Was kosten Barneys Anzüge? | 75,8 s | fertig 26.11., noch nicht gepostet |
 
 Bei tbbt-penny, sg-leben, mh-druck und pb-tattoo wurde der Hook nachträglich per Audio-Splice durch eine Frage ersetzt. Ihre `hooks.txt` zeigt noch den alten Hook.
 
@@ -128,7 +129,7 @@ Unsicher bleibt der Ziegenpreis (Hofladenpreis eines einzelnen Hofs) und der Kal
 - Themenideen (Vorschläge 26.11., noch nicht entschieden):
   - HIMYM: Wie lange dauert Teds Geschichte wirklich?
   - HIMYM: Marshalls Jura-Kredit
-  - HIMYM: Barneys Anzüge
+  - HIMYM: Barneys Anzüge (ERLEDIGT 26.11., himym-anzuege)
   - Gilmore Girls: Kaffeekonsum
   - Stranger Things: Joyces Lichterketten
   - Friends: Rechnung im Central Perk
