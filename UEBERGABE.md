@@ -30,6 +30,7 @@ Zusammenspiel der Dateien:
 11. **Nur zeitlose Serien** (Entscheidung 26.11.2026): Serien, die bis heute viel geschaut werden, gern passend zur Jahreszeit (Supernatural im Herbst, wenn es draußen dunkler wird; Weihnachtsfolgen im Dezember). Keine Serien, deren Hype vorbei ist. Deshalb wurden Prison Break und Haus des Geldes 2 verworfen.
 12. **Hook mit schockierender Zahl im Bild plus Frage** (Vorschlag nach Analyse 26.11., noch nicht vom Nutzer bestätigt): z. B. „2.000 Ziegen im Jahr?!“. Das eigentliche Ergebnis bzw. Urteil kommt weiterhin erst am Ende.
 13. Fremde, unversionierte Ordner im Projekt (`design-lab/`, `fonts/`, `nachgerechnet/`, `previews/`, `render.py`, `serien-video/`, `templates/`, `topics.json`) nicht anfassen.
+14. **Rechnungen im Bild müssen wörtlich stimmen** (Nutzer 26.11., nach Fehler „100 × 4.000 $ = 366.000 €“ auf der Karte): Umrechnungen immer mit sichtbarem Dollar-Schritt.
 
 ## 3. Ablauf eines Videos (`/video <Serie> "<Frage>"`)
 Jedes Video in einer **neuen Sitzung** starten. Das spart Kontext, und die Sitzung liest nur diese Datei.

@@ -25,6 +25,7 @@ Lies `UEBERGABE.md` (Regeln) und aus `output/<slug>/`: `scenes.json`, `script.md
 10. Das Ende lautet: „Folg mir für die nächste Rechnung. Was soll ich als Nächstes durchrechnen?“
 11. Hat der Text etwa 150–220 Wörter, sodass das Video sicher über 60 s und möglichst unter 75 s dauert? Ist die Mitte straff, ohne Abschnitte, die nichts zur Rechnung beitragen?
 12. Passt jedes `at`-Wort in `scenes.json` genau zu einem Wort im Szenentext?
+13. Jede Rechnung, die im Bild steht (Fakt-Karte, Beleg, Vergleich), muss für sich wörtlich stimmen. Wird umgerechnet (Dollar → Euro), steht der Dollar-Zwischenschritt sichtbar da. Nie „100 × 4.000 $“ direkt neben „366.000 €“. Prüfe dazu jede Zahl in `fact`, `lines`, `total`, `left`/`right` von `scenes.json` mit dem Taschenrechner.
 
 ## Antwort
 Höchstens 25 Zeilen. Gib zuerst das Gesamturteil an: **OK** oder **ÄNDERN**. Danach folgt jeder Fund mit Szene, Problem und einem konkreten Vorschlag für den neuen Wortlaut. Melde echte Fehler, keine Geschmacksfragen. Wenn alles stimmt, sag das knapp.
