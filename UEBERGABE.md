@@ -2,7 +2,7 @@
 
 **Diese Datei ist das Gedächtnis des Projekts.** Jede neue Sitzung liest sie zuerst. Wer etwas entscheidet, ändert oder fertigstellt, trägt es hier ein, bevor die Sitzung endet. So bleiben Regeln, Stimme, Look und Stand gleich, auch wenn eine Sitzung nichts vom Verlauf früherer Sitzungen weiß.
 
-Stand: 25.11.2026
+Stand: 26.11.2026
 
 Zusammenspiel der Dateien:
 - `CLAUDE.md`: Kurzregeln (werden automatisch geladen)
@@ -62,6 +62,23 @@ Jedes Video in einer **neuen Sitzung** starten. Das spart Kontext, und die Sitzu
   - Supernatural 1 hatte 52K Aufrufe, Charlie 30K, Breaking Bad 4,1K, Supernatural 2 3,1K.
   - Kanal: 134 Follower, 98,8K Aufrufe in 7 Tagen, 735 Profilaufrufe.
   - Die Mitte verliert stark (bei 30 s sind noch 30–35 % dabei), nur 3 % sehen bis zum Ende.
+- **Analyse 26.11.** (7 Tage: 108K Aufrufe, davon ~66K allein am 19.11.; 149 Follower, seit 23.11. nur +15):
+
+  | Video | Aufrufe | nach 2 s | nach 5 s | nach 30 s | Ø Sehdauer | ganz gesehen | neue Follower |
+  |---|---|---|---|---|---|---|---|
+  | Roadtrip (Referenz) | 53K | – | ~50 % | – | 32,4 s | 6,5 % | 107 |
+  | SN Knast | 3,9K | – | 63 % (23.11.) | – | 24,0 s | 2,8 % | 6 |
+  | Penny | 1,3K | 68 % | 47 % | 28 % | 21,8 s | 3,6 % | 2 |
+  | Professor | 1,3K | 60 % | 44 % | 26 % | 19,2 s | 3,1 % | 2 |
+  | Squid Game | 0,7K | 67 % | 53 % | 26 % | 19,3 s | 2,5 % | 1 |
+  | GoT | 0,7K | 62 % | **31 %** | 12 % | 11,7 s | 1,7 % | 1 |
+
+  Folgerungen:
+  - Der 19.11. war ein Ausreißer; 1K Aufrufe sind der normale Sockel.
+  - Neue Videos werden kürzer angesehen (19–22 s statt 32 s).
+  - Frage-Hooks ohne sichtbare Zahl halten nach 5 s schlechter als die Ergebnis-Hooks vom 23.11. (44–53 % statt 59–63 %).
+  - Beim GoT-Video brach der Einstieg ein: „So viele Ziegen?!“ ohne Zahl im Bild, Tippfehler „Ziehen“ in der Caption, Thema ohne Fanbase-Bezug für Nicht-Kenner.
+  - Vier Videos in drei Tagen.
 - Danach hat der Nutzer die Hook-Regel festgelegt: Frage statt Antwort (Regel 2/3).
 - Videos mit eigener Rechnung (Roadtrip, Fässer) laufen gut. TikTok hat Videos wegen Originalität geboostet.
 - **Fehler, die nicht wieder passieren dürfen:**
@@ -72,23 +89,23 @@ Jedes Video in einer **neuen Sitzung** starten. Das spart Kontext, und die Sitzu
   - Schildrechnung mit gerundeten Werten geht nicht auf.
 
 ## 7. Videos (Serien-Format)
-Spalte „Gepostet“: nur eintragen, was der Nutzer bestätigt hat.
+Spalte „Gepostet“: Datum und Aufrufe laut TikTok Studio (Stand 26.11.2026). Zusätzlich gepostet: ein HIMYM-Video „Ted, Marshall & Co. sitzen fast jeden Abend …“ (17./18.11.). Die privaten „Folge 1–7 Die Reise“ (Weltall) stammen vom alten Konto.
 
 | Slug | Serie | Thema / Hook | Länge | Gepostet |
 |---|---|---|---|---|
-| spn-roadtrip | Supernatural | Wer zahlt Sam und Deans Roadtrip? | 81,1 s | ja (52K) |
-| taahm-charlie | Two and a Half Men | Was kostet Charlies Leben pro Jahr? | 76,2 s | ja (30K) |
-| bb-faesser | Breaking Bad | Passen 11 Mio. $ in ein Fass? Welche Scheine bräuchte Walt? | 83,7 s | ja (4,1K) |
-| spn-knast | Supernatural 2 | Wie lange müssten Sam und Dean in den Knast? | 71,8 s | ja (3,1K) |
-| dexter-boot | Dexter | Reicht das Gehalt für Wohnung am Wasser und Boot? | 75,9 s | ? |
-| himym-vodka | HIMYM | Was kostet Barneys Drink-Plan? | 79,4 s | ? |
+| spn-roadtrip | Supernatural | Wer zahlt Sam und Deans Roadtrip? | 81,1 s | ja 19.11. (53K) |
+| taahm-charlie | Two and a Half Men | Was kostet Charlies Leben pro Jahr? | 76,2 s | ja 18.11. (30K) |
+| bb-faesser | Breaking Bad | Passen 11 Mio. $ in ein Fass? Welche Scheine bräuchte Walt? | 83,7 s | ja 20.11. (4,1K) |
+| spn-knast | Supernatural 2 | Wie lange müssten Sam und Dean in den Knast? | 71,8 s | ja 22.11. (3,9K) |
+| dexter-boot | Dexter | Reicht das Gehalt für Wohnung am Wasser und Boot? | 75,9 s | ja 19.11. (5,8K) |
+| himym-vodka | HIMYM | Was kostet Barneys Drink-Plan? | 79,4 s | ja 17.11. (2,1K) |
 | himym-wohnung | HIMYM | Ted und Marshalls Wohnung | – (nur Kontaktbogen) | nein |
-| tbbt-penny | The Big Bang Theory | Kann Penny sich Pasadena leisten? (Frage-Hook per Snippet q-tbbt) | 68,2 s | ? |
-| sg-leben | Squid Game | Was ist ein Leben wert? (Frage-Hook q-sg) | 62,7 s | ? |
-| mh-druck | Haus des Geldes 1 | Geht der Plan des Professors auf? (q-mh) | 66,2 s | ? |
-| pb-tattoo | Prison Break | Tattoo in 3 Wochen weglasern? (q-pb) | 61,2 s | ? |
-| mh-gold | Haus des Geldes 2 | 90 Tonnen Gold: Wie viel ist das? | 65,4 s | ? |
-| got-drache | Game of Thrones | So viele Ziegen frisst ein Drache?! Kosten pro Jahr | 84,7 s | nein |
+| tbbt-penny | The Big Bang Theory | Kann Penny sich Pasadena leisten? (Frage-Hook per Snippet q-tbbt) | 68,2 s | ja 23.11. (1,3K) |
+| sg-leben | Squid Game | Was ist ein Leben wert? (Frage-Hook q-sg) | 62,7 s | ja 24.11. (0,7K) |
+| mh-druck | Haus des Geldes 1 | Geht der Plan des Professors auf? (q-mh) | 66,2 s | ja 23.11. (1,3K) |
+| pb-tattoo | Prison Break | Tattoo in 3 Wochen weglasern? (q-pb) | 61,2 s | **nein** |
+| mh-gold | Haus des Geldes 2 | 90 Tonnen Gold: Wie viel ist das? | 65,4 s | **nein** |
+| got-drache | Game of Thrones | So viele Ziegen frisst ein Drache?! Kosten pro Jahr | 84,7 s | ja 25.11. (0,7K) |
 
 Bei tbbt-penny, sg-leben, mh-druck und pb-tattoo wurde der Hook nachträglich per Audio-Splice durch eine Frage ersetzt. Ihre `hooks.txt` zeigt noch den alten Hook.
 
@@ -105,4 +122,5 @@ Unsicher bleibt der Ziegenpreis (Hofladenpreis eines einzelnen Hofs) und der Kal
 - Neuer Kanalname (siehe Abschnitt 1).
 - Kooperations-Mediamappe: bauen, sobald neuer Name, Kooperations-E-Mail (nicht die private) sowie Follower- und Aufrufzahlen da sind. Werbung muss gekennzeichnet werden. Preise nicht öffentlich nennen (interne Orientierung: Integration etwa 10–25 € pro 1.000 erwartete Aufrufe, eigenes Erklärvideo ab etwa 400–1.000 €).
 - Monetarisierung: Creator Rewards ab 10.000 Follower. Finanzguru-Partnerprogramm erst mit mehr Reichweite.
+- Noch nicht gepostet: pb-tattoo, mh-gold.
 - Themenideen, noch nicht umgesetzt: (hier ergänzen)
