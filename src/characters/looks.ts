@@ -2,8 +2,8 @@
 export type Look = {
   skin: string;
   skinShade: string;
-  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" | "buzz" | "dany" };
-  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather" | "track" | "jumpsuit" | "tank"; color: string; accent: string; shirt?: string; number?: string };
+  hair: { color: string; style: "ted" | "marshall" | "plain" | "bald" | "barney" | "long" | "charlie" | "alan" | "curly" | "kid" | "dean" | "sam" | "dexter" | "sheldon" | "leonard" | "buzz" | "crop" | "dany" };
+  top: { kind: "blazer" | "sweater" | "plaid" | "tee" | "bowling" | "vest" | "leather" | "track" | "jumpsuit" | "tank"; color: string; accent: string; shirt?: string; number?: string; crop?: boolean };
   tie?: string;
   pants: string;
   shoes: string;
@@ -321,7 +321,7 @@ export const LOOKS: Record<string, Look> = {
   /* ---- GTA VI (eigene Karikaturen) ---- */
   jason: {
     skin: "#E6B48C", skinShade: "#D09A72",
-    hair: { color: "#5A3E28", style: "buzz" },
+    hair: { color: "#3A2A1C", style: "crop" },
     top: { kind: "tee", color: "#56624A", accent: "#434D39" },
     pants: "#3E5C8A", shoes: "#5A4636",
     bodyW: 126, heightScale: 1.03, sleeves: "short", stubble: true, brows: "#3A2818",
@@ -330,7 +330,7 @@ export const LOOKS: Record<string, Look> = {
   lucia: {
     skin: "#C98E62", skinShade: "#B07650",
     hair: { color: "#1C1410", style: "long" },
-    top: { kind: "tank", color: "#F2EDE4", accent: "#D9D4CA" },
+    top: { kind: "tank", color: "#F2EDE4", accent: "#D9D4CA", crop: true },
     pants: "#2B3754", shoes: "#F2EDE4",
     bodyW: 106, heightScale: 0.95, sleeves: "short", brows: "#1C1410",
     tattoo: "#2B3A5C",

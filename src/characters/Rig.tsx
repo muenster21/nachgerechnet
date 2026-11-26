@@ -24,7 +24,7 @@ export const POSES: Record<PoseName, Pose> = {
   wave: { lOut: 9, lBend: 10, rOut: 150, rBend: 30, wave: 1 },
 };
 
-export type Expr = "neutral" | "happy" | "shocked" | "skeptical" | "annoyed" | "thinking";
+export type Expr = "neutral" | "happy" | "shocked" | "skeptical" | "annoyed" | "thinking" | "serious";
 export type MouthName = "smile" | "grin" | "open" | "o" | "flat" | "smirk" | "frown";
 
 type ExprDef = { browL: [number, number]; browR: [number, number]; eye: number; lid: number; pupil: [number, number]; mouth: MouthName };
@@ -36,6 +36,7 @@ const EXPR: Record<Expr, ExprDef> = {
   skeptical: { browL: [-10, -12], browR: [4, 14], eye: 0.95, lid: 0.18, pupil: [5, -1], mouth: "smirk" },
   annoyed: { browL: [4, 16], browR: [4, -16], eye: 0.85, lid: 0.42, pupil: [0, 2], mouth: "flat" },
   thinking: { browL: [-6, -10], browR: [-2, 8], eye: 1, lid: 0.1, pupil: [6, -6], mouth: "flat" },
+  serious: { browL: [3, 9], browR: [3, -9], eye: 0.95, lid: 0.28, pupil: [0, 0], mouth: "flat" },
 };
 
 const sw = { stroke: LINE, strokeWidth: LW, strokeLinejoin: "round" as const, strokeLinecap: "round" as const };
@@ -156,6 +157,15 @@ function HairFront({ look }: { look: Look }) {
         <g>
           <path d="M-88 -446 Q-94 -542 0 -552 Q94 -542 88 -446 Q72 -500 0 -510 Q-72 -500 -88 -446Z" fill={c} {...sw} />
           <path d="M-70 -500 Q0 -530 70 -500" fill="none" stroke="#D9CDB8" strokeWidth="10" strokeDasharray="14 8" />
+        </g>
+      );
+    case "crop":
+      // kurzer Crop mit Fade: dichte Kappe oben, Seiten heller
+      return (
+        <g>
+          <path d="M-84 -462 Q-90 -540 0 -548 Q90 -540 84 -462 Q78 -492 60 -504 Q30 -512 0 -510 Q-30 -512 -60 -504 Q-78 -492 -84 -462Z" fill={c} {...sw} />
+          <path d="M-84 -462 Q-86 -486 -72 -500 L-66 -474Z M84 -462 Q86 -486 72 -500 L66 -474Z" fill={c} opacity=".55" />
+          <path d="M-46 -530 l8 -8 M-20 -536 l8 -8 M6 -538 l8 -8 M32 -534 l8 -8 M56 -524 l6 -6" stroke="#fff" strokeOpacity=".22" strokeWidth="4" strokeLinecap="round" />
         </g>
       );
     case "buzz":
@@ -404,6 +414,13 @@ function Torso({ look, breathe, flip }: { look: Look; breathe: number; flip?: bo
               <path d={`M-8 ${top + 30} h16 M-12 ${top + 44} h24`} />
             </g>
           )}
+        </g>
+      )}
+      {t.crop && (
+        // bauchfrei: Hautstreifen über dem Hosenbund
+        <g>
+          <path d={`M${-hw - 4} ${bot - 46} H${hw + 4} L${hw + 6} ${bot} H${-hw - 6}Z`} fill={look.skin} {...sw} />
+          <path d={`M-2 ${bot - 22} q3 6 0 10`} fill="none" stroke={look.skinShade} strokeWidth="4" strokeLinecap="round" />
         </g>
       )}
       {t.kind === "tee" && (
